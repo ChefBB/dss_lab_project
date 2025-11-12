@@ -1,1 +1,139 @@
+"""
+Decision Support Systems Project - Assignment 1
+Data Understanding for tracks.json and artists.xml
+Authors: [Your Name]
+Date: [Date]
+University of Pisa - DSS Module II
+"""
+
+import json
+import xml.etree.ElementTree as ET
+from collections import defaultdict, Counter
+import statistics
+
+# ----------------------------------------------------------
+# 1. LOAD TRACKS DATA (JSON)
+# ----------------------------------------------------------
+def load_tracks(json_path):
+    """Load the tracks dataset from a JSON file"""
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    print(f"✅ Loaded {len(data)} tracks from {json_path}")
+    return data
+
+
+# ----------------------------------------------------------
+# 2. LOAD ARTISTS DATA (XML)
+# ----------------------------------------------------------
+def load_artists(xml_path):
+    """Load the artists dataset from an XML file"""
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    artists = []
+    for artist in root.findall('artist'):
+        info = {}
+        for child in artist:
+            info[child.tag] = child.text.strip() if child.text else None
+        artists.append(info)
+
+    print(f"✅ Loaded {len(artists)} artists from {xml_path}")
+    return artists
+
+
+# ----------------------------------------------------------
+# 3. BASIC STRUCTURE INSPECTION
+# ----------------------------------------------------------
+def inspect_structure(data, n=2):
+    """Print first n examples and basic info"""
+    print("\n--- STRUCTURE SAMPLE ---")
+    for i, item in enumerate(data[:n]):
+        print(f"\nItem {i+1}:")
+        for k, v in item.items():
+            print(f"  {k}: {v}")
+    print(f"\nTotal attributes: {len(data[0].keys()) if data else 0}")
+
+
+# ----------------------------------------------------------
+# 4. MISSING VALUES ANALYSIS
+# ----------------------------------------------------------
+def check_missing(data):
+    """Count missing values by attribute"""
+    missing_counts = defaultdict(int)
+    total = len(data)
+    for record in data:
+        for k, v in record.items():
+            if v in (None, "", "NA", "N/A", "null"):
+                missing_counts[k] += 1
+
+    print("\n--- MISSING VALUES ---")
+    for k, v in missing_counts.items():
+        print(f"{k:<25}: {v} missing ({v/total:.2%})")
+
+
+# ----------------------------------------------------------
+# 5. BASIC STATISTICS (NUMERIC FIELDS)
+# ----------------------------------------------------------
+def numeric_stats(data):
+    """Compute simple stats for numeric fields"""
+    print("\n--- BASIC NUMERIC STATS ---")
+    for key in data[0].keys():
+        # Try to convert all values to float
+        values = []
+        for record in data:
+            try:
+                val = float(record[key])
+                values.append(val)
+            except (TypeError, ValueError):
+                continue
+
+        if values:
+            print(f"{key:<25}: count={len(values)}, mean={statistics.mean(values):.2f}, "
+                  f"min={min(values)}, max={max(values)}")
+
+
+# ----------------------------------------------------------
+# 6. TEXTUAL FIELD EXPLORATION (OPTIONAL INSIGHT)
+# ----------------------------------------------------------
+def text_field_insight(data, field_name):
+    """Example: get most common words in a text field (lyrics, description...)"""
+    print(f"\n--- TEXT INSIGHT: {field_name} ---")
+    words = []
+    for record in data:
+        text = record.get(field_name, "")
+        if text:
+            words.extend(text.lower().split())
+
+    most_common = Counter(words).most_common(10)
+    for w, c in most_common:
+        print(f"{w}: {c}")
+
+
+# ----------------------------------------------------------
+# 7. MAIN EXECUTION
+# ----------------------------------------------------------
+if __name__ == "__main__":
+    # Modify with your file paths
+    tracks_file = "tracks.json"
+    artists_file = "artists.xml"
+
+    # Load datasets
+    tracks = load_tracks(tracks_file)
+    artists = load_artists(artists_file)
+
+    # Inspect structure
+    inspect_structure(tracks)
+    inspect_structure(artists)
+
+    # Missing values check
+    check_missing(tracks)
+    check_missing(artists)
+
+    # Numeric stats
+    numeric_stats(tracks)
+
+    # Example textual analysis
+    text_field_insight(tracks, field_name="lyrics")  # change if field differs
+
+    print("\n✅ Data understanding completed successfully.")
 
