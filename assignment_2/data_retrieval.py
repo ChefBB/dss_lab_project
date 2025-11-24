@@ -44,10 +44,12 @@ def setup(name: str, pwd: str, app: str):
 
 # INTERROGATION FUNCTIONS
 
+# ARTISTS
+
 
 def query_args_artist(artist: dict) -> list:
     """
-    Starting from artist dict, builds a Lucene query with the available data.
+    Starting from artist dict, builds a list of Lucene clauses with the available data.
     
     Parameters
     ----------
@@ -140,3 +142,101 @@ def artist_interrog(args: list) -> dict:
             answer = curr_ans
     return answer
 
+
+# SONGS RETRIEVAL
+
+
+def query_args_recordings(song: dict) -> list:
+    """
+    Starting from song dict, builds a list of Lucene clauses with the available data.
+    
+    Parameters
+    ----------
+    song: dict
+        Dictionary representing a song.
+        
+    Returns
+    -------
+    list
+        List of recording info, formatted for building a Lucene query.
+    """
+    clauses = []
+    
+    # title
+    if song.get('title'):
+        title = song['title']
+        clauses.append(f'title:"{title}"')
+        
+    # artist
+    if song.get('primary_artist'):
+        artist = song['primary_artist']
+        clauses.append(artist)
+    
+    # albums + album_name
+    albums = None
+    if song.get('album'):
+        albums = f'"{song['album']}"'
+    album_name = song.get('album_name')
+    if album_name and (not albums or song != album_name):
+        if not albums:
+            albums = album_name
+        else:
+            albums = f'({albums} OR "{album_name}")'
+    if albums:
+        clauses.append(albums)
+    
+    # date
+    dates = None
+    if song.get('year'):
+        dates = str(int(song['year']))
+    alb_rel_date = song.get('album_release_date')
+    if alb_rel_date and (not dates or dates[0] != alb_rel_date):
+        if not dates:
+            dates = dates
+        else:
+            dates = f'({dates} OR "{alb_rel_date}")'
+    if dates:
+        clauses.append(dates)
+    
+    return clauses
+
+
+def recording_interrog(args: list) -> dict:
+    """
+    Starting from args list, iteratively interrogates Musicbrainz, adding
+    clauses.
+    
+    Parameters
+    ----------
+    args: list
+        List of clauses.
+        
+    Returns
+    -------
+    dict
+        Musicbrainz's last non-emtpy answer.
+    """
+    answer = []
+    query = None
+    for arg in args:
+        if not query:
+            query = arg
+        else:
+            query = ' AND '.join([query, arg])
+        curr_ans = None
+        # iter interrogations until an answer is given
+        while curr_ans is None:
+            try:
+                curr_ans = mb.search_recordings(query, limit=10)
+            except Exception:
+                time.sleep(uniform(0.5, 1))
+        
+        if curr_ans['recording-count'] == 0:
+            if answer == []:
+                return curr_ans
+            return answer
+        elif curr_ans['recording-count'] == 1:
+            return curr_ans
+        else:       # more than one artist returned
+            answer = curr_ans
+    return answer
