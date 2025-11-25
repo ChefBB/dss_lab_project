@@ -5,6 +5,7 @@ Integration module
 Contains functions to integrate obtained data with
 the original dataset.
 """
+from difflib import SequenceMatcher
 
 
 def best_match_tracks(data_og: dict, data_retrieved: dict) -> dict:
@@ -55,8 +56,7 @@ def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
     match = 1.0
     
     # title
-    if track_og['title'].lower() != track_retrieved['title'].lower():
-        match *= 0.3
+    match *= SequenceMatcher(None, track_og['title'].lower(), track_retrieved['title'].lower()).ratio()
     
     # artist
     # TODO deal with ' & '
@@ -66,7 +66,7 @@ def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
         match *= 0.6
     
     # featured artists
-    # deal with ' feat. '
+    # TODO deal with ' feat. '
     
     # language
     
