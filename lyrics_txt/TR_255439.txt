@@ -1,0 +1,14 @@
+Cubetti tricolori
+È ora il turno dei cubetti tricolori con una faccetta bianca
+D'ora in poi manterremo sempre la croce bianca al di sotto
+Scegliete un cubetto tricolore con la faccetta bianca
+Se si trova al livello superiore siete fortunati, per il momento non toccatelo
+Se invece si trova al livello inferiore bisogna farlo risalire a quello superiore
+Dovrete far risalire questo cubetto senza preoccuparvi della posizione degli altri cubetti tricolori
+Ecco come fare
+Girate la faccia di sinistra all'indietro
+La faccia di dietro a destra ed ecco un cubetto al suo posto
+Importante: mantenere sempre la croce bianca al di sotto
+Coloro che erano rimasti in attesa possono ora riprendere il giuoco
+Colete andare ancora avanti?
+Attenzione si parte, questa è un'altra fantasia
