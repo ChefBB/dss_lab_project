@@ -59,14 +59,26 @@ def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
     match *= SequenceMatcher(None, track_og['title'].lower(), track_retrieved['title'].lower()).ratio()
     
     # artist
-    # TODO deal with ' & '
-    if (
-        track_og.get('primary_artist') and
-        track_retrieved['artist-credit'][0]['name'].lower() not in track_og.get('primary_artist').lower()):
-        match *= 0.6
+    if track_og.get('primary_artist'):
+        idx = len(track_retrieved.get('artist-credit')) + 1
+        if ' feat. ' in track_retrieved.get('artist-credit'):
+            idx = track_retrieved.get('artist-credit').index(' feat. ')
+        primary_artists = track_retrieved.get('artist-credit')[:idx]
+        primary_artists = [artist for artist in primary_artists if artist != ' & ']
+        match *= max([
+            SequenceMatcher(None, track_og.get('primary_artist').lower(), artist['name'].lower())
+            for artist in primary_artists
+        ])
     
     # featured artists
-    # TODO deal with ' feat. '
+    if track_og.get('featured_artists') and ' feat. ' in track_retrieved.get('artist-credit'):
+        idx = track_retrieved.get('artist-credit').index(' feat. ')
+        featured_artists = track_retrieved.get('artist-credit')[:idx]
+        featured_artists = [artist for artist in featured_artists if artist != ' & ']
+        match *= max([
+            SequenceMatcher(None, track_og.get('primary_artist').lower(), artist['name'].lower())
+            for artist in featured_artists
+        ])
     
     # language
     
