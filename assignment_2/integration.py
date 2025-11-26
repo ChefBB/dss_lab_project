@@ -53,6 +53,7 @@ def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
     float
         Matching score between original and retrieved tracks.
     """
+    # TODO handle none values so that they decrease the match, to take them into account
     match = 1.0
     
     # title
@@ -73,18 +74,29 @@ def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
     # featured artists
     if track_og.get('featured_artists') and ' feat. ' in track_retrieved.get('artist-credit'):
         idx = track_retrieved.get('artist-credit').index(' feat. ')
-        featured_artists = track_retrieved.get('artist-credit')[:idx]
-        featured_artists = [artist for artist in featured_artists if artist != ' & ']
+        featured_artists_retrieved = track_retrieved.get('artist-credit')[idx + 1:]
+        featured_artists_retrieved = [artist for artist in featured_artists_retrieved if artist != ' & ']
+        featured_artists_og = track_og.get('featured_artists').split(', ')
+        # TODO: at this point, only takes the best matching og and retrieved featured artist
+        # idea: take into account number of featured artists 
         match *= max([
-            SequenceMatcher(None, track_og.get('primary_artist').lower(), artist['name'].lower())
-            for artist in featured_artists
+            SequenceMatcher(None, artist_og.lower(), artist_retrieved['name'].lower())
+            for artist_og in featured_artists_og
+            for artist_retrieved in featured_artists_retrieved
         ])
     
-    # language
-    
     # album
+    # TODO check 'album'
+    # release-list
+    if track_og.get('album_name'):
+        album_name_og = track_og.get('album_name')
+        match *= max(
+            [SequenceMatcher(None, album_name_og.lower(), release['title'].lower())
+             for release in track_retrieved['release-list']]
+        )
     
     # release, album release
+    # TODO; i think this can be avoided
     
     return match
 
