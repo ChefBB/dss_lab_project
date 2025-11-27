@@ -6,6 +6,7 @@ Contains functions to integrate obtained data with
 the original dataset.
 """
 from difflib import SequenceMatcher
+from math import sqrt
 
 
 def compute_match_scores(data_og: dict, data_retrieved: dict) -> dict:
@@ -35,6 +36,27 @@ def compute_match_scores(data_og: dict, data_retrieved: dict) -> dict:
         )
     
     return data_retrieved
+
+
+# TODO tune this, make it so that it works for entire lists in the final computation
+def soft_penalty(best_score: float, n_items: int) -> float:
+    """
+    Reduces the penalty when the retrieved list has many items.
+
+    Parameters
+    ----------
+    best_score: float
+        Max score obtained.
+    n_items: int
+        Number of items in the retrieved list.
+
+    Returns
+    -------
+    float
+        Adjusted score with a softer penalty for larger lists.
+    """
+    penalty_factor = 1 / sqrt(max(1, n_items))
+    return 1 - (1 - best_score) * penalty_factor
 
 
 def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
@@ -69,13 +91,14 @@ def matching_score_track(track_og: dict, track_retrieved: dict) -> float:
         primary_artists = track_retrieved.get('artist-credit')[:idx]
         primary_artists = [artist for artist in primary_artists
                            if isinstance(artist, dict)]
-        print(primary_artists)
-        match *= max([
-            SequenceMatcher(None,
-                            track_og.get('primary_artist').lower(),
-                            artist['name'].lower()).ratio()
-            for artist in primary_artists
-        ])
+        penalty = soft_penalty(
+            max([SequenceMatcher(None,
+                                 track_og.get('primary_artist').lower(),
+                                 artist['name'].lower()).ratio()
+                 for artist in primary_artists]),
+            len(primary_artists)
+        )
+        match *= penalty
     
     # featured artists
     if track_og.get('featured_artists') and ' feat. ' in track_retrieved.get('artist-credit'):
