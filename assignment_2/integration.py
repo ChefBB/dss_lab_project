@@ -6,7 +6,7 @@ Contains functions to integrate obtained data with
 the original dataset.
 """
 from difflib import SequenceMatcher
-from math import sqrt, exp, log1p
+from math import sqrt, exp
 
 
 countries_map = {
@@ -33,7 +33,7 @@ def compute_match_scores(data_og: dict, data_retrieved: dict) -> dict:
     Returns
     -------
     dict
-        Dictionary of objects ordered by their matching score.
+        Dictionary of objects with their matching score attached.
     """
     if data_retrieved.get('recording-list'):
         flag = True
@@ -74,7 +74,7 @@ def soft_penalty(factors: list[float], order_weighted: bool = False) -> float:
     # order-based weighting
     if order_weighted:
         # earlier elements get higher weights
-        weights = [log1p((n - i) / n) for i in range(n)]
+        weights = [exp(- i / n) for i in range(n)]
         total_weight = sum(weights)
         weighted_product = 1.0
         for w, f in zip(weights, factors):
@@ -86,9 +86,7 @@ def soft_penalty(factors: list[float], order_weighted: bool = False) -> float:
 
     # length-based softening 
     soften = 1 / sqrt(n)
-
-    # Blend the product with a softer version depending on list length
-    # Lower soften => more softening effect
+    
     adjusted = 1 - (1 - weighted_product) * soften
 
     return adjusted
