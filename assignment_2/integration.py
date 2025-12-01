@@ -19,6 +19,29 @@ gender_map = {
 }
 
 
+def compute_all_matching_scores(dataset_og: list, dataset_retrieved: list) -> list:
+    """
+    Computes all matching scores.
+    
+    Parameters
+    ----------
+    dataset_og: list
+        
+
+    dataset_retrieved: list
+    """
+    for (data_og, data_retrieved) in zip(dataset_og, dataset_retrieved):
+        compute_match_scores(data_og, data_retrieved)
+    
+    best_retrieved = []
+    for data in dataset_retrieved:
+        best_retrieved.append(max(
+            data['recording-list' if data.get('recording-list') else 'artist-list'],
+            key=lambda t: t['matching-score']
+        ))
+    return best_retrieved
+
+
 def compute_match_scores(data_og: dict, data_retrieved: dict) -> dict:
     """
     Computes matching score between original and retrieved items.
