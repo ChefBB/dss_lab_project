@@ -7,16 +7,20 @@ from datetime import datetime
 # ============================
 
 DATASET_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
-OUTPUT_PATH = DATASET_PATH   # CSV generati nella stessa cartella
+OUTPUT_PATH = DATASET_PATH
+
+TRACKS_PATH = f"{DATASET_PATH}\\tracks_nullclean.json"
+ARTISTS_PATH = f"{DATASET_PATH}\\artists_filled.json"
+
 
 # ============================
 # LOAD FILE JSON
 # ============================
 
-with open(f"{DATASET_PATH}\\tracks.json", "r", encoding="utf-8") as f:
+with open(TRACKS_PATH, "r", encoding="utf-8") as f:
     tracks = json.load(f)
 
-with open(f"{DATASET_PATH}\\artists.json", "r", encoding="utf-8") as f:
+with open(ARTISTS_PATH, "r", encoding="utf-8") as f:
     artists = json.load(f)
 
 
@@ -28,239 +32,230 @@ def write_csv(filename, fieldnames, rows):
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
-        for r in rows:
-            writer.writerow(r)
+        writer.writerows(rows)
 
 
-# ============================
-# MAPPA NOME → ID ARTISTA (PER FEATURED)
-# ============================
 
-name_to_id = {}
-for a in artists:
-    name_to_id[a["name"].strip().lower()] = a["id_author"]
+# ===========================================================
+# 1) DIM ARTIST GEOGRAPHY  
+# ===========================================================
 
-
-# ============================
-# DIMENSION: ARTIST GEOGRAPHY
-# ============================
-
-geo_rows = {}   # key = (province, region, country)
+geo_set = {}
 
 for a in artists:
     key = (a.get("province"), a.get("region"), a.get("country"))
-    if key not in geo_rows:
-        geo_rows[key] = {
-            "province": a.get("province"),
-            "region": a.get("region"),
-            "country": a.get("country"),
-            "latitude": a.get("latitude"),
-            "longitude": a.get("longitude"),
-            "geohash5": a.get("geohash_5", None)
+    if key not in geo_set:
+        geo_set[key] = {
+            "BirthCity": a.get("province"),
+            "BirthRegion": a.get("region"),
+            "BirthCountry": a.get("country"),
+            "Latitude": a.get("latitude"),
+            "Longitude": a.get("longitude")
         }
 
+dim_artist_geo_rows = list(geo_set.values())
 
-# ============================
-# DIMENSION: ARTIST
-# ============================
 
-artist_rows = []
+# ===========================================================
+# 2) DIM ARTIST
+# ===========================================================
+
+dim_artist_rows = []
 
 for a in artists:
-    artist_rows.append({
-        "artist_id_original": a["id_author"],
-        "artist_name": a["name"],
-        "gender": a.get("gender"),
-        "birth_date": a.get("birth_date"),
-        "birth_place": a.get("birth_place"),
-        "nationality": a.get("nationality"),
-        "description": a.get("description"),
-        "active_start": a.get("active_start"),
-        "active_end": a.get("active_end"),
-        "province": a.get("province"),
-        "region": a.get("region"),
-        "country": a.get("country")
+    # cerco la geography_key “logica”: è la posizione nella lista deduplicata
+    geo_key = None
+    for idx, g in enumerate(dim_artist_geo_rows, start=1):
+        if (
+            g["BirthCity"] == a.get("province") and
+            g["BirthRegion"] == a.get("region") and
+            g["BirthCountry"] == a.get("country")
+        ):
+            geo_key = idx
+            break
+
+    dim_artist_rows.append({
+        "ArtistID_Original": a["id_author"],
+        "ArtistName": a["name"],
+        "Gender": a.get("gender"),
+        "BirthDate": a.get("birth_date"),
+        "BirthPlace": a.get("birth_place"),
+        "Nationality": a.get("nationality"),
+        "Description": a.get("description"),
+        "ActiveStartDate": a.get("active_start"),
+        "ActiveEndDate": a.get("active_end"),
+        "Type":a.get("type"),
+        "ArtistGeoKey": geo_key
     })
 
 
-# ============================
-# DIMENSION: ALBUM
-# ============================
+# ===========================================================
+# 3) DIM ALBUM
+# ===========================================================
 
-album_dict = {}   # key = id_album
+album_map = {}
 
 for t in tracks:
-    id_album = t.get("id_album")
-    if id_album and id_album not in album_dict:
-        album_dict[id_album] = {
-            "id_album": id_album,
-            "album_name": t.get("album_name"),
-            "album_type": t.get("album_type"),
-            "album_release_date": t.get("album_release_date"),
-            "disc_number": t.get("disc_number")
+    alb = t.get("id_album")
+    if alb and alb not in album_map:
+        album_map[alb] = {
+            "AlbumID_Original": alb, #chiedere se prende id album originale
+            "AlbumName": t.get("album_name"),
+            "AlbumType": t.get("album_type"),
+            "AlbumReleaseDate": t.get("album_release_date")
         }
 
-
-# ============================
-# DIMENSION: SONG
-# ============================
-
-song_rows = []
-
-for t in tracks:
-    song_rows.append({
-        "song_id_original": t["id"],
-        "title": t["title"],
-        "language": t.get("language"),
-        "lyrics": t.get("lyrics"),
-
-        "swear_it": t.get("swear_IT"),
-        "swear_en": t.get("swear_EN"),
-        "swear_it_words": t.get("swear_IT_words"),
-        "swear_en_words": t.get("swear_EN_words"),
-
-        "n_sentences": t.get("n_sentences"),
-        "n_tokens": t.get("n_tokens"),
-        "char_per_tok": t.get("char_per_tok"),
-        "avg_token_per_clause": t.get("avg_token_per_clause"),
-
-        "bpm": t.get("bpm"),
-        "rolloff": t.get("rolloff"),
-        "flux": t.get("flux"),
-        "rms": t.get("rms"),
-        "flatness": t.get("flatness"),
-        "spectral_complexity": t.get("spectral_complexity"),
-        "pitch": t.get("pitch"),
-        "loudness": t.get("loudness"),
-
-        "duration_ms": t.get("duration_ms"),
-        "explicit": t.get("explicit"),
-        "popularity": t.get("popularity"),
-
-        "track_number": t.get("track_number"),
-        "category": None,     # Assignment 3
-
-        "id_album": t.get("id_album")
-    })
+dim_album_rows = list(album_map.values())
 
 
-# ============================
-# DIMENSION: DATE
-# ============================
+# ===========================================================
+# 4) DIM DATE
+# ===========================================================
 
-date_dict = {} 
+date_map = {}
 
-def get_season(month):
-    if month in [12,1,2]: return "Winter"
-    if month in [3,4,5]: return "Spring"
-    if month in [6,7,8]: return "Summer"
+# Funzione per determinare la stagione --> vedere meglio i giorni precisi
+def get_season(m):
+    if m in [12,1,2]: return "Winter"
+    if m in [3,4,5]: return "Spring"
+    if m in [6,7,8]: return "Summer"
     return "Autumn"
 
 for t in tracks:
     y, m, d = t.get("year"), t.get("month"), t.get("day")
     if y and m and d:
         full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
-        if full_date not in date_dict:
+
+        if full_date not in date_map:
             dt = datetime(int(y), int(m), int(d))
-            date_dict[full_date] = {
-                "full_date": full_date,
-                "day": dt.day,
-                "month": dt.month,
-                "month_name": dt.strftime("%B"),
-                "year": dt.year,
-                "season": get_season(dt.month)
+            date_map[full_date] = {
+                "FullDate": full_date,
+                "Day": dt.day, #ma questa lo prende da track? 
+                "Month": dt.month,
+                "MonthName": dt.strftime("%B"),
+                "Year": dt.year,
+                "Season": get_season(dt.month)
             }
 
-
-# ============================
-# BRIDGE SONG - ARTIST (main + featured CON ID)
-# ============================
-
-bridge_rows = []
-
-for t in tracks:
-
-    # MAIN ARTIST (già ID)
-    bridge_rows.append({
-        "song_id": t["id"],
-        "artist_id": t["id_artist"],
-        "role": "main"
-    })
-
-    # FEATURED ARTISTS
-    featured = t.get("featured_artists")
-
-    if featured:
-        if isinstance(featured, str):
-            feat_list = [x.strip() for x in featured.split(",")]
-        else:
-            feat_list = featured
-
-        for f in feat_list:
-            f_id = name_to_id.get(f.lower())    # MAPPA NOME → ID
-
-            if f_id:  # solo se l'artista esiste in artist.json
-                bridge_rows.append({
-                    "song_id": t["id"],
-                    "artist_id": f_id,
-                    "role": "featured"
-                })
+dim_date_rows = list(date_map.values())
 
 
-# ============================
-# FACT: PUBLISHED SONG
-# ============================
+# ===========================================================
+# 5) FACT PUBLISHED SONG
+# ===========================================================
 
 fact_rows = []
 
 for t in tracks:
     y, m, d = t.get("year"), t.get("month"), t.get("day")
+
     if y and m and d:
         full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
-        fact_rows.append({
-            "song_id": t["id"],
-            "artist_id": t["id_artist"],
-            "date": full_date,
-            "streams": t.get("streams@1month")
-        })
+    else:
+        continue  # salta righe senza data
+
+    fact_rows.append({
+        "SongID_Original": t["id"],
+        "ArtistID_Original": t["id_artist"],
+        "AlbumID_Original": t.get("id_album"),
+        "FullDate": full_date,
+
+        "SongTitle": t.get("title"),
+        "Language": t.get("language"),
+        "DurationMS": t.get("duration_ms"),
+        "Explicit": t.get("explicit"),
+        "Popularity": t.get("popularity"),
+        "TrackNumber": t.get("track_number"),
+        "Category": None,
+        "LyricsText": t.get("lyrics"),
+
+        "NSentences": t.get("n_sentences"),
+        "NTokens": t.get("n_tokens"),
+        "CharPerToken": t.get("char_per_tok"),
+        "AvgTokenPerClause": t.get("avg_token_per_clause"),
+
+        "Swear_IT": t.get("swear_IT"),
+        "Swear_EN": t.get("swear_EN"),
+        "Swear_IT_Words": t.get("swear_IT_words"),
+        "Swear_EN_Words": t.get("swear_EN_words"),
+
+        "BPM": t.get("bpm"),
+        "RMS": t.get("rms"),
+        "Pitch": t.get("pitch"),
+        "SpectralComplexity": t.get("spectral_complexity"),
+        "Loudness": t.get("loudness"),
+        "Rolloff": t.get("rolloff"),
+        "Flux": t.get("flux"),
+        "Flatness": t.get("flatness"),
+
+        "StreamsAfter1Month": t.get("streams@1month")
+    })
 
 
-# ============================
-# SCRITTURA DEI CSV
-# ============================
+# ===========================================================
+# 6) BRIDGE SONG - ARTIST 
+# ===========================================================
+
+bridge_rows = []
+
+# Mappa nome → ID
+name_to_id = {a["name"].lower(): a["id_author"] for a in artists}
+
+for t in tracks:
+
+    # MAIN ARTIST
+    bridge_rows.append({
+        "SongID_Original": t["id"],
+        "ArtistID_Original": t["id_artist"]
+    })
+
+    featured = t.get("featured_artists")
+
+    if featured and isinstance(featured, str):
+
+        # split su virgola
+        feats = [x.strip() for x in featured.split(",")]
+
+        for name in feats:
+            f_id = name_to_id.get(name.lower())
+            if f_id:
+                bridge_rows.append({
+                    "SongID_Original": t["id"],
+                    "ArtistID_Original": f_id
+                })
+
+
+# ===========================================================
+# SCRITTURA CSV
+# ===========================================================
 
 write_csv(f"{OUTPUT_PATH}\\DimArtistGeography.csv",
-          ["province","region","country","latitude","longitude","geohash5"],
-          list(geo_rows.values()))
+          ["BirthCity","BirthRegion","BirthCountry","Latitude","Longitude"],
+          dim_artist_geo_rows)
 
 write_csv(f"{OUTPUT_PATH}\\DimArtist.csv",
-          ["artist_id_original","artist_name","gender","birth_date",
-           "birth_place","nationality","description","active_start",
-           "active_end","province","region","country"],
-          artist_rows)
+          ["ArtistID_Original","ArtistName","Gender","BirthDate","BirthPlace",
+           "Nationality","Description","ActiveStartDate","ActiveEndDate","Type","ArtistGeoKey"],
+          dim_artist_rows)
 
 write_csv(f"{OUTPUT_PATH}\\DimAlbum.csv",
-          ["id_album","album_name","album_type","album_release_date","disc_number"],
-          list(album_dict.values()))
-
-write_csv(f"{OUTPUT_PATH}\\DimSong.csv",
-          ["song_id_original","title","language","lyrics","swear_it","swear_en",
-           "swear_it_words","swear_en_words","n_sentences","n_tokens",
-           "char_per_tok","avg_token_per_clause","bpm","rolloff","flux","rms",
-           "flatness","spectral_complexity","pitch","loudness","duration_ms",
-           "explicit","popularity","track_number","category","id_album"],
-          song_rows)
+          ["AlbumID_Original","AlbumName","AlbumType","AlbumReleaseDate"],
+          dim_album_rows)
 
 write_csv(f"{OUTPUT_PATH}\\DimDate.csv",
-          ["full_date","day","month","month_name","year","season"],
-          list(date_dict.values()))
-
-write_csv(f"{OUTPUT_PATH}\\BridgeSongArtist.csv",
-          ["song_id","artist_id","role"],
-          bridge_rows)
+          ["FullDate","Day","Month","MonthName","Year","Season"],
+          dim_date_rows)
 
 write_csv(f"{OUTPUT_PATH}\\FactPublishedSong.csv",
-          ["song_id","artist_id","date","streams"],
+          ["SongID_Original","ArtistID_Original","AlbumID_Original","FullDate",
+           "SongTitle","Language","DurationMS","Explicit","Popularity","TrackNumber",
+           "Category","LyricsText","NSentences","NTokens","CharPerToken","AvgTokenPerClause",
+           "Swear_IT","Swear_EN","Swear_IT_Words","Swear_EN_Words","BPM","RMS","Pitch",
+           "SpectralComplexity","Loudness","Rolloff","Flux","Flatness","StreamsAfter1Month"],
           fact_rows)
 
-print("\n CSV GENERATI CORRETTAMENTE! (VERSIONE FINALE)\n")
+write_csv(f"{OUTPUT_PATH}\\BridgeSongArtist.csv",
+          ["SongID_Original","ArtistID_Original"],
+          bridge_rows)
+
+print("\n\nCSV GENERATI CORRETTAMENTE PER ASSIGNMENT 5\n")
