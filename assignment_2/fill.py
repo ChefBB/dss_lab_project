@@ -7,6 +7,24 @@ Contains functions to fill missing values for both artists and tracks.
 import requests
 
 
+def mb_lookup(entity: str, mbid: str, inc=None):
+    """
+    Requests an entity from musicbrainz.
+    
+    Parameters
+    ----------
+    entity: 
+    """
+    base = f'https://musicbrainz.org/ws/2/{entity}/{mbid}'
+    params = {'fmt': 'json'}
+    if inc:
+        params['inc'] = inc
+    r = requests.get(base, params=params, headers={
+        'User-Agent': 'MyMusicApp/1.0 ( your_email@example.com )'
+    })
+    return r.json()
+
+
 def fill_tracks(tracks_og: list, tracks_retrieved: list) -> list:
     """
     Fills the original track list with data taken from
@@ -24,7 +42,120 @@ def fill_tracks(tracks_og: list, tracks_retrieved: list) -> list:
     list
         Original dataset with filled values.
     """
+    for t_og, t_ret in (
+        (t_og, t_ret)
+        for t_og, t_ret in zip(tracks_og, tracks_retrieved)
+        if t_ret['matching-score'] >= 0.8
+    ):
+        data = None
+        track_data = None
+        
+        # album
+        if not t_og.get('album_name') and t_og.get('album'):
+            t_og['album_name'] = t_og['album']
+            
+        elif (
+            not t_og.get('album_name') and
+            not t_og.get('album') and
+            t_ret.get('release_list')
+        ):
+            for release in t_ret['release_list']:
+                release_data = None
+                while not release_data:
+                    try:
+                        release_data = mb_lookup(
+                            'release', release['id'],
+                            inc='recordings+artist-credits'
+                        )
+                    except Exception:
+                        print('failure; retrying...')
+                if (release_data and (
+                        not data or
+                        data['date'] > release_data['date'])
+                ):
+                    data = release_data
+        
+        # get album data
+        if not data and t_ret.get('release-list'):
+            for release in t_ret['release-list']:
+                if (
+                    t_og.get('album_name') and
+                    release.get('title').lower() == t_og.get('album_name')
+                ):
+                    data = None
+                    while not data:
+                        try:
+                            data = mb_lookup('release', release['id'], inc='recordings')
+                        except Exception:
+                            print('failure; retrying...')
+        
+        # get track data
+        if (
+            not track_data and
+            data and
+            data.get('media')
+        ):
+            for track in data['media'][0]['tracks']:
+                if track['title'].lower() == t_og['title'].lower():
+                    track_data = track
+                    break
+                    
 
+        # fill album data
+        if data:
+            if not t_og.get('album_name'):
+                t_og['album_name'] = data['title']
+                
+            # album release date
+            if not t_og.get('album_release_date') and data.get('date'):
+                t_og['album_release_date'] = data['date']
+        
+            # album type: not found
+            
+            # disc number: not found
+
+        # fill track data
+        if not track_data:
+            track_data = t_ret
+            
+        # year month day
+        if (
+            track_data.get('recording') and
+            track_data['recording'].get('first-release-date')
+        ):
+            date = track_data['recording']['first-release-date'].split('-')
+            if len(date) == 3:
+                t_og['year'] = date[0]
+                t_og['month'] = date[1]
+                t_og['day'] = date[2]
+            elif len(date) == 1:
+                t_og['year'] = date[0]
+                
+        # track number
+        if track_data.get('number'):
+            t_og['track_number'] = track_data['number']
+        
+        # duration ms
+        if (
+            not t_og.get('duration_ms') and
+            track_data.get('length')
+        ):
+            t_og['duration_ms'] = track_data['length']
+
+        # primary artist + id_artist
+        if (
+            not t_og.get('primary_artist') and
+            track_data.get('artist-credit')
+        ):
+            t_og['primary_artist'] = track_data['artist_credit']['name']
+
+        # feat
+        if not t_og.get('featured_artists') and track_data.get('artist-credit'):
+            featured_artists = ''
+            for artist in track_data.get('artist-credit', [])[1:]:
+                if isinstance(artist, dict):
+                    featured_artists += f', {artist['name']}'
+    
     return tracks_og
 
 

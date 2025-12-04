@@ -26,9 +26,16 @@ def compute_all_matching_scores(dataset_og: list, dataset_retrieved: list) -> li
     Parameters
     ----------
     dataset_og: list
-        
+        The original dataset
 
     dataset_retrieved: list
+        List of return values from the musicbrainz service.
+        
+    Returns
+    -------
+    list
+        A list of the best matching item from the
+        retrieved list for each element.
     """
     for (data_og, data_retrieved) in zip(dataset_og, dataset_retrieved):
         compute_match_scores(data_og, data_retrieved)
