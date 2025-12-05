@@ -5,6 +5,7 @@ Fill module
 Contains functions to fill missing values for both artists and tracks.
 """
 import requests
+import time
 
 
 def mb_lookup(entity: str, mbid: str, inc=None):
@@ -50,16 +51,16 @@ def fill_tracks(tracks_og: list, tracks_retrieved: list) -> list:
         data = None
         track_data = None
         
-        # album
-        if not t_og.get('album_name') and t_og.get('album'):
-            t_og['album_name'] = t_og['album']
+        # # album
+        # if not t_og.get('album_name') and t_og.get('album'):
+        #     t_og['album_name'] = t_og['album']
             
-        elif (
+        if (
             not t_og.get('album_name') and
-            not t_og.get('album') and
-            t_ret.get('release_list')
+            # not t_og.get('album') and
+            t_ret.get('release-list')
         ):
-            for release in t_ret['release_list']:
+            for release in t_ret['release-list']:
                 release_data = None
                 while not release_data:
                     try:
@@ -67,11 +68,18 @@ def fill_tracks(tracks_og: list, tracks_retrieved: list) -> list:
                             'release', release['id'],
                             inc='recordings+artist-credits'
                         )
+                        if release_data.get('error'):
+                            release_data = None
+                            raise Exception()
                     except Exception:
                         print('failure; retrying...')
+                        time.sleep(1)
                 if (release_data and (
-                        not data or
-                        data['date'] > release_data['date'])
+                        not data or (
+                            data.get('date') and
+                            release_data.get('date') and
+                            data['date'] > release_data['date'])
+                        )
                 ):
                     data = release_data
         
@@ -147,7 +155,7 @@ def fill_tracks(tracks_og: list, tracks_retrieved: list) -> list:
             not t_og.get('primary_artist') and
             track_data.get('artist-credit')
         ):
-            t_og['primary_artist'] = track_data['artist_credit']['name']
+            t_og['primary_artist'] = track_data['artist-credit']['name']
 
         # feat
         if not t_og.get('featured_artists') and track_data.get('artist-credit'):
