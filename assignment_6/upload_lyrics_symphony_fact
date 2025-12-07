@@ -1,0 +1,250 @@
+import csv
+import pyodbc
+import time
+
+# ============================================================
+# 1) CONNESSIONE AL DATABASE
+# ============================================================
+
+def connect():
+    print(" Connessione al database...")
+    conn = pyodbc.connect(
+        "DRIVER={ODBC Driver 17 for SQL Server};"
+        "SERVER=131.114.50.57;"
+        "DATABASE=Group_ID_8_DB;"
+        "UID=Group_ID_8;"
+        "PWD=CU83R89P;"
+    )
+    print("✔ Connessione stabilita\n")
+    return conn, conn.cursor()
+
+conn, cursor = connect()
+
+
+# ============================================================
+# 2) SAFE EXECUTE (GESTIONE ERRORI DI CONNESSIONE)
+# ============================================================
+
+def safe_execute(query, params=None, retry=True):
+    global conn, cursor
+
+    try:
+        if params is None:
+            cursor.execute(query)
+        else:
+            cursor.execute(query, params)
+
+    except pyodbc.OperationalError as e:
+        if retry and ("10053" in str(e) or "10060" in str(e)):
+            print("⚠️  Connessione persa, riconnessione...")
+            time.sleep(1)
+            conn, cursor = connect()
+            return safe_execute(query, params, retry=False)
+        else:
+            raise
+
+
+# ============================================================
+# 3) FUNZIONI UTILI
+# ============================================================
+
+def read_csv(path):
+    with open(path, encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+def safe_int(v):
+    if v is None or v == "":
+        return None
+    try:
+        return int(float(v))
+    except:
+        return None
+
+def safe_float(v):
+    if v is None or v == "":
+        return None
+    try:
+        return float(v)
+    except:
+        return None
+
+
+# ============================================================
+# 4) CARICAMENTO CSV
+# ============================================================
+
+CSV_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
+
+lyrics_rows   = read_csv(f"{CSV_PATH}\\DimLyrics.csv")
+symphony_rows = read_csv(f"{CSV_PATH}\\DimSymphony.csv")
+fact_rows     = read_csv(f"{CSV_PATH}\\FactParticipation.csv")
+
+print("✔ CSV letti correttamente\n")
+
+
+# ============================================================
+# 5) MAPPE SURROGATE DA DIMENSIONI GIÀ CARICATE
+# ============================================================
+
+def map_song_keys():
+    cursor.execute("SELECT SongKey, SongID_Original FROM DimSong")
+    return {orig: key for key, orig in cursor.fetchall()}
+
+def map_artist_keys():
+    cursor.execute("SELECT ArtistKey, ArtistID_Original FROM DimArtist")
+    return {orig: key for key, orig in cursor.fetchall()}
+
+def map_date_keys():
+    cursor.execute("SELECT DateKey, FullDate FROM DimDate")
+    return {date: key for key, date in cursor.fetchall()}
+
+song_map   = map_song_keys()
+artist_map = map_artist_keys()
+date_map   = map_date_keys()
+
+print(" Mappe surrogate generate\n")
+
+
+# ============================================================
+# 6) CARICAMENTO DIMLYRICS
+# ============================================================
+
+def load_dim_lyrics(rows):
+    print(" Inizio caricamento DimLyrics...")
+    count = 0
+
+    for r in rows:
+        sk = song_map.get(r["SongID_Original"])
+        if sk is None:
+            print("⚠️ SongKey mancante in Lyrics:", r["SongID_Original"])
+            continue
+
+        safe_execute("""
+            INSERT INTO DimLyrics
+            (Language, Swear_IT, Swear_EN, Swear_IT_Words, Swear_EN_Words,
+             NSentences, NTokens, CharPerToken, AvgTokenPerClause,
+             Explicit, LyricsText, Description)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            r["Language"] or None,
+            safe_int(r["Swear_IT"]),
+            safe_int(r["Swear_EN"]),
+            r["Swear_IT_Words"] or None,
+            r["Swear_EN_Words"] or None,
+            safe_int(r["NSentences"]),
+            safe_int(r["NTokens"]),
+            safe_float(r["CharPerToken"]),
+            safe_float(r["AvgTokenPerClause"]),
+            1 if r["Explicit"] == "True" else 0,
+            r["LyricsText"] or None,
+            r["Description"] or None
+        ))
+
+        count += 1
+        if count % 500 == 0:
+            print(f"➡ {count} lyrics caricate")
+            conn.commit()
+
+    conn.commit()
+    print(f"✔ DimLyrics caricata ({count} righe)\n")
+
+
+# ============================================================
+# 7) CARICAMENTO DIMSYMPHONY
+# ============================================================
+
+def load_dim_symphony(rows):
+    print(" Inizio caricamento DimSymphony...")
+    count = 0
+
+    for r in rows:
+        sk = song_map.get(r["SongID_Original"])
+        if sk is None:
+            print("⚠️ SongKey mancante in Symphony:", r["SongID_Original"])
+            continue
+
+        safe_execute("""
+            INSERT INTO DimSymphony
+            (BPM, Rolloff, Flux, RMS, Flatness,
+             SpectralComplexity, Pitch, Loudness)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            safe_float(r["BPM"]),
+            safe_float(r["Rolloff"]),
+            safe_float(r["Flux"]),
+            safe_float(r["RMS"]),
+            safe_float(r["Flatness"]),
+            safe_float(r["SpectralComplexity"]),
+            safe_float(r["Pitch"]),
+            safe_float(r["Loudness"])
+        ))
+
+        count += 1
+        if count % 500 == 0:
+            print(f"➡ {count} symphony caricate")
+            conn.commit()
+
+    conn.commit()
+    print(f"✔ DimSymphony caricata ({count} righe)\n")
+
+
+# ============================================================
+# 8) CARICAMENTO FACT PARTICIPATION
+# ============================================================
+
+def load_fact(rows):
+    print(" Inizio caricamento FactParticipation...")
+    count = 0
+    missing_s = missing_a = missing_d = 0
+
+    for r in rows:
+        sk = song_map.get(r["SongID_Original"])
+        ak = artist_map.get(r["ArtistID_Original"])
+        dk = date_map.get(r["FullDate"])
+
+        if sk is None:
+            missing_s += 1
+            continue
+        if ak is None:
+            missing_a += 1
+            continue
+        if dk is None:
+            missing_d += 1
+            continue
+
+        safe_execute("""
+            INSERT INTO FactParticipation
+            (SongKey, ArtistKey, DateKey, SymphonyKey, LyricsKey,
+             StreamsAfter1Month, IsPrimary)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            sk, ak, dk,
+            None, None,  # Symphony/Lyrics non usati come FK
+            safe_int(r["StreamsAfter1Month"]),
+            safe_int(r["IsPrimary"])
+        ))
+
+        count += 1
+        if count % 500 == 0:
+            print(f"➡ {count} fact caricate")
+            conn.commit()
+
+    conn.commit()
+    print("✔ FactParticipation caricata")
+    print("   Missing Song:", missing_s)
+    print("   Missing Artist:", missing_a)
+    print("   Missing Date:", missing_d, "\n")
+
+
+# ============================================================
+# 9) ESECUZIONE DELLA PIPELINE
+# ============================================================
+
+load_dim_lyrics(lyrics_rows)
+load_dim_symphony(symphony_rows)
+load_fact(fact_rows)
+
+print("\n✔✔✔ CARICAMENTO COMPLETO (Lyrics + Symphony + Fact) ✔✔✔")

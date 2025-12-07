@@ -3,18 +3,18 @@ import csv
 from datetime import datetime
 
 # ============================
-# PATH DEI FILE
+# PATH
 # ============================
 
-DATASET_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
-OUTPUT_PATH = DATASET_PATH
+BASE_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset\filled"
 
-TRACKS_PATH = f"{DATASET_PATH}\\tracks_nullclean.json"
-ARTISTS_PATH = f"{DATASET_PATH}\\artists_filled.json"
+TRACKS_PATH = f"{BASE_PATH}\\tracks_clean_final.json"
+ARTISTS_PATH = f"{BASE_PATH}\\artists_clean_final.json"
 
+OUTPUT_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
 
 # ============================
-# LOAD FILE JSON
+# LOAD JSON FILES
 # ============================
 
 with open(TRACKS_PATH, "r", encoding="utf-8") as f:
@@ -24,8 +24,9 @@ with open(ARTISTS_PATH, "r", encoding="utf-8") as f:
     artists = json.load(f)
 
 
+
 # ============================
-# FUNZIONE PER SALVARE CSV
+# CSV WRITER
 # ============================
 
 def write_csv(filename, fieldnames, rows):
@@ -37,69 +38,76 @@ def write_csv(filename, fieldnames, rows):
 
 
 # ===========================================================
-# 1) DIM ARTIST GEOGRAPHY  
+# 1) DIM ARTIST GEOGRAPHY
 # ===========================================================
 
-geo_set = {}
+geo_map = {}
 
 for a in artists:
     key = (a.get("province"), a.get("region"), a.get("country"))
-    if key not in geo_set:
-        geo_set[key] = {
-            "BirthCity": a.get("province"),
-            "BirthRegion": a.get("region"),
-            "BirthCountry": a.get("country"),
+    if key not in geo_map:
+        geo_map[key] = {
+            "Province": a.get("province"),
+            "Region": a.get("region"),
+            "Country": a.get("country"),
             "Latitude": a.get("latitude"),
             "Longitude": a.get("longitude")
         }
 
-dim_artist_geo_rows = list(geo_set.values())
+dim_artist_geo_rows = list(geo_map.values())
+
 
 
 # ===========================================================
-# 2) DIM ARTIST
+# 2) DIM ARTIST  (USA IL NEW ID)
 # ===========================================================
 
 dim_artist_rows = []
 
 for a in artists:
-    # cerco la geography_key “logica”: è la posizione nella lista deduplicata
+
+    # Trova geo key
     geo_key = None
     for idx, g in enumerate(dim_artist_geo_rows, start=1):
         if (
-            g["BirthCity"] == a.get("province") and
-            g["BirthRegion"] == a.get("region") and
-            g["BirthCountry"] == a.get("country")
+            g["Province"] == a.get("province") and
+            g["Region"] == a.get("region") and
+            g["Country"] == a.get("country")
         ):
             geo_key = idx
             break
 
     dim_artist_rows.append({
-        "ArtistID_Original": a["id_author"],
+        "ArtistID_Original": a["new_id_artist"],  # NEW ID
         "ArtistName": a["name"],
         "Gender": a.get("gender"),
         "BirthDate": a.get("birth_date"),
         "BirthPlace": a.get("birth_place"),
         "Nationality": a.get("nationality"),
         "Description": a.get("description"),
-        "ActiveStartDate": a.get("active_start"),
-        "ActiveEndDate": a.get("active_end"),
-        "Type":a.get("type"),
+        "ActiveStart": a.get("active_start"),
+        "ActiveEnd": a.get("active_end"),
+        "ArtistType": a.get("type"),
         "ArtistGeoKey": geo_key
     })
 
 
+
 # ===========================================================
-# 3) DIM ALBUM
+# 3) DIM ALBUM  (USA IL NEW ID)
 # ===========================================================
 
 album_map = {}
 
 for t in tracks:
-    alb = t.get("id_album")
-    if alb and alb not in album_map:
+    alb = t.get("new_id_album")  # new id
+
+    if not alb:
+        continue  # skip singoli
+
+    if alb not in album_map:
         album_map[alb] = {
-            "AlbumID_Original": alb, #chiedere se prende id album originale
+            "AlbumID_Original": alb,
             "AlbumName": t.get("album_name"),
             "AlbumType": t.get("album_type"),
             "AlbumReleaseDate": t.get("album_release_date")
@@ -108,154 +116,201 @@ for t in tracks:
 dim_album_rows = list(album_map.values())
 
 
+
 # ===========================================================
-# 4) DIM DATE
+# 4) DIM SONG  (USA IL NEW ID DELLA TRACCIA)
 # ===========================================================
 
-date_map = {}
+dim_song_rows = []
 
-# Funzione per determinare la stagione --> vedere meglio i giorni precisi
-def get_season(m):
-    if m in [12,1,2]: return "Winter"
-    if m in [3,4,5]: return "Spring"
-    if m in [6,7,8]: return "Summer"
+for t in tracks:
+
+    album_id = t.get("new_id_album")
+
+    dim_song_rows.append({
+        "SongID_Original": t["new_track_id"],   # new id della traccia
+        "SongTitle": t.get("title"),
+        "DiscNumber": t.get("disc_number"),
+        "TrackNumber": t.get("track_number"),
+        "DurationMS": t.get("duration_ms"),
+        "Popularity": t.get("popularity"),
+        "AlbumID_Original": album_id
+    })
+
+
+
+# ===========================================================
+# 5) DIM LYRICS
+# ===========================================================
+
+dim_lyrics_rows = []
+
+for t in tracks:
+
+    dim_lyrics_rows.append({
+        "SongID_Original": t["new_track_id"],   # new id
+        "Language": t.get("language"),
+        "Swear_IT": t.get("swear_IT"),
+        "Swear_EN": t.get("swear_EN"),
+        "Swear_IT_Words": t.get("swear_IT_words"),
+        "Swear_EN_Words": t.get("swear_EN_words"),
+        "NSentences": t.get("n_sentences"),
+        "NTokens": t.get("n_tokens"),
+        "CharPerToken": t.get("char_per_tok"),
+        "AvgTokenPerClause": t.get("avg_token_per_clause"),
+        "Explicit": t.get("explicit"),
+        "LyricsText": t.get("lyrics"),
+        "Description": None
+    })
+
+
+
+# ===========================================================
+# 6) DIM SYMPHONY
+# ===========================================================
+
+dim_symphony_rows = []
+
+for t in tracks:
+
+    dim_symphony_rows.append({
+        "SongID_Original": t["new_track_id"],   # new id
+        "BPM": t.get("bpm"),
+        "Rolloff": t.get("rolloff"),
+        "Flux": t.get("flux"),
+        "RMS": t.get("rms"),
+        "Flatness": t.get("flatness"),
+        "SpectralComplexity": t.get("spectral_complexity"),
+        "Pitch": t.get("pitch"),
+        "Loudness": t.get("loudness")
+    })
+
+
+
+# ===========================================================
+# 7) DIM DATE
+# ===========================================================
+
+date_rows = {}
+
+def get_season(month, day):
+    if (month == 12 and day >= 21) or (month in [1, 2]) or (month == 3 and day <= 19):
+        return "Winter"
+    if (month == 3 and day >= 20) or (month in [4, 5]) or (month == 6 and day <= 20):
+        return "Spring"
+    if (month == 6 and day >= 21) or (month in [7, 8]) or (month == 9 and day <= 22):
+        return "Summer"
     return "Autumn"
+
 
 for t in tracks:
     y, m, d = t.get("year"), t.get("month"), t.get("day")
+
     if y and m and d:
         full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
 
-        if full_date not in date_map:
+        if full_date not in date_rows:
             dt = datetime(int(y), int(m), int(d))
-            date_map[full_date] = {
+            date_rows[full_date] = {
                 "FullDate": full_date,
-                "Day": dt.day, #ma questa lo prende da track? 
+                "Day": dt.day,
                 "Month": dt.month,
                 "MonthName": dt.strftime("%B"),
                 "Year": dt.year,
-                "Season": get_season(dt.month)
+                "Season": get_season(dt.month, dt.day)
             }
 
-dim_date_rows = list(date_map.values())
+dim_date_rows = list(date_rows.values())
+
 
 
 # ===========================================================
-# 5) FACT PUBLISHED SONG
+# 8) FACT PARTICIPATION  (NEW ID PER TUTTI GLI ARTISTI)
 # ===========================================================
 
 fact_rows = []
 
 for t in tracks:
+
     y, m, d = t.get("year"), t.get("month"), t.get("day")
+    if not (y and m and d):
+        continue
 
-    if y and m and d:
-        full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
-    else:
-        continue  # salta righe senza data
-
-    fact_rows.append({
-        "SongID_Original": t["id"],
-        "ArtistID_Original": t["id_artist"],
-        "AlbumID_Original": t.get("id_album"),
-        "FullDate": full_date,
-
-        "SongTitle": t.get("title"),
-        "Language": t.get("language"),
-        "DurationMS": t.get("duration_ms"),
-        "Explicit": t.get("explicit"),
-        "Popularity": t.get("popularity"),
-        "TrackNumber": t.get("track_number"),
-        "Category": None,
-        "LyricsText": t.get("lyrics"),
-
-        "NSentences": t.get("n_sentences"),
-        "NTokens": t.get("n_tokens"),
-        "CharPerToken": t.get("char_per_tok"),
-        "AvgTokenPerClause": t.get("avg_token_per_clause"),
-
-        "Swear_IT": t.get("swear_IT"),
-        "Swear_EN": t.get("swear_EN"),
-        "Swear_IT_Words": t.get("swear_IT_words"),
-        "Swear_EN_Words": t.get("swear_EN_words"),
-
-        "BPM": t.get("bpm"),
-        "RMS": t.get("rms"),
-        "Pitch": t.get("pitch"),
-        "SpectralComplexity": t.get("spectral_complexity"),
-        "Loudness": t.get("loudness"),
-        "Rolloff": t.get("rolloff"),
-        "Flux": t.get("flux"),
-        "Flatness": t.get("flatness"),
-
-        "StreamsAfter1Month": t.get("streams@1month")
-    })
-
-
-# ===========================================================
-# 6) BRIDGE SONG - ARTIST 
-# ===========================================================
-
-bridge_rows = []
-
-# Mappa nome → ID
-name_to_id = {a["name"].lower(): a["id_author"] for a in artists}
-
-for t in tracks:
+    full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
 
     # MAIN ARTIST
-    bridge_rows.append({
-        "SongID_Original": t["id"],
-        "ArtistID_Original": t["id_artist"]
+    fact_rows.append({
+        "SongID_Original": t["new_track_id"],
+        "ArtistID_Original": t["new_id_artist"],   # new artist id
+        "FullDate": full_date,
+        "LyricsID": t["new_track_id"],
+        "SymphonyID": t["new_track_id"],
+        "StreamsAfter1Month": t.get("streams@1month"),
+        "IsPrimary": 1
     })
 
-    featured = t.get("featured_artists")
+    # FEATURED
+    feats = t.get("featured_artists")
+    if feats and isinstance(feats, str):
+        for f in feats.split(","):
+            fname = f.strip().lower()
 
-    if featured and isinstance(featured, str):
+            # lookup by name
+            matching = [a for a in artists if a["name"].lower() == fname]
 
-        # split su virgola
-        feats = [x.strip() for x in featured.split(",")]
-
-        for name in feats:
-            f_id = name_to_id.get(name.lower())
-            if f_id:
-                bridge_rows.append({
-                    "SongID_Original": t["id"],
-                    "ArtistID_Original": f_id
+            if matching:
+                fact_rows.append({
+                    "SongID_Original": t["new_track_id"],
+                    "ArtistID_Original": matching[0]["new_id_artist"],
+                    "FullDate": full_date,
+                    "LyricsID": t["new_track_id"],
+                    "SymphonyID": t["new_track_id"],
+                    "StreamsAfter1Month": t.get("streams@1month"),
+                    "IsPrimary": 0
                 })
 
 
+
 # ===========================================================
-# SCRITTURA CSV
+# WRITE CSV FILES
 # ===========================================================
 
 write_csv(f"{OUTPUT_PATH}\\DimArtistGeography.csv",
-          ["BirthCity","BirthRegion","BirthCountry","Latitude","Longitude"],
+          ["Province","Region","Country","Latitude","Longitude"],
           dim_artist_geo_rows)
 
 write_csv(f"{OUTPUT_PATH}\\DimArtist.csv",
           ["ArtistID_Original","ArtistName","Gender","BirthDate","BirthPlace",
-           "Nationality","Description","ActiveStartDate","ActiveEndDate","Type","ArtistGeoKey"],
+           "Nationality","Description","ActiveStart","ActiveEnd","ArtistType","ArtistGeoKey"],
           dim_artist_rows)
 
 write_csv(f"{OUTPUT_PATH}\\DimAlbum.csv",
           ["AlbumID_Original","AlbumName","AlbumType","AlbumReleaseDate"],
           dim_album_rows)
 
+write_csv(f"{OUTPUT_PATH}\\DimSong.csv",
+          ["SongID_Original","SongTitle","DiscNumber","TrackNumber","DurationMS",
+           "Popularity","AlbumID_Original"],
+          dim_song_rows)
+
+write_csv(f"{OUTPUT_PATH}\\DimLyrics.csv",
+          ["SongID_Original","Language","Swear_IT","Swear_EN","Swear_IT_Words",
+           "Swear_EN_Words","NSentences","NTokens","CharPerToken",
+           "AvgTokenPerClause","Explicit","LyricsText","Description"],
+          dim_lyrics_rows)
+
+write_csv(f"{OUTPUT_PATH}\\DimSymphony.csv",
+          ["SongID_Original","BPM","Rolloff","Flux","RMS","Flatness",
+           "SpectralComplexity","Pitch","Loudness"],
+          dim_symphony_rows)
+
 write_csv(f"{OUTPUT_PATH}\\DimDate.csv",
           ["FullDate","Day","Month","MonthName","Year","Season"],
           dim_date_rows)
 
-write_csv(f"{OUTPUT_PATH}\\FactPublishedSong.csv",
-          ["SongID_Original","ArtistID_Original","AlbumID_Original","FullDate",
-           "SongTitle","Language","DurationMS","Explicit","Popularity","TrackNumber",
-           "Category","LyricsText","NSentences","NTokens","CharPerToken","AvgTokenPerClause",
-           "Swear_IT","Swear_EN","Swear_IT_Words","Swear_EN_Words","BPM","RMS","Pitch",
-           "SpectralComplexity","Loudness","Rolloff","Flux","Flatness","StreamsAfter1Month"],
+write_csv(f"{OUTPUT_PATH}\\FactParticipation.csv",
+          ["SongID_Original","ArtistID_Original","FullDate",
+           "LyricsID","SymphonyID","StreamsAfter1Month","IsPrimary"],
           fact_rows)
 
-write_csv(f"{OUTPUT_PATH}\\BridgeSongArtist.csv",
-          ["SongID_Original","ArtistID_Original"],
-          bridge_rows)
-
-print("\n\nCSV GENERATI CORRETTAMENTE PER ASSIGNMENT 5\n")
+print("\nCSV GENERATI CORRETTAMENTE (VERSIONE NEW ID)\n")

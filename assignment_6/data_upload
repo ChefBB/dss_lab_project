@@ -1,312 +1,415 @@
 import csv
 import pyodbc
+import time
+
+# ============================================================
+# 1) FUNZIONE DI RICONNESSIONE AUTOMATICA
+# ============================================================
+
+def connect():
+    print("🔌 Connessione al database...")
+    conn = pyodbc.connect(
+        "DRIVER={ODBC Driver 17 for SQL Server};"
+        "SERVER=131.114.50.57;"
+        "DATABASE=Group_ID_8_DB;"
+        "UID=Group_ID_8;"
+        "PWD=CU83R89P;"
+    )
+    print("✔ Connessione stabilita\n")
+    return conn, conn.cursor()
+
+conn, cursor = connect()
 
 
-#   1) CONNESSIONE 
+# ============================================================
+# 2) EXECUTE ROBUSTO (GESTISCE ERRORE 10053)
+# ============================================================
+
+def safe_execute(query, params=None, retry=True):
+    global conn, cursor
+
+    try:
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+    except pyodbc.OperationalError as e:
+        if retry and "10053" in str(e):
+            print("⚠️  Connessione persa. Riconnessione in corso...")
+            time.sleep(1)
+            conn, cursor = connect()
+
+            # ritenta una sola volta
+            return safe_execute(query, params, retry=False)
+        else:
+            raise
 
 
-conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=131.114.50.57;"
-    "DATABASE=Group_ID_8_DB;"
-    "UID=Group_ID_8;"
-    "PWD=CU83R89P;"
-)
-cursor = conn.cursor()
+# ============================================================
+# 3) FUNZIONI DI CONVERSIONE
+# ============================================================
 
-print("✔ Connessione al database stabilita")
+def safe_int(v):
+    if v is None or v == "":
+        return None
+    try:
+        return int(float(v))
+    except:
+        return None
+
+def safe_float(v):
+    if v is None or v == "":
+        return None
+    try:
+        return float(v)
+    except:
+        return None
+
+def safe_date(v):
+    if not v or v.strip() == "":
+        return None
+    v = v.strip()
+    if len(v) == 4 and v.isdigit():
+        return None
+    if len(v) == 10 and v[4] == "-" and v[7] == "-":
+        return v
+    return None
 
 
-
-#   2) FUNZIONE PER LEGGERE CSV (NO PANDAS)
-
+# ============================================================
+# 4) LETTURA CSV
+# ============================================================
 
 def read_csv(path):
-    with open(path, newline='', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        return list(reader)
+    with open(path, encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+CSV_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
+
+geo_rows      = read_csv(f"{CSV_PATH}\\DimArtistGeography.csv")
+artist_rows   = read_csv(f"{CSV_PATH}\\DimArtist.csv")
+album_rows    = read_csv(f"{CSV_PATH}\\DimAlbum.csv")
+song_rows     = read_csv(f"{CSV_PATH}\\DimSong.csv")
+lyrics_rows   = read_csv(f"{CSV_PATH}\\DimLyrics.csv")
+symphony_rows = read_csv(f"{CSV_PATH}\\DimSymphony.csv")
+date_rows     = read_csv(f"{CSV_PATH}\\DimDate.csv")
+fact_rows     = read_csv(f"{CSV_PATH}\\FactParticipation.csv")
+
+print("✔ CSV letti correttamente\n")
 
 
+# ============================================================
+# 5) SVUOTAMENTO DELLE TABELLE
+# ============================================================
 
-#   3) DIMENSIONE: ARTIST GEOGRAPHY
+def clear_tables():
+    print("🧹 Cancellazione tabelle...")
 
+    safe_execute("DELETE FROM FactParticipation;")
+    safe_execute("DELETE FROM DimSong;")
+    safe_execute("DELETE FROM DimAlbum;")
+    safe_execute("DELETE FROM DimArtist;")
+    safe_execute("DELETE FROM DimArtistGeography;")
+    safe_execute("DELETE FROM DimLyrics;")
+    safe_execute("DELETE FROM DimSymphony;")
+    safe_execute("DELETE FROM DimDate;")
+
+    conn.commit()
+    print("✔ Tabelle svuotate\n")
+
+clear_tables()
+
+
+# ============================================================
+# 6) CARICAMENTO DELLE DIMENSIONI
+# ============================================================
 
 def load_dim_artist_geography(rows):
-
-    # Colonne (province, region, country, latitude, longitude, geohash5)
-    # → 6 colonne → 6 "?"
+    count = 0
     for r in rows:
-        cursor.execute("""
+        safe_execute("""
             INSERT INTO DimArtistGeography
-            (Province, Region, Country, Latitude, Longitude, GeoHash5)
-            VALUES (?, ?, ?, ?, ?, ?)
+            (Province, Region, Country, Latitude, Longitude)
+            VALUES (?, ?, ?, ?, ?)
         """,
-        # ?1 = Province
-        r["province"],
-        # ?2 = Region
-        r["region"],
-        # ?3 = Country
-        r["country"],
-        # ?4 = Latitude
-        r["latitude"],
-        # ?5 = Longitude
-        r["longitude"],
-        # ?6 = GeoHash5
-        r["geohash5"]
-        )
+        (
+            r["Province"] or None,
+            r["Region"] or None,
+            r["Country"] or None,
+            safe_float(r["Latitude"]),
+            safe_float(r["Longitude"])
+        ))
+
+        count += 1
+        if count % 50 == 0:
+            conn.commit()
 
     conn.commit()
     print("✔ DimArtistGeography caricata")
 
 
-
-#   4) LOOKUP PER GEOGRAPHY KEY (serve per DimArtist)
-
-
-def get_artist_geo_map():
-    cursor.execute("SELECT ArtistGeoKey, Province, Region, Country FROM DimArtistGeography")
-    mapping = {}
-    for key, prov, reg, country in cursor.fetchall():
-        mapping[(prov, reg, country)] = key
-    return mapping
-
-
-
-#   5) DIMENSIONE: ARTIST
-
-
-def load_dim_artist(rows, geo_map):
-
-    # 10 colonne → 10 "?"
+def load_dim_artist(rows):
+    count = 0
     for r in rows:
-
-        geo_key = geo_map.get((r["province"], r["region"], r["country"]))
-
-        cursor.execute("""
+        safe_execute("""
             INSERT INTO DimArtist
             (ArtistID_Original, ArtistName, Gender, BirthDate, BirthPlace,
-             Nationality, Description, ActiveStart, ActiveEnd, ArtistGeoKey)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             Nationality, Description, ActiveStart, ActiveEnd,
+             ArtistType, ArtistGeoKey)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
-        # ?1 = ArtistID_Original
-        r["artist_id_original"],
-        # ?2 = ArtistName
-        r["artist_name"],
-        # ?3 = Gender
-        r["gender"],
-        # ?4 = BirthDate
-        r["birth_date"],
-        # ?5 = BirthPlace
-        r["birth_place"],
-        # ?6 = Nationality
-        r["nationality"],
-        # ?7 = Description
-        r["description"],
-        # ?8 = ActiveStart
-        r["active_start"],
-        # ?9 = ActiveEnd
-        r["active_end"],
-        # ?10 = ArtistGeoKey (lookup)
-        geo_key
-        )
+        (
+            r["ArtistID_Original"],
+            r["ArtistName"],
+            r["Gender"] or None,
+            safe_date(r["BirthDate"]),
+            r["BirthPlace"] or None,
+            r["Nationality"] or None,
+            r["Description"] or None,
+            safe_date(r["ActiveStart"]),
+            safe_date(r["ActiveEnd"]),
+            r["ArtistType"] or None,
+            safe_int(r["ArtistGeoKey"])
+        ))
+        count += 1
+        if count % 50 == 0:
+            conn.commit()
 
     conn.commit()
     print("✔ DimArtist caricata")
 
 
-
-#   6) DIMENSIONE: ALBUM
-
-
 def load_dim_album(rows):
-    # 5 colonne → 5 "?"
+    count = 0
     for r in rows:
-        cursor.execute("""
+        safe_execute("""
             INSERT INTO DimAlbum
-            (AlbumID_Original, AlbumName, AlbumType, AlbumReleaseDate, DiscNumber)
-            VALUES (?, ?, ?, ?, ?)
+            (AlbumID_Original, AlbumName, AlbumType, AlbumReleaseDate)
+            VALUES (?, ?, ?, ?)
         """,
-        # ?1
-        r["id_album"],
-        # ?2
-        r["album_name"],
-        # ?3
-        r["album_type"],
-        # ?4
-        r["album_release_date"],
-        # ?5
-        r["disc_number"]
-        )
+        (
+            r["AlbumID_Original"],
+            r["AlbumName"] or None,
+            r["AlbumType"] or None,
+            safe_date(r["AlbumReleaseDate"])
+        ))
+        count += 1
+        if count % 50 == 0:
+            conn.commit()
 
     conn.commit()
     print("✔ DimAlbum caricata")
 
 
-
-#   7) LOOKUP PER ALBUM KEY (serve per DimSong)
-
-
-def get_album_map():
-    cursor.execute("SELECT AlbumKey, AlbumID_Original FROM DimAlbum")
-    return {id_album: key for key, id_album in cursor.fetchall()}
-
-
-
-#   8) DIMENSIONE: SONG
-
-
-def load_dim_song(rows, album_map):
-
-    # Song ha 27 colonne → 27 "?"
-    for r in rows:
-
-        album_key = album_map.get(r["id_album"])
-
-        cursor.execute("""
-            INSERT INTO DimSong
-            (SongID_Original, SongTitle, Language, LyricsText,
-             Swear_IT, Swear_EN, Swear_IT_Words, Swear_EN_Words,
-             NSentences, NTokens, CharPerToken, AvgTokenPerClause,
-             BPM, Rolloff, Flux, RMS, Flatness, SpectralComplexity,
-             Pitch, Loudness, DurationMS, Explicit, Popularity,
-             TrackNumber, Category, AlbumKey)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        r["song_id_original"], r["title"], r["language"], r["lyrics"],
-        r["swear_it"], r["swear_en"], r["swear_it_words"], r["swear_en_words"],
-        r["n_sentences"], r["n_tokens"], r["char_per_tok"], r["avg_token_per_clause"],
-        r["bpm"], r["rolloff"], r["flux"], r["rms"], r["flatness"], r["spectral_complexity"],
-        r["pitch"], r["loudness"], r["duration_ms"], r["explicit"], r["popularity"],
-        r["track_number"], r["category"], album_key
-        )
-
-    conn.commit()
-    print("✔ DimSong caricata")
-
-
-
-#   9) DIMENSIONE: DATE
-
-
 def load_dim_date(rows):
-
-    # 6 colonne → 6 "?"
+    count = 0
     for r in rows:
-        cursor.execute("""
+        safe_execute("""
             INSERT INTO DimDate
             (FullDate, Day, Month, MonthName, Year, Season)
             VALUES (?, ?, ?, ?, ?, ?)
         """,
-        r["full_date"], r["day"], r["month"],
-        r["month_name"], r["year"], r["season"]
-        )
+        (
+            safe_date(r["FullDate"]),
+            safe_int(r["Day"]),
+            safe_int(r["Month"]),
+            r["MonthName"],
+            safe_int(r["Year"]),
+            r["Season"]
+        ))
+        count += 1
+        if count % 100 == 0:
+            conn.commit()
 
     conn.commit()
     print("✔ DimDate caricata")
 
 
+# SONG
 
-#   10) LOOKUP SONG, ARTIST, DATE per FACT e BRIDGE
+def map_album_keys():
+    cursor.execute("SELECT AlbumKey, AlbumID_Original FROM DimAlbum")
+    return {orig: key for key, orig in cursor.fetchall()}
 
 
-def get_song_map():
-    cursor.execute("SELECT SongKey, SongID_Original FROM DimSong")
-    return {id_song: key for key, id_song in cursor.fetchall()}
+def load_dim_song(rows, album_key_map):
+    count = 0
+    for r in rows:
+        album_key = album_key_map.get(r["AlbumID_Original"])
 
-def get_artist_map():
+        safe_execute("""
+            INSERT INTO DimSong
+            (SongID_Original, SongTitle, DiscNumber, TrackNumber,
+             DurationMS, Popularity, AlbumKey)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            r["SongID_Original"],
+            r["SongTitle"],
+            safe_int(r["DiscNumber"]),
+            safe_int(r["TrackNumber"]),
+            safe_int(r["DurationMS"]),
+            safe_int(r["Popularity"]),
+            album_key
+        ))
+
+        count += 1
+        if count % 100 == 0:
+            conn.commit()
+
+    conn.commit()
+    print("✔ DimSong caricata")
+
+
+def load_dim_lyrics(rows):
+    count = 0
+    for r in rows:
+        safe_execute("""
+            INSERT INTO DimLyrics
+            (Language, Swear_IT, Swear_EN, Swear_IT_Words, Swear_EN_Words,
+             NSentences, NTokens, CharPerToken, AvgTokenPerClause,
+             Explicit, LyricsText, Description)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            r["Language"] or None,
+            safe_int(r["Swear_IT"]),
+            safe_int(r["Swear_EN"]),
+            r["Swear_IT_Words"] or None,
+            r["Swear_EN_Words"] or None,
+            safe_int(r["NSentences"]),
+            safe_int(r["NTokens"]),
+            safe_float(r["CharPerToken"]),
+            safe_float(r["AvgTokenPerClause"]),
+            1 if r["Explicit"] == "True" else 0 if r["Explicit"] == "False" else None,
+            r["LyricsText"] or None,
+            r["Description"] or None
+        ))
+
+        count += 1
+        if count % 100 == 0:
+            conn.commit()
+
+    conn.commit()
+    print("✔ DimLyrics caricata")
+
+
+def load_dim_symphony(rows):
+    count = 0
+    for r in rows:
+        safe_execute("""
+            INSERT INTO DimSymphony
+            (BPM, Rolloff, Flux, RMS, Flatness,
+             SpectralComplexity, Pitch, Loudness)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            safe_float(r["BPM"]),
+            safe_float(r["Rolloff"]),
+            safe_float(r["Flux"]),
+            safe_float(r["RMS"]),
+            safe_float(r["Flatness"]),
+            safe_float(r["SpectralComplexity"]),
+            safe_float(r["Pitch"]),
+            safe_float(r["Loudness"])
+        ))
+
+        count += 1
+        if count % 100 == 0:
+            conn.commit()
+
+    conn.commit()
+    print("✔ DimSymphony caricata")
+
+
+# ============================================================
+# 7) MAPPE SURROGATE
+# ============================================================
+
+def map_artist_keys():
     cursor.execute("SELECT ArtistKey, ArtistID_Original FROM DimArtist")
-    return {id_artist: key for key, id_artist in cursor.fetchall()}
+    return {orig: key for key, orig in cursor.fetchall()}
 
-def get_date_map():
+def map_song_keys():
+    cursor.execute("SELECT SongKey, SongID_Original FROM DimSong")
+    return {orig: key for key, orig in cursor.fetchall()}
+
+def map_date_keys():
     cursor.execute("SELECT DateKey, FullDate FROM DimDate")
     return {date: key for key, date in cursor.fetchall()}
 
 
-
-#   11) FACT PUBLISHED SONG
-
+# ============================================================
+# 8) FACT PARTICIPATION
+# ============================================================
 
 def load_fact(rows, song_map, artist_map, date_map):
+    missing_song = 0
+    missing_artist = 0
+    missing_date = 0
+    count = 0
 
-    # 4 colonne → 4 "?"
     for r in rows:
+        sk = song_map.get(r["SongID_Original"])
+        ak = artist_map.get(r["ArtistID_Original"])
+        dk = date_map.get(r["FullDate"])
 
-        cursor.execute("""
-            INSERT INTO FactPublishedSong
-            (SongKey, ArtistKey, DateKey, StreamsAfter1Month)
-            VALUES (?, ?, ?, ?)
+        if sk is None:
+            missing_song += 1
+            continue
+        if ak is None:
+            missing_artist += 1
+            continue
+        if dk is None:
+            missing_date += 1
+            continue
+
+        safe_execute("""
+            INSERT INTO FactParticipation
+            (SongKey, ArtistKey, DateKey, SymphonyKey, LyricsKey,
+             StreamsAfter1Month, IsPrimary)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
-        song_map.get(r["song_id"]),
-        artist_map.get(r["artist_id"]),
-        date_map.get(r["date"]),
-        r["streams"]
-        )
+        (
+            sk, ak, dk,
+            None, None,
+            safe_int(r["StreamsAfter1Month"]),
+            safe_int(r["IsPrimary"])
+        ))
+
+        count += 1
+        if count % 100 == 0:
+            conn.commit()
 
     conn.commit()
-    print("✔ FactPublishedSong caricata")
+    print("✔ FactParticipation caricata")
+    print("Missing Song:", missing_song)
+    print("Missing Artist:", missing_artist)
+    print("Missing Date:", missing_date)
 
 
+# ============================================================
+# 9) ESECUZIONE PIPELINE
+# ============================================================
 
-#   12) BRIDGE SONG–ARTIST
+print("\n=== CARICO DIMENSIONI ===\n")
+load_dim_artist_geography(geo_rows)
+load_dim_artist(artist_rows)
+load_dim_album(album_rows)
+load_dim_date(date_rows)
 
+album_map = map_album_keys()
+load_dim_song(song_rows, album_map)
 
-def load_bridge(rows, song_map, artist_map):
+load_dim_lyrics(lyrics_rows)
+load_dim_symphony(symphony_rows)
 
-    # 3 colonne → 3 "?"
-    for r in rows:
-        cursor.execute("""
-            INSERT INTO BridgeSongArtist
-            (SongKey, ArtistKey, Role)
-            VALUES (?, ?, ?)
-        """,
-        song_map.get(r["song_id"]),
-        artist_map.get(r["artist_id"]),
-        r["role"]
-        )
+print("\n=== CREO LE MAPPE SURROGATE ===\n")
+artist_map = map_artist_keys()
+song_map   = map_song_keys()
+date_map   = map_date_keys()
 
-    conn.commit()
-    print("✔ BridgeSongArtist caricata")
+print("\n=== CARICO LA FACT ===\n")
+load_fact(fact_rows, song_map, artist_map, date_map)
 
-
-
-#   13) MAIN: esecuzione completa in ordine corretto
-
-
-def main():
-
-    print("\n=== LETTURA CSV ===")
-    geo = read_csv("DimArtistGeography.csv")
-    artist = read_csv("DimArtist.csv")
-    album = read_csv("DimAlbum.csv")
-    song = read_csv("DimSong.csv")
-    date = read_csv("DimDate.csv")
-    fact = read_csv("FactPublishedSong.csv")
-    bridge = read_csv("BridgeSongArtist.csv")
-
-    print("\n=== CARICAMENTO DIMENSIONI ===")
-    load_dim_artist_geography(geo)
-
-    geo_map = get_artist_geo_map()
-    load_dim_artist(artist, geo_map)
-
-    load_dim_album(album)
-
-    album_map = get_album_map()
-    load_dim_song(song, album_map)
-
-    load_dim_date(date)
-
-    print("\n=== CARICAMENTO FACT ===")
-    song_map = get_song_map()
-    artist_map = get_artist_map()
-    date_map = get_date_map()
-
-    load_fact(fact, song_map, artist_map, date_map)
-
-    print("\n=== CARICAMENTO BRIDGE ===")
-    load_bridge(bridge, song_map, artist_map)
-
-    print("\n✔✔✔ TUTTO CARICATO NEL DATA WAREHOUSE ✔✔✔")
-
-
-main()
+print("\n\n✔✔✔ CARICAMENTO COMPLETATO ✔✔✔")
