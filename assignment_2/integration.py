@@ -227,7 +227,11 @@ def matching_score_artist(artist_og: dict, artist_retrieved: dict) -> float:
     # country
     og_country = artist_og.get('country')
     mb_country = artist_retrieved.get('country')
-    if og_country and mb_country and countries_map[og_country] != mb_country:
+    if (og_country and
+        mb_country and
+        countries_map.get(og_country) and
+        countries_map[og_country] != mb_country
+    ):
         factors.append(0.8)
 
     # birth date
