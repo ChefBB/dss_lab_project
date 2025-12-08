@@ -3,11 +3,11 @@ import pyodbc
 import time
 
 # ============================================================
-# 1) CONNESSIONE AL DATABASE
+# 1) CONNESSIONE
 # ============================================================
 
 def connect():
-    print(" Connessione al database...")
+    print("🔌 Connessione al database...")
     conn = pyodbc.connect(
         "DRIVER={ODBC Driver 17 for SQL Server};"
         "SERVER=131.114.50.57;"
@@ -22,21 +22,16 @@ conn, cursor = connect()
 
 
 # ============================================================
-# 2) SAFE EXECUTE (GESTIONE ERRORI DI CONNESSIONE)
+# 2) SAFE EXECUTE (GESTIONE ERRORI 10053)
 # ============================================================
 
 def safe_execute(query, params=None, retry=True):
     global conn, cursor
-
     try:
-        if params is None:
-            cursor.execute(query)
-        else:
-            cursor.execute(query, params)
-
+        cursor.execute(query, params or [])
     except pyodbc.OperationalError as e:
-        if retry and ("10053" in str(e) or "10060" in str(e)):
-            print("⚠️  Connessione persa, riconnessione...")
+        if retry and "10053" in str(e):
+            print("⚠️ Connessione persa, riconnessione...")
             time.sleep(1)
             conn, cursor = connect()
             return safe_execute(query, params, retry=False)
@@ -45,7 +40,7 @@ def safe_execute(query, params=None, retry=True):
 
 
 # ============================================================
-# 3) FUNZIONI UTILI
+# 3) FUNZIONI DI SUPPORTO
 # ============================================================
 
 def read_csv(path):
@@ -70,39 +65,48 @@ def safe_float(v):
 
 
 # ============================================================
-# 4) CARICAMENTO CSV
+# 4) LETTURA CSV
 # ============================================================
 
 CSV_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
 
-lyrics_rows   = read_csv(f"{CSV_PATH}\\DimLyrics.csv")
-symphony_rows = read_csv(f"{CSV_PATH}\\DimSymphony.csv")
-fact_rows     = read_csv(f"{CSV_PATH}\\FactParticipation.csv")
+lyrics_rows = read_csv(f"{CSV_PATH}\\DimLyrics.csv")
+symph_rows  = read_csv(f"{CSV_PATH}\\DimSymphony.csv")
+fact_rows   = read_csv(f"{CSV_PATH}\\FactParticipation.csv")
 
 print("✔ CSV letti correttamente\n")
 
 
 # ============================================================
-# 5) MAPPE SURROGATE DA DIMENSIONI GIÀ CARICATE
+# 5) CREAZIONE MAPPE SURROGATE
 # ============================================================
 
-def map_song_keys():
+def create_song_map():
     cursor.execute("SELECT SongKey, SongID_Original FROM DimSong")
     return {orig: key for key, orig in cursor.fetchall()}
 
-def map_artist_keys():
+def create_artist_map():
     cursor.execute("SELECT ArtistKey, ArtistID_Original FROM DimArtist")
     return {orig: key for key, orig in cursor.fetchall()}
 
-def map_date_keys():
+def create_date_map():
     cursor.execute("SELECT DateKey, FullDate FROM DimDate")
     return {date: key for key, date in cursor.fetchall()}
 
-song_map   = map_song_keys()
-artist_map = map_artist_keys()
-date_map   = map_date_keys()
+def create_lyrics_key_map():
+    cursor.execute("SELECT LyricsKey, SongKey FROM DimLyrics")
+    return {song: key for key, song in cursor.fetchall()}
 
-print(" Mappe surrogate generate\n")
+def create_symph_key_map():
+    cursor.execute("SELECT SymphonyKey, SongKey FROM DimSymphony")
+    return {song: key for key, song in cursor.fetchall()}
+
+
+song_map   = create_song_map()
+artist_map = create_artist_map()
+date_map   = create_date_map()
+
+print("✔ Mappe surrogate generate\n")
 
 
 # ============================================================
@@ -110,23 +114,23 @@ print(" Mappe surrogate generate\n")
 # ============================================================
 
 def load_dim_lyrics(rows):
-    print(" Inizio caricamento DimLyrics...")
+    print("🚀 Inizio caricamento DimLyrics...\n")
     count = 0
-
     for r in rows:
-        sk = song_map.get(r["SongID_Original"])
-        if sk is None:
-            print("⚠️ SongKey mancante in Lyrics:", r["SongID_Original"])
+
+        song_key = song_map.get(r["SongID_Original"])
+        if not song_key:
             continue
 
         safe_execute("""
             INSERT INTO DimLyrics
-            (Language, Swear_IT, Swear_EN, Swear_IT_Words, Swear_EN_Words,
-             NSentences, NTokens, CharPerToken, AvgTokenPerClause,
-             Explicit, LyricsText, Description)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            (SongKey, Language, Swear_IT, Swear_EN, Swear_IT_Words,
+             Swear_EN_Words, NSentences, NTokens, CharPerToken,
+             AvgTokenPerClause, Explicit, LyricsText, Description)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
+            song_key,
             r["Language"] or None,
             safe_int(r["Swear_IT"]),
             safe_int(r["Swear_EN"]),
@@ -136,18 +140,18 @@ def load_dim_lyrics(rows):
             safe_int(r["NTokens"]),
             safe_float(r["CharPerToken"]),
             safe_float(r["AvgTokenPerClause"]),
-            1 if r["Explicit"] == "True" else 0,
+            1 if r["Explicit"] == "True" else 0 if r["Explicit"] == "False" else None,
             r["LyricsText"] or None,
             r["Description"] or None
         ))
 
         count += 1
-        if count % 500 == 0:
-            print(f"➡ {count} lyrics caricate")
+        if count % 300 == 0:
+            print(f"➡ {count} righe caricate...")
             conn.commit()
 
     conn.commit()
-    print(f"✔ DimLyrics caricata ({count} righe)\n")
+    print(f"✔ DimLyrics caricata correttamente ({count} righe)\n")
 
 
 # ============================================================
@@ -155,22 +159,22 @@ def load_dim_lyrics(rows):
 # ============================================================
 
 def load_dim_symphony(rows):
-    print(" Inizio caricamento DimSymphony...")
+    print("🚀 Inizio caricamento DimSymphony...\n")
     count = 0
-
     for r in rows:
-        sk = song_map.get(r["SongID_Original"])
-        if sk is None:
-            print("⚠️ SongKey mancante in Symphony:", r["SongID_Original"])
+
+        song_key = song_map.get(r["SongID_Original"])
+        if not song_key:
             continue
 
         safe_execute("""
             INSERT INTO DimSymphony
-            (BPM, Rolloff, Flux, RMS, Flatness,
+            (SongKey, BPM, Rolloff, Flux, RMS, Flatness,
              SpectralComplexity, Pitch, Loudness)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
+            song_key,
             safe_float(r["BPM"]),
             safe_float(r["Rolloff"]),
             safe_float(r["Flux"]),
@@ -182,12 +186,12 @@ def load_dim_symphony(rows):
         ))
 
         count += 1
-        if count % 500 == 0:
-            print(f"➡ {count} symphony caricate")
+        if count % 300 == 0:
+            print(f"➡ {count} righe caricate...")
             conn.commit()
 
     conn.commit()
-    print(f"✔ DimSymphony caricata ({count} righe)\n")
+    print(f"✔ DimSymphony caricata correttamente ({count} righe)\n")
 
 
 # ============================================================
@@ -195,9 +199,14 @@ def load_dim_symphony(rows):
 # ============================================================
 
 def load_fact(rows):
-    print(" Inizio caricamento FactParticipation...")
+    print("🚀 Inizio caricamento FactParticipation...\n")
+
+    # serve dopo la creazione di lyrics e symphony
+    lyrics_map = create_lyrics_key_map()
+    symph_map  = create_symph_key_map()
+
     count = 0
-    missing_s = missing_a = missing_d = 0
+    missing = {"song":0, "artist":0, "date":0}
 
     for r in rows:
         sk = song_map.get(r["SongID_Original"])
@@ -205,13 +214,13 @@ def load_fact(rows):
         dk = date_map.get(r["FullDate"])
 
         if sk is None:
-            missing_s += 1
+            missing["song"] += 1
             continue
         if ak is None:
-            missing_a += 1
+            missing["artist"] += 1
             continue
         if dk is None:
-            missing_d += 1
+            missing["date"] += 1
             continue
 
         safe_execute("""
@@ -221,30 +230,31 @@ def load_fact(rows):
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            sk, ak, dk,
-            None, None,  # Symphony/Lyrics non usati come FK
+            sk,
+            ak,
+            dk,
+            symph_map.get(sk),
+            lyrics_map.get(sk),
             safe_int(r["StreamsAfter1Month"]),
             safe_int(r["IsPrimary"])
         ))
 
         count += 1
-        if count % 500 == 0:
-            print(f"➡ {count} fact caricate")
+        if count % 300 == 0:
+            print(f"➡ {count} righe caricate...")
             conn.commit()
 
     conn.commit()
-    print("✔ FactParticipation caricata")
-    print("   Missing Song:", missing_s)
-    print("   Missing Artist:", missing_a)
-    print("   Missing Date:", missing_d, "\n")
+    print(f"✔ FactParticipation caricata ({count} righe)")
+    print("🔎 Missing:", missing, "\n")
 
 
 # ============================================================
-# 9) ESECUZIONE DELLA PIPELINE
+# 9) ESECUZIONE
 # ============================================================
 
 load_dim_lyrics(lyrics_rows)
-load_dim_symphony(symphony_rows)
+load_dim_symphony(symph_rows)
 load_fact(fact_rows)
 
-print("\n✔✔✔ CARICAMENTO COMPLETO (Lyrics + Symphony + Fact) ✔✔✔")
+print("🎉 CARICAMENTO COMPLETO!")
