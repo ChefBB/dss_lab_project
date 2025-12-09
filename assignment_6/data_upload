@@ -1,415 +1,114 @@
-import csv
 import pyodbc
-import time
+import csv
+import os
 
-# ============================================================
-# 1) FUNZIONE DI RICONNESSIONE AUTOMATICA
-# ============================================================
+# =====================================================================
+# 0) CONFIGURAZIONE DATABASE + PATH CSV
+# =====================================================================
 
-def connect():
-    print("🔌 Connessione al database...")
-    conn = pyodbc.connect(
-        "DRIVER={ODBC Driver 17 for SQL Server};"
-        "SERVER=131.114.50.57;"
-        "DATABASE=Group_ID_8_DB;"
-        "UID=Group_ID_8;"
-        "PWD=CU83R89P;"
-    )
-    print("✔ Connessione stabilita\n")
-    return conn, conn.cursor()
+SERVER = "131.114.50.57"
+DATABASE = "Group_ID_8_DB"
+USERNAME = "Group_ID_8"
+PASSWORD = "CU83R89P"
 
-conn, cursor = connect()
+CSV_DIR = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset\Assignment5_CSV"
+
+# Solo le tabelle NON ancora caricate
+TABLES = [
+    ("DimAlbum.csv",          "DimAlbum"),
+    ("DimLyrics.csv",         "DimLyrics"),
+    ("DimSymphony.csv",       "DimSymphony"),
+    ("DimSong.csv",           "DimSong"),
+    ("FactParticipation.csv", "FactParticipation")
+]
+
+# =====================================================================
+# 1) CONNESSIONE AL DATABASE
+# =====================================================================
+
+print("📡 Connessione al database...")
+conn = pyodbc.connect(
+    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}"
+)
+cursor = conn.cursor()
+print("✔ Connessione effettuata.\n")
 
 
-# ============================================================
-# 2) EXECUTE ROBUSTO (GESTISCE ERRORE 10053)
-# ============================================================
+# =====================================================================
+# 2) CHECK SE UNA TABELLA È VUOTA
+# =====================================================================
 
-def safe_execute(query, params=None, retry=True):
-    global conn, cursor
-
+def table_is_empty(table):
+    """Ritorna True se la tabella è vuota o non esiste."""
     try:
-        if params:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
-    except pyodbc.OperationalError as e:
-        if retry and "10053" in str(e):
-            print("⚠️  Connessione persa. Riconnessione in corso...")
-            time.sleep(1)
-            conn, cursor = connect()
-
-            # ritenta una sola volta
-            return safe_execute(query, params, retry=False)
-        else:
-            raise
-
-
-# ============================================================
-# 3) FUNZIONI DI CONVERSIONE
-# ============================================================
-
-def safe_int(v):
-    if v is None or v == "":
-        return None
-    try:
-        return int(float(v))
+        cursor.execute(f"SELECT COUNT(*) FROM {table}")
+        count = cursor.fetchone()[0]
+        return count == 0
     except:
-        return None
-
-def safe_float(v):
-    if v is None or v == "":
-        return None
-    try:
-        return float(v)
-    except:
-        return None
-
-def safe_date(v):
-    if not v or v.strip() == "":
-        return None
-    v = v.strip()
-    if len(v) == 4 and v.isdigit():
-        return None
-    if len(v) == 10 and v[4] == "-" and v[7] == "-":
-        return v
-    return None
-
-
-# ============================================================
-# 4) LETTURA CSV
-# ============================================================
-
-def read_csv(path):
-    with open(path, encoding="utf-8") as f:
-        return list(csv.DictReader(f))
-
-CSV_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
-
-geo_rows      = read_csv(f"{CSV_PATH}\\DimArtistGeography.csv")
-artist_rows   = read_csv(f"{CSV_PATH}\\DimArtist.csv")
-album_rows    = read_csv(f"{CSV_PATH}\\DimAlbum.csv")
-song_rows     = read_csv(f"{CSV_PATH}\\DimSong.csv")
-lyrics_rows   = read_csv(f"{CSV_PATH}\\DimLyrics.csv")
-symphony_rows = read_csv(f"{CSV_PATH}\\DimSymphony.csv")
-date_rows     = read_csv(f"{CSV_PATH}\\DimDate.csv")
-fact_rows     = read_csv(f"{CSV_PATH}\\FactParticipation.csv")
-
-print("✔ CSV letti correttamente\n")
-
-
-# ============================================================
-# 5) SVUOTAMENTO DELLE TABELLE
-# ============================================================
-
-def clear_tables():
-    print("🧹 Cancellazione tabelle...")
-
-    safe_execute("DELETE FROM FactParticipation;")
-    safe_execute("DELETE FROM DimSong;")
-    safe_execute("DELETE FROM DimAlbum;")
-    safe_execute("DELETE FROM DimArtist;")
-    safe_execute("DELETE FROM DimArtistGeography;")
-    safe_execute("DELETE FROM DimLyrics;")
-    safe_execute("DELETE FROM DimSymphony;")
-    safe_execute("DELETE FROM DimDate;")
-
-    conn.commit()
-    print("✔ Tabelle svuotate\n")
-
-clear_tables()
-
-
-# ============================================================
-# 6) CARICAMENTO DELLE DIMENSIONI
-# ============================================================
-
-def load_dim_artist_geography(rows):
-    count = 0
-    for r in rows:
-        safe_execute("""
-            INSERT INTO DimArtistGeography
-            (Province, Region, Country, Latitude, Longitude)
-            VALUES (?, ?, ?, ?, ?)
-        """,
-        (
-            r["Province"] or None,
-            r["Region"] or None,
-            r["Country"] or None,
-            safe_float(r["Latitude"]),
-            safe_float(r["Longitude"])
-        ))
-
-        count += 1
-        if count % 50 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimArtistGeography caricata")
-
-
-def load_dim_artist(rows):
-    count = 0
-    for r in rows:
-        safe_execute("""
-            INSERT INTO DimArtist
-            (ArtistID_Original, ArtistName, Gender, BirthDate, BirthPlace,
-             Nationality, Description, ActiveStart, ActiveEnd,
-             ArtistType, ArtistGeoKey)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            r["ArtistID_Original"],
-            r["ArtistName"],
-            r["Gender"] or None,
-            safe_date(r["BirthDate"]),
-            r["BirthPlace"] or None,
-            r["Nationality"] or None,
-            r["Description"] or None,
-            safe_date(r["ActiveStart"]),
-            safe_date(r["ActiveEnd"]),
-            r["ArtistType"] or None,
-            safe_int(r["ArtistGeoKey"])
-        ))
-        count += 1
-        if count % 50 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimArtist caricata")
-
-
-def load_dim_album(rows):
-    count = 0
-    for r in rows:
-        safe_execute("""
-            INSERT INTO DimAlbum
-            (AlbumID_Original, AlbumName, AlbumType, AlbumReleaseDate)
-            VALUES (?, ?, ?, ?)
-        """,
-        (
-            r["AlbumID_Original"],
-            r["AlbumName"] or None,
-            r["AlbumType"] or None,
-            safe_date(r["AlbumReleaseDate"])
-        ))
-        count += 1
-        if count % 50 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimAlbum caricata")
-
-
-def load_dim_date(rows):
-    count = 0
-    for r in rows:
-        safe_execute("""
-            INSERT INTO DimDate
-            (FullDate, Day, Month, MonthName, Year, Season)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        (
-            safe_date(r["FullDate"]),
-            safe_int(r["Day"]),
-            safe_int(r["Month"]),
-            r["MonthName"],
-            safe_int(r["Year"]),
-            r["Season"]
-        ))
-        count += 1
-        if count % 100 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimDate caricata")
-
-
-# SONG
-
-def map_album_keys():
-    cursor.execute("SELECT AlbumKey, AlbumID_Original FROM DimAlbum")
-    return {orig: key for key, orig in cursor.fetchall()}
-
-
-def load_dim_song(rows, album_key_map):
-    count = 0
-    for r in rows:
-        album_key = album_key_map.get(r["AlbumID_Original"])
-
-        safe_execute("""
-            INSERT INTO DimSong
-            (SongID_Original, SongTitle, DiscNumber, TrackNumber,
-             DurationMS, Popularity, AlbumKey)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            r["SongID_Original"],
-            r["SongTitle"],
-            safe_int(r["DiscNumber"]),
-            safe_int(r["TrackNumber"]),
-            safe_int(r["DurationMS"]),
-            safe_int(r["Popularity"]),
-            album_key
-        ))
-
-        count += 1
-        if count % 100 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimSong caricata")
-
-
-def load_dim_lyrics(rows):
-    count = 0
-    for r in rows:
-        safe_execute("""
-            INSERT INTO DimLyrics
-            (Language, Swear_IT, Swear_EN, Swear_IT_Words, Swear_EN_Words,
-             NSentences, NTokens, CharPerToken, AvgTokenPerClause,
-             Explicit, LyricsText, Description)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            r["Language"] or None,
-            safe_int(r["Swear_IT"]),
-            safe_int(r["Swear_EN"]),
-            r["Swear_IT_Words"] or None,
-            r["Swear_EN_Words"] or None,
-            safe_int(r["NSentences"]),
-            safe_int(r["NTokens"]),
-            safe_float(r["CharPerToken"]),
-            safe_float(r["AvgTokenPerClause"]),
-            1 if r["Explicit"] == "True" else 0 if r["Explicit"] == "False" else None,
-            r["LyricsText"] or None,
-            r["Description"] or None
-        ))
-
-        count += 1
-        if count % 100 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimLyrics caricata")
-
-
-def load_dim_symphony(rows):
-    count = 0
-    for r in rows:
-        safe_execute("""
-            INSERT INTO DimSymphony
-            (BPM, Rolloff, Flux, RMS, Flatness,
-             SpectralComplexity, Pitch, Loudness)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            safe_float(r["BPM"]),
-            safe_float(r["Rolloff"]),
-            safe_float(r["Flux"]),
-            safe_float(r["RMS"]),
-            safe_float(r["Flatness"]),
-            safe_float(r["SpectralComplexity"]),
-            safe_float(r["Pitch"]),
-            safe_float(r["Loudness"])
-        ))
-
-        count += 1
-        if count % 100 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ DimSymphony caricata")
-
-
-# ============================================================
-# 7) MAPPE SURROGATE
-# ============================================================
-
-def map_artist_keys():
-    cursor.execute("SELECT ArtistKey, ArtistID_Original FROM DimArtist")
-    return {orig: key for key, orig in cursor.fetchall()}
-
-def map_song_keys():
-    cursor.execute("SELECT SongKey, SongID_Original FROM DimSong")
-    return {orig: key for key, orig in cursor.fetchall()}
-
-def map_date_keys():
-    cursor.execute("SELECT DateKey, FullDate FROM DimDate")
-    return {date: key for key, date in cursor.fetchall()}
-
-
-# ============================================================
-# 8) FACT PARTICIPATION
-# ============================================================
-
-def load_fact(rows, song_map, artist_map, date_map):
-    missing_song = 0
-    missing_artist = 0
-    missing_date = 0
-    count = 0
-
-    for r in rows:
-        sk = song_map.get(r["SongID_Original"])
-        ak = artist_map.get(r["ArtistID_Original"])
-        dk = date_map.get(r["FullDate"])
-
-        if sk is None:
-            missing_song += 1
-            continue
-        if ak is None:
-            missing_artist += 1
-            continue
-        if dk is None:
-            missing_date += 1
-            continue
-
-        safe_execute("""
-            INSERT INTO FactParticipation
-            (SongKey, ArtistKey, DateKey, SymphonyKey, LyricsKey,
-             StreamsAfter1Month, IsPrimary)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            sk, ak, dk,
-            None, None,
-            safe_int(r["StreamsAfter1Month"]),
-            safe_int(r["IsPrimary"])
-        ))
-
-        count += 1
-        if count % 100 == 0:
-            conn.commit()
-
-    conn.commit()
-    print("✔ FactParticipation caricata")
-    print("Missing Song:", missing_song)
-    print("Missing Artist:", missing_artist)
-    print("Missing Date:", missing_date)
-
-
-# ============================================================
-# 9) ESECUZIONE PIPELINE
-# ============================================================
-
-print("\n=== CARICO DIMENSIONI ===\n")
-load_dim_artist_geography(geo_rows)
-load_dim_artist(artist_rows)
-load_dim_album(album_rows)
-load_dim_date(date_rows)
-
-album_map = map_album_keys()
-load_dim_song(song_rows, album_map)
-
-load_dim_lyrics(lyrics_rows)
-load_dim_symphony(symphony_rows)
-
-print("\n=== CREO LE MAPPE SURROGATE ===\n")
-artist_map = map_artist_keys()
-song_map   = map_song_keys()
-date_map   = map_date_keys()
-
-print("\n=== CARICO LA FACT ===\n")
-load_fact(fact_rows, song_map, artist_map, date_map)
-
-print("\n\n✔✔✔ CARICAMENTO COMPLETATO ✔✔✔")
+        return True  # tabella non esiste → consideriamola vuota
+
+
+# =====================================================================
+# 3) FUNZIONE PER CARICARE UN CSV NELLA TABELLA
+# =====================================================================
+
+def upload_csv(filename, table_name):
+
+    file_path = os.path.join(CSV_DIR, filename)
+
+    if not os.path.exists(file_path):
+        print(f"❌ ERRORE: file {filename} NON trovato!\n")
+        return
+
+    # Evita ricaricamenti
+    if not table_is_empty(table_name):
+        print(f"⏩ La tabella {table_name} contiene già dati → salto.\n")
+        return
+
+    print(f"⬆ Caricamento CSV: {filename} → {table_name}")
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        cols = next(reader)  # header CSV
+
+        n_cols = len(cols)
+        placeholders = ",".join(["?"] * n_cols)
+
+        query = f"INSERT INTO {table_name} ({','.join(cols)}) VALUES ({placeholders})"
+
+        inserted = 0
+
+        for row in reader:
+            clean_row = [None if v in ("", "NULL") else v for v in row]
+
+            try:
+                cursor.execute(query, clean_row)
+                inserted += 1
+
+            except Exception as e:
+
+                print("\n==================== ERRORE SQL ====================")
+                print(f"TABELLA: {table_name}")
+                print("RIGA PROBLEMATICA:")
+
+                for c, v in zip(cols, clean_row):
+                    print(f"  {c}: {v}")
+
+                print("ERRORE SQL:")
+                print(e)
+                print("====================================================\n")
+                # Non stoppiamo, continuiamo il caricamento
+
+        conn.commit()
+        print(f"✔ Inserite {inserted} righe in {table_name}\n")
+
+
+# =====================================================================
+# 4) CICLO DI CARICAMENTO
+# =====================================================================
+
+for csv_file, table_name in TABLES:
+    upload_csv(csv_file, table_name)
+
+print("🎉 ASSIGNMENT 6 COMPLETATO! Tutte le tabelle richieste sono state caricate.")

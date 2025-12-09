@@ -1,316 +1,281 @@
 import json
 import csv
-from datetime import datetime
+import os
 
-# ============================
-# PATH
-# ============================
+# ============================================================
+# 0) PATH INPUT / OUTPUT  (IDENTICI AI TUOI)
+# ============================================================
 
-BASE_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset\filled"
+BASE = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project"
 
-TRACKS_PATH = f"{BASE_PATH}\\tracks_clean_final.json"
-ARTISTS_PATH = f"{BASE_PATH}\\artists_clean_final.json"
+ARTISTS_PATH = os.path.join(BASE, r"dataset\Finali\artistsFinal.json")
+TRACKS_PATH  = os.path.join(BASE, r"dataset\Finali\tracksFinal.json")
+PART_PATH    = os.path.join(BASE, r"dataset\Finali\participationsFinal.json")
 
-OUTPUT_PATH = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset"
+OUT_DIR = os.path.join(BASE, r"dataset\Assignment5_CSV")
+os.makedirs(OUT_DIR, exist_ok=True)
 
-# ============================
-# LOAD JSON FILES
-# ============================
+# ============================================================
+# 1) LOAD CLEAN DATASETS
+# ============================================================
 
-with open(TRACKS_PATH, "r", encoding="utf-8") as f:
-    tracks = json.load(f)
+artists = json.load(open(ARTISTS_PATH, "r", encoding="utf-8"))
+tracks  = json.load(open(TRACKS_PATH,  "r", encoding="utf-8"))
+parts   = json.load(open(PART_PATH,   "r", encoding="utf-8"))
 
-with open(ARTISTS_PATH, "r", encoding="utf-8") as f:
-    artists = json.load(f)
-
-
-
-# ============================
-# CSV WRITER
-# ============================
-
-def write_csv(filename, fieldnames, rows):
-    with open(filename, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
+print("✔ Loaded datasets:")
+print(" Artists:", len(artists))
+print(" Tracks:", len(tracks))
+print(" Participation:", len(parts))
 
 
+# ============================================================
+# FUNZIONE: CALCOLARE LA STAGIONE
+# ============================================================
 
-# ===========================================================
-# 1) DIM ARTIST GEOGRAPHY
-# ===========================================================
+def get_season(month, day):
+    if month == "NULL" or day == "NULL":
+        return "NULL"
+
+    m = int(month)
+    d = int(day)
+
+    if (m == 12 and d >= 21) or (1 <= m <= 2) or (m == 3 and d < 21):
+        return "Winter"
+    elif (m == 3 and d >= 21) or (4 <= m <= 5) or (m == 6 and d < 21):
+        return "Spring"
+    elif (m == 6 and d >= 21) or (7 <= m <= 8) or (m == 9 and d < 23):
+        return "Summer"
+    else:
+        return "Autumn"
+
+
+# ============================================================
+# 2) DIMDATE
+# ============================================================
+
+date_map = {}
+
+for t in tracks:
+    dk = t["date_id"]
+    if dk == "NULL":
+        continue
+
+    y, m, d = t["year"], t["month"], t["day"]
+    q = (m - 1) // 3 + 1 if m != "NULL" else "NULL"
+    season = get_season(m, d)
+
+    if dk not in date_map:
+        date_map[dk] = (y, m, d, q, season)
+
+with open(os.path.join(OUT_DIR, "DimDate.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["DateKey","Year","Month","Day","Quarter","Season"])
+    for dk, row in date_map.items():
+        w.writerow([dk] + list(row))
+
+print("✔ DimDate.csv written")
+
+
+# ============================================================
+# 3) DIM ARTIST GEOGRAPHY
+# ============================================================
 
 geo_map = {}
+geo_list = []
+counter = 1
+
+def geo_tuple(a):
+    return (
+        a["province"],
+        a["region"],
+        a["country"],
+        a["latitude"],
+        a["longitude"]
+    )
 
 for a in artists:
-    key = (a.get("province"), a.get("region"), a.get("country"))
-    if key not in geo_map:
-        geo_map[key] = {
-            "Province": a.get("province"),
-            "Region": a.get("region"),
-            "Country": a.get("country"),
-            "Latitude": a.get("latitude"),
-            "Longitude": a.get("longitude")
-        }
+    tup = geo_tuple(a)
+    if tup not in geo_map:
+        key = f"GEO_{counter}"
+        geo_map[tup] = key
+        geo_list.append([key] + list(tup))
+        counter += 1
 
-dim_artist_geo_rows = list(geo_map.values())
+with open(os.path.join(OUT_DIR, "DimArtistGeography.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["GeoKey","Province","Region","Country","Latitude","Longitude"])
+    for r in geo_list:
+        w.writerow(r)
 
-
-
-# ===========================================================
-# 2) DIM ARTIST  (USA IL NEW ID)
-# ===========================================================
-
-dim_artist_rows = []
-
-for a in artists:
-
-    # Trova geo key
-    geo_key = None
-    for idx, g in enumerate(dim_artist_geo_rows, start=1):
-        if (
-            g["Province"] == a.get("province") and
-            g["Region"] == a.get("region") and
-            g["Country"] == a.get("country")
-        ):
-            geo_key = idx
-            break
-
-    dim_artist_rows.append({
-        "ArtistID_Original": a["new_id_artist"],  # NEW ID
-        "ArtistName": a["name"],
-        "Gender": a.get("gender"),
-        "BirthDate": a.get("birth_date"),
-        "BirthPlace": a.get("birth_place"),
-        "Nationality": a.get("nationality"),
-        "Description": a.get("description"),
-        "ActiveStart": a.get("active_start"),
-        "ActiveEnd": a.get("active_end"),
-        "ArtistType": a.get("type"),
-        "ArtistGeoKey": geo_key
-    })
+print("✔ DimArtistGeography.csv written")
 
 
+# ============================================================
+# 4) DIM ARTIST
+# ============================================================
 
-# ===========================================================
-# 3) DIM ALBUM  (USA IL NEW ID)
-# ===========================================================
+with open(os.path.join(OUT_DIR, "DimArtist.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+
+    w.writerow([
+        "ArtistKey","Name","Gender","BirthDate","BirthPlace","Nationality",
+        "Description","ActiveStart","ActiveEnd","Type","GeoKey"
+    ])
+
+    for a in artists:
+        geokey = geo_map[geo_tuple(a)]
+        w.writerow([
+            a["new_id_artist"],
+            a["name"],
+            a["gender"],
+            a["birth_date"],
+            a["birth_place"],
+            a["nationality"],
+            a["description"],
+            a["active_start"],
+            a["active_end"],
+            a["type"],
+            geokey
+        ])
+
+print("✔ DimArtist.csv written")
+
+
+# ============================================================
+# 5) DIM ALBUM
+# ============================================================
 
 album_map = {}
 
 for t in tracks:
-    alb = t.get("new_id_album")  # new id
-
-    if not alb:
-        continue  # skip singoli
-
+    alb = t["new_id_album"]
     if alb not in album_map:
-        album_map[alb] = {
-            "AlbumID_Original": alb,
-            "AlbumName": t.get("album_name"),
-            "AlbumType": t.get("album_type"),
-            "AlbumReleaseDate": t.get("album_release_date")
-        }
+        album_map[alb] = [
+            t["album_name"],
+            t["album_release_date"],
+            t["album_type"]
+        ]
 
-dim_album_rows = list(album_map.values())
+with open(os.path.join(OUT_DIR, "DimAlbum.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["AlbumKey","AlbumName","ReleaseDate","AlbumType"])
+    for k, r in album_map.items():
+        w.writerow([k] + r)
 
-
-
-# ===========================================================
-# 4) DIM SONG  (USA IL NEW ID DELLA TRACCIA)
-# ===========================================================
-
-dim_song_rows = []
-
-for t in tracks:
-
-    album_id = t.get("new_id_album")
-
-    dim_song_rows.append({
-        "SongID_Original": t["new_track_id"],   # new id della traccia
-        "SongTitle": t.get("title"),
-        "DiscNumber": t.get("disc_number"),
-        "TrackNumber": t.get("track_number"),
-        "DurationMS": t.get("duration_ms"),
-        "Popularity": t.get("popularity"),
-        "AlbumID_Original": album_id
-    })
+print("✔ DimAlbum.csv written")
 
 
+# ============================================================
+# 6) DIM LYRICS (FIX INT!)
+# ============================================================
 
-# ===========================================================
-# 5) DIM LYRICS
-# ===========================================================
+with open(os.path.join(OUT_DIR, "DimLyrics.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
 
-dim_lyrics_rows = []
+    w.writerow([
+        "LyricsKey","Language","Swear_IT","Swear_EN","Swear_IT_Words","Swear_EN_Words",
+        "NSentences","NTokens","CharPerToken","AvgTokenPerClause","Explicit","LyricsText"
+    ])
 
-for t in tracks:
+    for t in tracks:
+        ns = int(t["n_sentences"]) if t["n_sentences"] != "NULL" else None
+        nt = int(t["n_tokens"]) if t["n_tokens"] != "NULL" else None
+        explicit_flag = 1 if t["explicit"] == True else 0
 
-    dim_lyrics_rows.append({
-        "SongID_Original": t["new_track_id"],   # new id
-        "Language": t.get("language"),
-        "Swear_IT": t.get("swear_IT"),
-        "Swear_EN": t.get("swear_EN"),
-        "Swear_IT_Words": t.get("swear_IT_words"),
-        "Swear_EN_Words": t.get("swear_EN_words"),
-        "NSentences": t.get("n_sentences"),
-        "NTokens": t.get("n_tokens"),
-        "CharPerToken": t.get("char_per_tok"),
-        "AvgTokenPerClause": t.get("avg_token_per_clause"),
-        "Explicit": t.get("explicit"),
-        "LyricsText": t.get("lyrics"),
-        "Description": None
-    })
+        w.writerow([
+            t["lyrics_id"],
+            t["language"],
+            t["swear_IT"],
+            t["swear_EN"],
+            t["swear_IT_words"],
+            t["swear_EN_words"],
+            ns,
+            nt,
+            t["char_per_tok"],
+            t["avg_token_per_clause"],
+            explicit_flag,
+            t["lyrics"]
+        ])
 
-
-
-# ===========================================================
-# 6) DIM SYMPHONY
-# ===========================================================
-
-dim_symphony_rows = []
-
-for t in tracks:
-
-    dim_symphony_rows.append({
-        "SongID_Original": t["new_track_id"],   # new id
-        "BPM": t.get("bpm"),
-        "Rolloff": t.get("rolloff"),
-        "Flux": t.get("flux"),
-        "RMS": t.get("rms"),
-        "Flatness": t.get("flatness"),
-        "SpectralComplexity": t.get("spectral_complexity"),
-        "Pitch": t.get("pitch"),
-        "Loudness": t.get("loudness")
-    })
+print("✔ DimLyrics.csv written")
 
 
+# ============================================================
+# 7) DIM SYMPHONY
+# ============================================================
 
-# ===========================================================
-# 7) DIM DATE
-# ===========================================================
+with open(os.path.join(OUT_DIR, "DimSymphony.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
 
-date_rows = {}
+    w.writerow([
+        "SymphonyKey","BPM","Rolloff","Flux","RMS",
+        "Flatness","SpectralComplexity","Pitch","Loudness"
+    ])
 
-def get_season(month, day):
-    if (month == 12 and day >= 21) or (month in [1, 2]) or (month == 3 and day <= 19):
-        return "Winter"
-    if (month == 3 and day >= 20) or (month in [4, 5]) or (month == 6 and day <= 20):
-        return "Spring"
-    if (month == 6 and day >= 21) or (month in [7, 8]) or (month == 9 and day <= 22):
-        return "Summer"
-    return "Autumn"
+    for t in tracks:
+        w.writerow([
+            t["symph_id"],
+            t["bpm"],
+            t["rolloff"],
+            t["flux"],
+            t["rms"],
+            t["flatness"],
+            t["spectral_complexity"],
+            t["pitch"],
+            t["loudness"]
+        ])
 
-
-for t in tracks:
-    y, m, d = t.get("year"), t.get("month"), t.get("day")
-
-    if y and m and d:
-        full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
-
-        if full_date not in date_rows:
-            dt = datetime(int(y), int(m), int(d))
-            date_rows[full_date] = {
-                "FullDate": full_date,
-                "Day": dt.day,
-                "Month": dt.month,
-                "MonthName": dt.strftime("%B"),
-                "Year": dt.year,
-                "Season": get_season(dt.month, dt.day)
-            }
-
-dim_date_rows = list(date_rows.values())
+print("✔ DimSymphony.csv written")
 
 
+# ============================================================
+# 8) DIM SONG
+# ============================================================
 
-# ===========================================================
-# 8) FACT PARTICIPATION  (NEW ID PER TUTTI GLI ARTISTI)
-# ===========================================================
+with open(os.path.join(OUT_DIR, "DimSong.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
 
-fact_rows = []
+    w.writerow([
+        "SongKey","Title","DiscNumber","TrackNumber","DurationMs","Popularity",
+        "FeaturingArtists","AlbumKey","LyricsKey","SymphonyKey"
+    ])
 
-for t in tracks:
+    for t in tracks:
+        w.writerow([
+            t["new_track_id"],
+            t["title"],
+            t["disc_number"],
+            t["track_number"],
+            t["duration_ms"],
+            t["popularity"],
+            t["featured_artists"],
+            t["new_id_album"],
+            t["lyrics_id"],
+            t["symph_id"]
+        ])
 
-    y, m, d = t.get("year"), t.get("month"), t.get("day")
-    if not (y and m and d):
-        continue
-
-    full_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
-
-    # MAIN ARTIST
-    fact_rows.append({
-        "SongID_Original": t["new_track_id"],
-        "ArtistID_Original": t["new_id_artist"],   # new artist id
-        "FullDate": full_date,
-        "LyricsID": t["new_track_id"],
-        "SymphonyID": t["new_track_id"],
-        "StreamsAfter1Month": t.get("streams@1month"),
-        "IsPrimary": 1
-    })
-
-    # FEATURED
-    feats = t.get("featured_artists")
-    if feats and isinstance(feats, str):
-        for f in feats.split(","):
-            fname = f.strip().lower()
-
-            # lookup by name
-            matching = [a for a in artists if a["name"].lower() == fname]
-
-            if matching:
-                fact_rows.append({
-                    "SongID_Original": t["new_track_id"],
-                    "ArtistID_Original": matching[0]["new_id_artist"],
-                    "FullDate": full_date,
-                    "LyricsID": t["new_track_id"],
-                    "SymphonyID": t["new_track_id"],
-                    "StreamsAfter1Month": t.get("streams@1month"),
-                    "IsPrimary": 0
-                })
+print("✔ DimSong.csv written")
 
 
+# ============================================================
+# 9) FACT PARTICIPATION
+# ============================================================
 
-# ===========================================================
-# WRITE CSV FILES
-# ===========================================================
+with open(os.path.join(OUT_DIR, "FactParticipation.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["SongKey","ArtistKey","DateKey","Streams1Month","IsPrimary"])
 
-write_csv(f"{OUTPUT_PATH}\\DimArtistGeography.csv",
-          ["Province","Region","Country","Latitude","Longitude"],
-          dim_artist_geo_rows)
+    for p in parts:
+        # find track
+        tr = next((t for t in tracks if t["new_track_id"] == p["new_track_id"]), None)
+        if tr:
+            w.writerow([
+                p["new_track_id"],
+                p["new_id_artist"],
+                tr["date_id"],
+                tr["streams@1month"],
+                p["IsPrimary"]
+            ])
 
-write_csv(f"{OUTPUT_PATH}\\DimArtist.csv",
-          ["ArtistID_Original","ArtistName","Gender","BirthDate","BirthPlace",
-           "Nationality","Description","ActiveStart","ActiveEnd","ArtistType","ArtistGeoKey"],
-          dim_artist_rows)
-
-write_csv(f"{OUTPUT_PATH}\\DimAlbum.csv",
-          ["AlbumID_Original","AlbumName","AlbumType","AlbumReleaseDate"],
-          dim_album_rows)
-
-write_csv(f"{OUTPUT_PATH}\\DimSong.csv",
-          ["SongID_Original","SongTitle","DiscNumber","TrackNumber","DurationMS",
-           "Popularity","AlbumID_Original"],
-          dim_song_rows)
-
-write_csv(f"{OUTPUT_PATH}\\DimLyrics.csv",
-          ["SongID_Original","Language","Swear_IT","Swear_EN","Swear_IT_Words",
-           "Swear_EN_Words","NSentences","NTokens","CharPerToken",
-           "AvgTokenPerClause","Explicit","LyricsText","Description"],
-          dim_lyrics_rows)
-
-write_csv(f"{OUTPUT_PATH}\\DimSymphony.csv",
-          ["SongID_Original","BPM","Rolloff","Flux","RMS","Flatness",
-           "SpectralComplexity","Pitch","Loudness"],
-          dim_symphony_rows)
-
-write_csv(f"{OUTPUT_PATH}\\DimDate.csv",
-          ["FullDate","Day","Month","MonthName","Year","Season"],
-          dim_date_rows)
-
-write_csv(f"{OUTPUT_PATH}\\FactParticipation.csv",
-          ["SongID_Original","ArtistID_Original","FullDate",
-           "LyricsID","SymphonyID","StreamsAfter1Month","IsPrimary"],
-          fact_rows)
-
-print("\nCSV GENERATI CORRETTAMENTE (VERSIONE NEW ID)\n")
+print("\n🎉 Assignment 5 COMPLETATO — CSV aggiornati e corretti ✔")
