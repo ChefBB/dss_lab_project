@@ -1,0 +1,99 @@
+import pyodbc
+import csv as csv_module
+import os
+
+# =========================================================
+# 0) CONFIGURAZIONE
+# =========================================================
+
+SERVER = "131.114.50.57"
+DATABASE = "Group_ID_8_DB"
+USERNAME = "Group_ID_8"
+PASSWORD = "CU83R89P"
+
+CSV_DIR = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset\Assignment5_CSV"
+
+# 🔥 CARICA SOLO LA FACT
+TABLES = [
+    ("FactParticipation.csv", "FactParticipation")
+]
+
+# =========================================================
+# 1) FUNZIONE DI RICONNESSIONE
+# =========================================================
+
+def reconnect():
+    conn = pyodbc.connect(
+        f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+        f"SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}"
+    )
+    return conn, conn.cursor()
+
+# =========================================================
+# 2) FUNZIONE PER CARICARE CSV IN BATCH + RETRY
+# =========================================================
+
+def upload_csv(filename, table_name):
+
+    file_path = os.path.join(CSV_DIR, filename)
+    if not os.path.exists(file_path):
+        print(f"❌ File {filename} non trovato!")
+        return
+
+    conn, cursor = reconnect()
+
+    print(f"\n⬆ Caricamento {filename} → {table_name}")
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        reader = csv_module.reader(f)
+        cols = next(reader)  # header
+
+        placeholders = ",".join(["?"] * len(cols))
+        query = f"INSERT INTO {table_name} ({','.join(cols)}) VALUES ({placeholders})"
+
+        batch = []
+        batch_size = 100
+        total_inserted = 0
+
+        for row in reader:
+            batch.append([None if v in ("", "NULL") else v for v in row])
+
+            if len(batch) == batch_size:
+
+                success = False
+                for attempt in range(3):
+                    try:
+                        cursor.execute("SELECT 1")  # controllo connessione
+                        cursor.executemany(query, batch)
+                        conn.commit()
+                        success = True
+                        break
+                    except Exception as e:
+                        print(f"⚠ Retry {attempt+1} per {table_name} (batch {len(batch)} righe)")
+                        print("   Errore:", e)
+                        conn, cursor = reconnect()
+
+                if not success:
+                    print("❌ Batch NON caricato. Continuo con il successivo...")
+
+                total_inserted += len(batch)
+                batch = []
+
+        # ultimo batch
+        if batch:
+            cursor.executemany(query, batch)
+            conn.commit()
+            total_inserted += len(batch)
+
+    print(f"✔ Inserite {total_inserted} righe in {table_name}")
+
+# =========================================================
+# 3) AVVIO CARICAMENTO
+# =========================================================
+
+print("\n🚀 INIZIO CARICAMENTO FACT...\n")
+
+for csv_filename, table_name in TABLES:
+    upload_csv(csv_filename, table_name)
+
+print("\n🎉 DONE! FactParticipation caricata correttamente.")

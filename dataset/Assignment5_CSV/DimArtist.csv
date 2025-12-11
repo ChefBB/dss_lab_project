@@ -1,105 +1,105 @@
-ArtistKey,Name,Gender,BirthDate,BirthPlace,Nationality,Description,ActiveStart,ActiveEnd,Type,GeoKey
-6856a998-de4d-4469-ad72-a56c2334d283,99 posse,M,NULL,Napoli,NULL,gruppo musicale italiano,1991-10-09,NULL,Group,GEO_1
-a06013b5-1a04-4d96-8e9b-3cdc3e700b5e,achille lauro,M,1990-07-11,Verona,Italia,cantautore e rapper italiano (1990-),2012-01-01,NULL,Person,GEO_2
-c3b079b6-faa0-4fae-85fd-2c91edf9fc89,alfa,M,NULL,NULL,NULL,NULL,NULL,NULL,Person,GEO_3
-71836cc8-d2da-46df-826e-3b66a9943f97,anna pepe,F,2003-08-15,La Spezia,NULL,NULL,NULL,NULL,Person,GEO_4
-53f55f51-7b39-4b1e-8ab3-d2b05807d997,articolo 31,M,NULL,Milano,NULL,gruppo musicale hip hop italiano,1990,NULL,Group,GEO_5
-1215f4fd-baee-46b1-a75c-49ef78360aa8,babaman,M,1975-08-08,Rho,Italia,cantante italiano,NULL,NULL,Person,GEO_6
-24ba892d-9eaf-44d4-bb2f-a5e335c37d0c,baby k,F,1983-02-05,Singapore,Italia,cantautrice e rapper italiana (1983-),2007-01-01,NULL,Person,GEO_7
-09acd7bb-444b-4480-8981-cacffbe352a5,bassi maestro,M,1973-08-03,Milano,Italia,"rapper, disc jockey, beatmaker e produttore discografico italiano",1988-01-01,NULL,Person,GEO_8
-fd60771d-a3fe-41de-8868-9f491df03e3a,beba,F,NULL,NULL,NULL,cognome,NULL,NULL,NULL,GEO_9
-901b7989-bafe-44cf-a3d9-2ca00a122742,bigmama,F,2000-03-10,Avellino,NULL,NULL,2001-01-01,NULL,Person,GEO_10
-1f819835-52ea-4f5f-b0bc-58b93a010a10,brusco,M,1974-01-04,Roma,NULL,cognome,NULL,NULL,Person,GEO_11
-1177b0f3-6b2d-403d-8cfe-20b6e4010785,bushwaka,M,NULL,NULL,NULL,NULL,NULL,NULL,Group,GEO_9
-da977dca-2855-4ca7-85c5-21ee8f742d98,caneda,M,1976-09-30,Milano,NULL,cognome,NULL,NULL,Person,GEO_5
-1d1a2a30-d33c-4ca1-8687-0338932550f8,caparezza,M,1973-10-09,Molfetta,Italia,"rapper, cantautore e produttore discografico italiano (1973-)",1996-01-01,NULL,Person,GEO_12
-b6ec1cf8-8982-4977-858f-5c65a66367da,capo plaza,M,1998,Salerno,Italia,rapper italiano (1998-),NULL,NULL,Person,GEO_13
-11237d2b-1a7a-4e59-ad3d-6dec9aeea688,chadia rodriguez,F,1998-11-06,Almería,Italia,rapper italiana (1998-),NULL,NULL,Person,GEO_14
-b5ffe68d-6aeb-4208-9780-7c2dbbc2ee40,clementino,M,1982-12-21,Avellino,Italia,rapper e attore italiano (1982-),NULL,NULL,Person,GEO_10
-87d6b8a6-2498-47b4-bd6a-8a715d86e007,club dogo,M,NULL,Milano,NULL,gruppo musicale italiano,NULL,NULL,Group,GEO_5
-46674531-5e0a-498d-9bca-64b84e340a7c,coez,M,1983-07-11,Nocera Inferiore,Italia,cantautore e rapper italiano (1983-),2002-01-01,NULL,Person,GEO_15
-d06863f0-f59f-4aa4-8eb9-12ac06396767,colle der fomento,M,NULL,NULL,NULL,gruppo musicale italiano,1994,NULL,Group,GEO_3
-8885e3ce-c2f1-4215-a033-f80728e6b4b6,cor veleno,M,NULL,NULL,NULL,gruppo musicale italiano,1997,NULL,Group,GEO_3
-e2296532-8d01-4486-81f9-645392d3fa55,dani faiv,M,1993-11-05,La Spezia,Italia,rapper italiano (1993-),NULL,NULL,Person,GEO_4
-f506d640-0efa-4088-8254-ef63d13b76c0,dargen d_amico,M,1980-11-29,Milano,NULL,NULL,NULL,NULL,Person,GEO_5
-43bf5356-1c81-479e-9bd8-e7ec6d7aa38e,dark polo gang,M,NULL,NULL,NULL,gruppo musicale italiano,2014,NULL,Group,GEO_3
-e1c7cfe1-e499-4aa0-bbd7-4b0ee4b0f0c0,doll kill,F,1996,NULL,NULL,NULL,NULL,NULL,Person,GEO_3
-09425b51-1a39-4c3b-ab1b-c420e473bd3a,don joe,M,1975-05-14,Milano,Italia,"disc jockey, produttore discografico e rapper italiano (1975-)",NULL,NULL,Person,GEO_8
-1d739a60-74f9-4047-9e3b-11786391851a,drefgold,M,1997-05-16,Racale,Italia,rapper italiano (1997-),NULL,NULL,Person,GEO_16
-87684473-407b-46b2-8af9-8f0e77ae10c3,emis killa,M,1989-11-14,Vimercate,Italia,rapper italiano (1989-),2006-01-01,NULL,Person,GEO_17
-c3575b15-fab0-406e-82a5-bf33564c1017,ensi,M,1985-12-13,Alpignano,Italia,rapper italiano (1985-),2002-01-01,NULL,Person,GEO_18
-d9f024e8-39c8-47ab-8c75-ffa6d64098fa,entics,M,1985-03-16,Milano,Italia,cantante italiano,NULL,NULL,Person,GEO_8
-c3ae5d76-ee6c-4736-becf-8e3f073348aa,ernia,M,1993-11-29,Milano,Italia,rapper italiano (1993-),2011-01-01,NULL,Person,GEO_5
-21f6d37e-4042-4b30-a6ce-294b1d5fb126,eva rea,F,NULL,NULL,NULL,NULL,NULL,NULL,NULL,GEO_9
-608f44e2-2a6f-4693-9863-402da660e825,fabri fibra,M,1976-10-17,Senigallia,Italia,rapper italiano (1976-),1996-01-01,NULL,Person,GEO_19
-a1c2114e-29e3-44e9-ba60-e15d9beb0444,fedez,M,1989-10-15,Milano,Italia,"rapper, personaggio televisivo e imprenditore italiano (1989-)",2006-01-01,NULL,Person,GEO_5
-25601941-c8b2-49c1-a9a2-05145d2b9f17,frah quintale,M,1989,Brescia,Italia,cantautore e rapper italiano (1989-),2006-01-01,NULL,Person,GEO_20
-12cec980-aebf-44f9-9304-4bf017de271d,frankie hi-nrg mc,M,1969-07-18,Torino,Italia,rapper e cantautore italiano (1969-),1991-01-01,NULL,Person,GEO_21
-aa3c2ef7-eb87-4a57-a8d8-a3a048f2b9c4,fred de palma,M,1989-11-03,Torino,Italia,cantautore e rapper italiano (1989-),NULL,NULL,Person,GEO_21
-c8d82e49-16d9-4dd1-af83-a3c56915bace,gemitaiz,M,1988-11-04,Roma,Italia,rapper e produttore discografico italiano (1988),2003-01-01,NULL,Person,GEO_11
-fb120455-e80a-422f-bced-90e6c57d48c9,geolier,M,2000-03-23,Napoli,Italia,rapper italiano (2000-),NULL,NULL,Person,GEO_1
-4f09e442-e5cf-4bc6-8708-787cd1ae5c6b,ghali,M,1993-05-21,Milano,Italia,rapper e cantautore italo-tunisino (1993-),2011-01-01,NULL,Person,GEO_5
-c19080ae-0c17-4bcc-a71c-576d0f76141c,ghemon,M,1982-04-01,Avellino,Italia,"rapper, cantante e stand up comedian italiano",1996-01-01,NULL,Person,GEO_10
-a3c43d52-67f0-43e6-9080-3282d70b7816,grido,M,1979-03-30,Milano,Italia,rapper e cantautore italiano (1979),1996-01-01,NULL,Person,GEO_5
-3e306628-1c93-42e0-bd1f-b3422d4b38e0,guè pequeno,M,1980-12-25,Milano,NULL,NULL,NULL,NULL,Person,GEO_5
-d5c0bcd5-cd58-4991-8f87-25fb84e5cb10,hell raton,M,1990,Sardegna,Italia,rapper e produttore discografico italiano (1990-),NULL,NULL,Person,GEO_22
-123ef79c-da51-42b5-adaa-8d39b119d537,hindaco,F,NULL,NULL,NULL,NULL,NULL,NULL,NULL,GEO_9
-e0ecf2a7-f36d-42a9-a46a-08df0cd5b270,il tre,M,1997-09-03,Roma,Italia,rapper e cantautore italiano (1997-),2015-01-01,NULL,Person,GEO_11
-fbea2ea1-16fe-4062-878b-b8ddf0645cd9,inoki,M,1979-10-02,Roma,Italia,rapper e produttore discografico italiano (1979),1996-01-01,NULL,Person,GEO_23
-c0a1d20e-9dae-4f65-967f-ff6858098d24,j-ax,M,1972-08-05,Milano,Italia,"rapper, cantautore e produttore discografico italiano (1972-)",1990-01-01,NULL,Person,GEO_5
-6a5d1391-5829-4524-accc-373011bf5837,jack the smoker,M,1982-12-20,Milano,Italia,rapper e produttore discografico italiano (1982-),NULL,NULL,Person,GEO_5
-426ee4ba-157e-407a-b5f2-cd973b211529,jake la furia,M,1979-02-25,Milano,Italia,rapper italiano (1979-),1999-01-01,NULL,Person,GEO_5
-62307e31-7556-481b-a2dd-d79c03c61ac8,joey funboy,F,NULL,NULL,NULL,NULL,NULL,NULL,NULL,GEO_9
-51bf4a19-3b57-4958-a2fa-af902f912cef,johnny marsiglia,M,NULL,Palermo,NULL,NULL,NULL,NULL,Person,GEO_24
-ae20525c-cb21-43fa-82e5-3b7f20a96b29,la pina,F,1970-06-20,Firenze,Italia,"rapper, conduttrice radiofonica e televisiva italiana (1970-)",NULL,NULL,Person,GEO_25
-ef7c148f-f831-45eb-ac6b-8cc1779c22d5,lazza,M,1994-08-22,Scampia,Italia,"rapper, musicista e produttore discografico italiano (1994-)",2012-01-01,NULL,Person,GEO_26
-3393f38f-5190-4bd7-8c1b-13a292916f27,luchè,M,1981-01-07,Napoli,Italia,rapper e produttore discografico italiano,NULL,NULL,Person,GEO_1
-593d35d2-7873-41be-b8de-0ae247544f75,madame,F,2002-01-16,Vicenza,Italia,cantautrice e rapper italiana (2002-),2018-01-01,NULL,Person,GEO_27
-3e97ce9f-982a-4eb2-b1b6-39baf06e5da7,madman,M,1988-07-25,Grottaglie,Italia,rapper italiano (1988),2006-01-01,NULL,Person,GEO_28
-c360f9f8-845b-4347-977f-1fcaea8e0a29,mahmood,M,1992-09-12,Milano,Italia,cantautore e paroliere italiano (1992-),2012-01-01,NULL,Person,GEO_5
-e11adabf-593e-43d3-a03d-dbef5b758086,mambolosco,M,1990-08-16,Vicenza,Italia,rapper italiano (1991-),NULL,NULL,Person,GEO_27
-f7b58334-cb44-4c9a-ad56-ea099c4a1691,marracash,M,1979-05-22,Nicosia,Italia,rapper e produttore discografico italiano (1979-),1999-01-01,NULL,Person,GEO_29
-39e4c12c-de65-4d4b-a68c-f2b25e365282,massimo pericolo,M,1992-11-30,Gallarate,Italia,criminale e rapper italiano,NULL,NULL,Person,GEO_30
-bded01a5-aab5-4c7e-9832-31a2019009e2,mike24,M,NULL,NULL,NULL,NULL,NULL,NULL,NULL,GEO_9
-862c6b8c-bfed-4eb4-86fb-19005ffcc343,miss keta,F,NULL,Milano,NULL,NULL,NULL,NULL,Person,GEO_5
-320fe7e1-bcc9-40f9-af0f-ca628e8e33f8,miss simpatia,F,NULL,NULL,NULL,NULL,NULL,NULL,NULL,GEO_9
-f4aa11bc-55ee-4db6-8b2e-b08be55d54be,mistaman,M,1976-09-11,Treviso,Italia,rapper italiano,NULL,NULL,Person,GEO_31
-bb5a6a98-1f9c-4a8b-8573-b1f4641f1cf4,mistico,M,NULL,NULL,NULL,tipo di barca a vela usata nel XVIII e XIX secolo,NULL,NULL,NULL,GEO_3
-302acf13-1b73-4498-ba0f-4bfd41d605c2,mondo marcio,M,1986-12-01,Milano,Italia,rapper e produttore discografico italiano,NULL,NULL,Person,GEO_5
-b33cc208-b288-4970-aa6c-2a17e83c6820,mr. rain,M,1991-11-19,Desenzano del Garda,Italia,cantautore e rapper italiano (1991-),2011-01-01,NULL,Person,GEO_32
-e14e67f8-812a-4ed7-9ba2-c393952a4538,mudimbi,M,1986-10-17,San Benedetto del Tronto,Italia,cantante italiano,2013-01-01,NULL,Person,GEO_33
-9e810e86-a3b7-437b-8885-692aacb3b313,neffa,M,1967-10-07,Scafati,Italia,"cantautore, rapper e produttore discografico italiano (1967-)",1988-01-01,NULL,Person,GEO_34
-728e84d6-9e5f-40dd-9f08-86cc34977215,nerone,M,1991-05-23,Milano,NULL,opera lirica di Pietro Mascagni,NULL,NULL,Person,GEO_5
-01b7a4b6-316a-4ccc-a109-592fab1dc829,nesli,M,1980-12-29,Senigallia,Italia,"cantautore, rapper e produttore discografico italiano",1990-01-01,NULL,Person,GEO_35
-00402c5e-8088-464b-ac28-3a21e9119d03,niky savage,M,1997-07-22,Milano,NULL,Rapper italiano,NULL,NULL,Person,GEO_5
-1d705766-6900-4b79-af62-c7d0ce633777,nitro,M,1993-02-11,Vicenza,Italia,rapper italiano (1993-),2007-01-01,NULL,Person,GEO_27
-99918c16-5be4-4ecb-9a19-82049c93782a,noyz narcos,M,1979-12-15,Roma,Italia,rapper e produttore discografico italiano (1979-),1996-01-01,NULL,Person,GEO_11
-ed7de1ef-e1ee-4985-9b79-76cb48f49269,o zulù,M,1970-11-15,Napoli,NULL,NULL,NULL,NULL,Person,GEO_1
-09746d9b-4492-4dbe-82ff-eb2ae1777bb4,papa v,M,2001-02-19,Pieve Emanuele,Italia,rapper italiano (2001-),NULL,NULL,Person,GEO_8
-8638bdfc-9bf8-4c16-8f6d-8c225b62e35a,piotta,M,1973-04-26,Roma,Italia,rapper e produttore discografico italiano (1973-),1994-01-01,NULL,Person,GEO_11
-b3a223c1-1ad2-40e3-88c0-b6cc0ba96fb3,priestess,F,NULL,Montréal,NULL,gruppo musicale canadese,2004-10,2012,Group,GEO_36
-e34b8ffb-97ae-4090-8db9-c3eb0356fd73,rancore,M,1989-07-19,Roma,Italia,rapper italiano (1989-),2004-01-01,NULL,Person,GEO_11
-f1920f79-4766-474d-bebb-232739ee716b,rkomi,M,1994-04-19,Milano,Italia,rapper e cantautore italiano (1994-),2012-01-01,NULL,Person,GEO_5
-28479888-4108-4448-87e8-6b44e15e2931,rocco hunt,M,1994-11-21,Salerno,Italia,cantautore e rapper italiano (1994-),2009-01-01,NULL,Person,GEO_13
-ce38172a-cc87-42eb-8721-0dc55be82399,rondodasosa,M,2002-04-29,San Siro,Italia,rapper italiano (2002-),NULL,NULL,Person,GEO_37
-56aabcd8-13aa-4f63-bc78-26eaf025c651,rosa chemical,M,1998-01-30,Alpignano,Italia,rapper e cantautore italiano (1998-),2015-01-01,NULL,Person,GEO_18
-7fb8150b-3933-4ca8-9521-c5bb08328a5a,rose villain,F,1989-07-20,Milano,Italia,cantautrice e rapper italiana (1989-),2010-01-01,NULL,Person,GEO_5
-cf890b7d-21c6-47fb-a8f7-5b73665ca4b7,roshelle,F,1995-09-18,Lodi,Italia,cantante e rapper italiana (1995-),2016-01-01,NULL,Person,GEO_38
-b1230e2f-46c6-43e7-8bdd-b7b08bb932d7,salmo,M,1984-06-29,Olbia,Italia,rapper e produttore discografico italiano (1984-),1997-01-01,NULL,Person,GEO_39
-0cccab43-a529-4e3b-aa01-cf09a2fb478f,samuel heron,M,1991,La Spezia,NULL,NULL,NULL,NULL,Person,GEO_4
-cdac2940-a431-4ec9-8285-d88d2381ad26,sfera ebbasta,M,1992-12-07,Sesto San Giovanni,Italia,rapper italiano (1992-),2011-01-01,NULL,Person,GEO_40
-1a0cda2e-ed72-4761-9e85-92d865dcae43,shablo,M,1980-11-17,Buenos Aires,Argentina,disc jockey e produttore discografico italo-argentino (1980-),NULL,NULL,Person,GEO_41
-2b927401-5400-47d3-95a0-3e370ba4de33,shade,M,1987-12-10,Torino,Italia,rapper e doppiatore italiano (1987-),2005-01-01,NULL,Person,GEO_21
-4a946d85-0438-4082-bbd1-d6e4b2bb4adf,shiva,M,1999-08-27,Milano,NULL,dio indiano della distruzione e della trasformazione,NULL,NULL,Person,GEO_5
-b2995a94-d5c4-4fae-bdba-b55b5346ffe9,skioffi,M,NULL,Avellino,NULL,NULL,NULL,NULL,Person,GEO_10
-bc8d49f8-a375-48f5-a782-44f5548506f1,slait,M,1987-01-24,Olbia,Italia,rapper e produttore discografico italiano (1987-),NULL,NULL,Person,GEO_42
-68e9d9be-e4d2-4b52-be8d-12f607a13435,sottotono,M,NULL,NULL,NULL,gruppo musicale italiano,1994,2001,Group,GEO_3
-7ef6e621-0460-4967-9191-f352581fc467,tedua,M,1994-02-21,Cogoleto,Italia,"cantautore, rapper e attore italiano (1994-)",NULL,NULL,Person,GEO_43
-ebfc131d-cb97-40e2-b5d1-3b8a5c034091,thasup,M,2001-03-17,Fiumicino,Italia,rapper e produttore discografico italiano (2001-),2015-01-01,NULL,Person,GEO_44
-da4f887f-89fb-44e7-882b-8aa1b260a00c,tony boy,M,1999-09-26,Padova,Italia,rapper italiano (1999-),NULL,NULL,Person,GEO_45
-96c4aa1f-7c2c-4812-a3b9-1522e5710a62,tony effe,M,1991-05-17,Roma,Italia,rapper italiano (1991-),NULL,NULL,Person,GEO_11
-ccec9052-15f3-4418-b34b-e1d432beb820,tormento,M,1975-09-06,Reggio Calabria,Italia,"rapper, cantautore e beatmaker italiano (1975-)",NULL,NULL,Person,GEO_46
-260b9247-96a3-4fca-83bd-4268726d0e75,vacca,M,1979-10-21,Cagliari,Italia,rapper italiano,2001-01-01,NULL,Person,GEO_47
-d2375228-33c6-47a9-b1ee-6ab10c937bb7,willie peyote,M,1985-08-28,Torino,Italia,rapper e cantautore italiano (1985-),2004-01-01,NULL,Person,GEO_21
-e2529165-9b2e-44e0-9090-11073ad24679,yeиdry,F,1993-07-27,Santo Domingo,NULL,NULL,NULL,NULL,Person,GEO_48
-375dea29-d83d-48ee-8551-da1fa9916b9d,yung snapp,M,1996-08-06,Napoli,Italia,produttore discografico e rapper italiano,NULL,NULL,Person,GEO_1
+ArtistKey,Name,Gender,BirthDate,Nationality,Description,ActiveStart,ActiveEnd,Type,GeoKey
+6856a998-de4d-4469-ad72-a56c2334d283,99 posse,M,,,gruppo musicale italiano,1991-10-09,,Group,7e71a0d8-c6e9-4f43-bd99-747e17b997da
+a06013b5-1a04-4d96-8e9b-3cdc3e700b5e,achille lauro,M,1990-07-11,Italia,cantautore e rapper italiano (1990-),2012-01-01,,Person,245200dd-bebb-48d2-9a79-05a3002d46be
+c3b079b6-faa0-4fae-85fd-2c91edf9fc89,alfa,M,,,,,,Person,fd6d02ba-0702-4be5-9730-25e985b39474
+71836cc8-d2da-46df-826e-3b66a9943f97,anna pepe,F,2003-08-15,,,,,Person,222d6e45-0c9f-4008-8c09-2f9d30ec30b5
+53f55f51-7b39-4b1e-8ab3-d2b05807d997,articolo 31,M,,,gruppo musicale hip hop italiano,1990,,Group,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+1215f4fd-baee-46b1-a75c-49ef78360aa8,babaman,M,1975-08-08,Italia,cantante italiano,,,Person,09ecd094-1112-43fe-b772-ccee47f8aa06
+24ba892d-9eaf-44d4-bb2f-a5e335c37d0c,baby k,F,1983-02-05,Italia,cantautrice e rapper italiana (1983-),2007-01-01,,Person,b4ee4b10-60f0-4bb6-800d-9e136a356acd
+09acd7bb-444b-4480-8981-cacffbe352a5,bassi maestro,M,1973-08-03,Italia,"rapper, disc jockey, beatmaker e produttore discografico italiano",1988-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+fd60771d-a3fe-41de-8868-9f491df03e3a,beba,F,,,cognome,,,,dc8731b0-7453-45de-917f-abca5e150432
+901b7989-bafe-44cf-a3d9-2ca00a122742,bigmama,F,2000-03-10,,,2001-01-01,,Person,755c8c27-4ce7-4f8e-bdb5-a8460a0df1c3
+1f819835-52ea-4f5f-b0bc-58b93a010a10,brusco,M,1974-01-04,,cognome,,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+1177b0f3-6b2d-403d-8cfe-20b6e4010785,bushwaka,M,,,,,,Group,dc8731b0-7453-45de-917f-abca5e150432
+da977dca-2855-4ca7-85c5-21ee8f742d98,caneda,M,1976-09-30,,cognome,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+1d1a2a30-d33c-4ca1-8687-0338932550f8,caparezza,M,1973-10-09,Italia,"rapper, cantautore e produttore discografico italiano (1973-)",1996-01-01,,Person,e10d78dd-8417-4919-89a4-586b15bf4d4e
+b6ec1cf8-8982-4977-858f-5c65a66367da,capo plaza,M,1998,Italia,rapper italiano (1998-),,,Person,63d1cf8c-840b-4dee-a3ec-e0f19fd9416c
+11237d2b-1a7a-4e59-ad3d-6dec9aeea688,chadia rodriguez,F,1998-11-06,Italia,rapper italiana (1998-),,,Person,3c34e5ee-1d5a-4800-8574-f3fa197e407e
+b5ffe68d-6aeb-4208-9780-7c2dbbc2ee40,clementino,M,1982-12-21,Italia,rapper e attore italiano (1982-),,,Person,755c8c27-4ce7-4f8e-bdb5-a8460a0df1c3
+87d6b8a6-2498-47b4-bd6a-8a715d86e007,club dogo,M,,,gruppo musicale italiano,,,Group,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+46674531-5e0a-498d-9bca-64b84e340a7c,coez,M,1983-07-11,Italia,cantautore e rapper italiano (1983-),2002-01-01,,Person,b82ec771-558b-46c0-bd6b-5a612b98a1b9
+d06863f0-f59f-4aa4-8eb9-12ac06396767,colle der fomento,M,,,gruppo musicale italiano,1994,,Group,fd6d02ba-0702-4be5-9730-25e985b39474
+8885e3ce-c2f1-4215-a033-f80728e6b4b6,cor veleno,M,,,gruppo musicale italiano,1997,,Group,fd6d02ba-0702-4be5-9730-25e985b39474
+e2296532-8d01-4486-81f9-645392d3fa55,dani faiv,M,1993-11-05,Italia,rapper italiano (1993-),,,Person,222d6e45-0c9f-4008-8c09-2f9d30ec30b5
+f506d640-0efa-4088-8254-ef63d13b76c0,dargen d_amico,M,1980-11-29,,,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+43bf5356-1c81-479e-9bd8-e7ec6d7aa38e,dark polo gang,M,,,gruppo musicale italiano,2014,,Group,fd6d02ba-0702-4be5-9730-25e985b39474
+e1c7cfe1-e499-4aa0-bbd7-4b0ee4b0f0c0,doll kill,F,1996,,,,,Person,fd6d02ba-0702-4be5-9730-25e985b39474
+09425b51-1a39-4c3b-ab1b-c420e473bd3a,don joe,M,1975-05-14,Italia,"disc jockey, produttore discografico e rapper italiano (1975-)",,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+1d739a60-74f9-4047-9e3b-11786391851a,drefgold,M,1997-05-16,Italia,rapper italiano (1997-),,,Person,b06a6812-9a11-4538-ae47-d17b322e9eb1
+87684473-407b-46b2-8af9-8f0e77ae10c3,emis killa,M,1989-11-14,Italia,rapper italiano (1989-),2006-01-01,,Person,17e41d24-13d0-4243-9f5b-2b208ab04521
+c3575b15-fab0-406e-82a5-bf33564c1017,ensi,M,1985-12-13,Italia,rapper italiano (1985-),2002-01-01,,Person,cc5f38b8-a520-4e1f-a2e4-134cc0d6b58a
+d9f024e8-39c8-47ab-8c75-ffa6d64098fa,entics,M,1985-03-16,Italia,cantante italiano,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+c3ae5d76-ee6c-4736-becf-8e3f073348aa,ernia,M,1993-11-29,Italia,rapper italiano (1993-),2011-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+21f6d37e-4042-4b30-a6ce-294b1d5fb126,eva rea,F,,,,,,,dc8731b0-7453-45de-917f-abca5e150432
+608f44e2-2a6f-4693-9863-402da660e825,fabri fibra,M,1976-10-17,Italia,rapper italiano (1976-),1996-01-01,,Person,bb9cc35b-40f7-4b88-8354-3e7eda407cab
+a1c2114e-29e3-44e9-ba60-e15d9beb0444,fedez,M,1989-10-15,Italia,"rapper, personaggio televisivo e imprenditore italiano (1989-)",2006-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+25601941-c8b2-49c1-a9a2-05145d2b9f17,frah quintale,M,1989,Italia,cantautore e rapper italiano (1989-),2006-01-01,,Person,5707f2ef-727f-4076-a79b-bb8a763448b7
+12cec980-aebf-44f9-9304-4bf017de271d,frankie hi-nrg mc,M,1969-07-18,Italia,rapper e cantautore italiano (1969-),1991-01-01,,Person,9c085d41-fc91-4d78-abfd-d8216daf9f80
+aa3c2ef7-eb87-4a57-a8d8-a3a048f2b9c4,fred de palma,M,1989-11-03,Italia,cantautore e rapper italiano (1989-),,,Person,9c085d41-fc91-4d78-abfd-d8216daf9f80
+c8d82e49-16d9-4dd1-af83-a3c56915bace,gemitaiz,M,1988-11-04,Italia,rapper e produttore discografico italiano (1988),2003-01-01,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+fb120455-e80a-422f-bced-90e6c57d48c9,geolier,M,2000-03-23,Italia,rapper italiano (2000-),,,Person,7e71a0d8-c6e9-4f43-bd99-747e17b997da
+4f09e442-e5cf-4bc6-8708-787cd1ae5c6b,ghali,M,1993-05-21,Italia,rapper e cantautore italo-tunisino (1993-),2011-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+c19080ae-0c17-4bcc-a71c-576d0f76141c,ghemon,M,1982-04-01,Italia,"rapper, cantante e stand up comedian italiano",1996-01-01,,Person,755c8c27-4ce7-4f8e-bdb5-a8460a0df1c3
+a3c43d52-67f0-43e6-9080-3282d70b7816,grido,M,1979-03-30,Italia,rapper e cantautore italiano (1979),1996-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+3e306628-1c93-42e0-bd1f-b3422d4b38e0,guè pequeno,M,1980-12-25,,,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+d5c0bcd5-cd58-4991-8f87-25fb84e5cb10,hell raton,M,1990,Italia,rapper e produttore discografico italiano (1990-),,,Person,ba9e312d-a2e3-4024-841e-e40d64f07b98
+123ef79c-da51-42b5-adaa-8d39b119d537,hindaco,F,,,,,,,dc8731b0-7453-45de-917f-abca5e150432
+e0ecf2a7-f36d-42a9-a46a-08df0cd5b270,il tre,M,1997-09-03,Italia,rapper e cantautore italiano (1997-),2015-01-01,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+fbea2ea1-16fe-4062-878b-b8ddf0645cd9,inoki,M,1979-10-02,Italia,rapper e produttore discografico italiano (1979),1996-01-01,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+c0a1d20e-9dae-4f65-967f-ff6858098d24,j-ax,M,1972-08-05,Italia,"rapper, cantautore e produttore discografico italiano (1972-)",1990-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+6a5d1391-5829-4524-accc-373011bf5837,jack the smoker,M,1982-12-20,Italia,rapper e produttore discografico italiano (1982-),,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+426ee4ba-157e-407a-b5f2-cd973b211529,jake la furia,M,1979-02-25,Italia,rapper italiano (1979-),1999-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+62307e31-7556-481b-a2dd-d79c03c61ac8,joey funboy,F,,,,,,,dc8731b0-7453-45de-917f-abca5e150432
+51bf4a19-3b57-4958-a2fa-af902f912cef,johnny marsiglia,M,,,,,,Person,62998cc6-6acc-47ec-9ddd-4ff97aa3d8e3
+ae20525c-cb21-43fa-82e5-3b7f20a96b29,la pina,F,1970-06-20,Italia,"rapper, conduttrice radiofonica e televisiva italiana (1970-)",,,Person,9d94376f-ae5a-4b0c-8ab4-4f5c1e0bb4ab
+ef7c148f-f831-45eb-ac6b-8cc1779c22d5,lazza,M,1994-08-22,Italia,"rapper, musicista e produttore discografico italiano (1994-)",2012-01-01,,Person,dce6b3e6-9f42-4ce0-8efc-0d25868474b0
+3393f38f-5190-4bd7-8c1b-13a292916f27,luchè,M,1981-01-07,Italia,rapper e produttore discografico italiano,,,Person,7e71a0d8-c6e9-4f43-bd99-747e17b997da
+593d35d2-7873-41be-b8de-0ae247544f75,madame,F,2002-01-16,Italia,cantautrice e rapper italiana (2002-),2018-01-01,,Person,4caea8c6-4c2b-4b1e-acfc-00588113cfb2
+3e97ce9f-982a-4eb2-b1b6-39baf06e5da7,madman,M,1988-07-25,Italia,rapper italiano (1988),2006-01-01,,Person,ba2f9291-c76c-4d0a-b648-dfd63dc89ddc
+c360f9f8-845b-4347-977f-1fcaea8e0a29,mahmood,M,1992-09-12,Italia,cantautore e paroliere italiano (1992-),2012-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+e11adabf-593e-43d3-a03d-dbef5b758086,mambolosco,M,1990-08-16,Italia,rapper italiano (1991-),,,Person,4caea8c6-4c2b-4b1e-acfc-00588113cfb2
+f7b58334-cb44-4c9a-ad56-ea099c4a1691,marracash,M,1979-05-22,Italia,rapper e produttore discografico italiano (1979-),1999-01-01,,Person,33345802-0d54-458d-a81f-4b431fb28ba7
+39e4c12c-de65-4d4b-a68c-f2b25e365282,massimo pericolo,M,1992-11-30,Italia,criminale e rapper italiano,,,Person,c00acf2d-ee2c-4132-8dea-ac38353cc31b
+bded01a5-aab5-4c7e-9832-31a2019009e2,mike24,M,,,,,,,dc8731b0-7453-45de-917f-abca5e150432
+862c6b8c-bfed-4eb4-86fb-19005ffcc343,miss keta,F,,,,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+320fe7e1-bcc9-40f9-af0f-ca628e8e33f8,miss simpatia,F,,,,,,,dc8731b0-7453-45de-917f-abca5e150432
+f4aa11bc-55ee-4db6-8b2e-b08be55d54be,mistaman,M,1976-09-11,Italia,rapper italiano,,,Person,1a52430c-c1b4-4b87-a41e-db931e492465
+bb5a6a98-1f9c-4a8b-8573-b1f4641f1cf4,mistico,M,,,tipo di barca a vela usata nel XVIII e XIX secolo,,,,fd6d02ba-0702-4be5-9730-25e985b39474
+302acf13-1b73-4498-ba0f-4bfd41d605c2,mondo marcio,M,1986-12-01,Italia,rapper e produttore discografico italiano,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+b33cc208-b288-4970-aa6c-2a17e83c6820,mr. rain,M,1991-11-19,Italia,cantautore e rapper italiano (1991-),2011-01-01,,Person,5a63e26d-30af-47af-944d-1d10f345d2c1
+e14e67f8-812a-4ed7-9ba2-c393952a4538,mudimbi,M,1986-10-17,Italia,cantante italiano,2013-01-01,,Person,89a342ba-d5f0-426c-85b3-035a01343951
+9e810e86-a3b7-437b-8885-692aacb3b313,neffa,M,1967-10-07,Italia,"cantautore, rapper e produttore discografico italiano (1967-)",1988-01-01,,Person,1574d8c6-3866-4719-a013-0c06fdcd083a
+728e84d6-9e5f-40dd-9f08-86cc34977215,nerone,M,1991-05-23,,opera lirica di Pietro Mascagni,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+01b7a4b6-316a-4ccc-a109-592fab1dc829,nesli,M,1980-12-29,Italia,"cantautore, rapper e produttore discografico italiano",1990-01-01,,Person,bb9cc35b-40f7-4b88-8354-3e7eda407cab
+00402c5e-8088-464b-ac28-3a21e9119d03,niky savage,M,1997-07-22,,Rapper italiano,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+1d705766-6900-4b79-af62-c7d0ce633777,nitro,M,1993-02-11,Italia,rapper italiano (1993-),2007-01-01,,Person,4caea8c6-4c2b-4b1e-acfc-00588113cfb2
+99918c16-5be4-4ecb-9a19-82049c93782a,noyz narcos,M,1979-12-15,Italia,rapper e produttore discografico italiano (1979-),1996-01-01,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+ed7de1ef-e1ee-4985-9b79-76cb48f49269,o zulù,M,1970-11-15,,,,,Person,7e71a0d8-c6e9-4f43-bd99-747e17b997da
+09746d9b-4492-4dbe-82ff-eb2ae1777bb4,papa v,M,2001-02-19,Italia,rapper italiano (2001-),,,Person,2aa04296-f8e3-4999-843f-1237197898cf
+8638bdfc-9bf8-4c16-8f6d-8c225b62e35a,piotta,M,1973-04-26,Italia,rapper e produttore discografico italiano (1973-),1994-01-01,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+b3a223c1-1ad2-40e3-88c0-b6cc0ba96fb3,priestess,F,,,gruppo musicale canadese,2004-10,2012,Group,7c6decf9-59c2-48dc-a653-8b742bd8a6b9
+e34b8ffb-97ae-4090-8db9-c3eb0356fd73,rancore,M,1989-07-19,Italia,rapper italiano (1989-),2004-01-01,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+f1920f79-4766-474d-bebb-232739ee716b,rkomi,M,1994-04-19,Italia,rapper e cantautore italiano (1994-),2012-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+28479888-4108-4448-87e8-6b44e15e2931,rocco hunt,M,1994-11-21,Italia,cantautore e rapper italiano (1994-),2009-01-01,,Person,63d1cf8c-840b-4dee-a3ec-e0f19fd9416c
+ce38172a-cc87-42eb-8721-0dc55be82399,rondodasosa,M,2002-04-29,Italia,rapper italiano (2002-),,,Person,134b9a4f-f595-4e89-80d5-fc9b150644c5
+56aabcd8-13aa-4f63-bc78-26eaf025c651,rosa chemical,M,1998-01-30,Italia,rapper e cantautore italiano (1998-),2015-01-01,,Person,cc5f38b8-a520-4e1f-a2e4-134cc0d6b58a
+7fb8150b-3933-4ca8-9521-c5bb08328a5a,rose villain,F,1989-07-20,Italia,cantautrice e rapper italiana (1989-),2010-01-01,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+cf890b7d-21c6-47fb-a8f7-5b73665ca4b7,roshelle,F,1995-09-18,Italia,cantante e rapper italiana (1995-),2016-01-01,,Person,a5149834-9886-4474-9bcf-ee6db260e0b1
+b1230e2f-46c6-43e7-8bdd-b7b08bb932d7,salmo,M,1984-06-29,Italia,rapper e produttore discografico italiano (1984-),1997-01-01,,Person,749b4e94-9575-46c6-9d1b-32617de47eaf
+0cccab43-a529-4e3b-aa01-cf09a2fb478f,samuel heron,M,1991,,,,,Person,222d6e45-0c9f-4008-8c09-2f9d30ec30b5
+cdac2940-a431-4ec9-8285-d88d2381ad26,sfera ebbasta,M,1992-12-07,Italia,rapper italiano (1992-),2011-01-01,,Person,2a845cf8-7b24-4c57-b766-a40a381e3195
+1a0cda2e-ed72-4761-9e85-92d865dcae43,shablo,M,1980-11-17,Argentina,disc jockey e produttore discografico italo-argentino (1980-),,,Person,a513bfb6-3003-4e36-aa24-039930c41d37
+2b927401-5400-47d3-95a0-3e370ba4de33,shade,M,1987-12-10,Italia,rapper e doppiatore italiano (1987-),2005-01-01,,Person,9c085d41-fc91-4d78-abfd-d8216daf9f80
+4a946d85-0438-4082-bbd1-d6e4b2bb4adf,shiva,M,1999-08-27,,dio indiano della distruzione e della trasformazione,,,Person,a7432a2e-e21f-4a1a-9157-a63fc04deef7
+b2995a94-d5c4-4fae-bdba-b55b5346ffe9,skioffi,M,,,,,,Person,755c8c27-4ce7-4f8e-bdb5-a8460a0df1c3
+bc8d49f8-a375-48f5-a782-44f5548506f1,slait,M,1987-01-24,Italia,rapper e produttore discografico italiano (1987-),,,Person,749b4e94-9575-46c6-9d1b-32617de47eaf
+68e9d9be-e4d2-4b52-be8d-12f607a13435,sottotono,M,,,gruppo musicale italiano,1994,2001,Group,fd6d02ba-0702-4be5-9730-25e985b39474
+7ef6e621-0460-4967-9191-f352581fc467,tedua,M,1994-02-21,Italia,"cantautore, rapper e attore italiano (1994-)",,,Person,a47de2d7-b818-4c24-9942-e2b3316d4377
+ebfc131d-cb97-40e2-b5d1-3b8a5c034091,thasup,M,2001-03-17,Italia,rapper e produttore discografico italiano (2001-),2015-01-01,,Person,4426ea46-a5e5-42f2-a5bb-5a44dd9055d2
+da4f887f-89fb-44e7-882b-8aa1b260a00c,tony boy,M,1999-09-26,Italia,rapper italiano (1999-),,,Person,a2416280-96ee-42ff-8d23-2bd4c286ea3e
+96c4aa1f-7c2c-4812-a3b9-1522e5710a62,tony effe,M,1991-05-17,Italia,rapper italiano (1991-),,,Person,a23c1c45-ffe7-4a9b-b8d7-fe350a6277ad
+ccec9052-15f3-4418-b34b-e1d432beb820,tormento,M,1975-09-06,Italia,"rapper, cantautore e beatmaker italiano (1975-)",,,Person,9badad52-e6ef-405c-a6c3-43a168349910
+260b9247-96a3-4fca-83bd-4268726d0e75,vacca,M,1979-10-21,Italia,rapper italiano,2001-01-01,,Person,f4e5959b-be78-4ed6-aecb-cac6fb642b2c
+d2375228-33c6-47a9-b1ee-6ab10c937bb7,willie peyote,M,1985-08-28,Italia,rapper e cantautore italiano (1985-),2004-01-01,,Person,9c085d41-fc91-4d78-abfd-d8216daf9f80
+e2529165-9b2e-44e0-9090-11073ad24679,yeиdry,F,1993-07-27,,,,,Person,5fe20ac3-3591-46a6-809d-53cb65634129
+375dea29-d83d-48ee-8551-da1fa9916b9d,yung snapp,M,1996-08-06,Italia,produttore discografico e rapper italiano,,,Person,7e71a0d8-c6e9-4f43-bd99-747e17b997da

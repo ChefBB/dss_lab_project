@@ -13,102 +13,90 @@ PASSWORD = "CU83R89P"
 
 CSV_DIR = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset\Assignment5_CSV"
 
-# Solo le tabelle NON ancora caricate
+# Ordine corretto (FK)
 TABLES = [
-    ("DimAlbum.csv",          "DimAlbum"),
-    ("DimLyrics.csv",         "DimLyrics"),
-    ("DimSymphony.csv",       "DimSymphony"),
-    ("DimSong.csv",           "DimSong"),
-    ("FactParticipation.csv", "FactParticipation")
+    ("DimDate.csv",             "DimDate"),
+    ("DimArtistGeography.csv",  "DimArtistGeography"),
+    ("DimArtist.csv",           "DimArtist"),
+    ("DimAlbum.csv",            "DimAlbum"),
+    ("DimLyrics.csv",           "DimLyrics"),
+    ("DimSymphony.csv",         "DimSymphony"),
+    ("DimSong.csv",             "DimSong"),
+    ("FactParticipation.csv",   "FactParticipation")
 ]
 
-# =====================================================================
-# 1) CONNESSIONE AL DATABASE
-# =====================================================================
-
-print("📡 Connessione al database...")
+print(" Connessione al database...")
 conn = pyodbc.connect(
     f"DRIVER={{ODBC Driver 17 for SQL Server}};"
     f"SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}"
 )
 cursor = conn.cursor()
-print("✔ Connessione effettuata.\n")
-
+print("✔ Connessione stabilita.\n")
 
 # =====================================================================
-# 2) CHECK SE UNA TABELLA È VUOTA
+#  CHECK SE TABELLA È VUOTA
 # =====================================================================
 
 def table_is_empty(table):
-    """Ritorna True se la tabella è vuota o non esiste."""
     try:
         cursor.execute(f"SELECT COUNT(*) FROM {table}")
-        count = cursor.fetchone()[0]
-        return count == 0
+        return cursor.fetchone()[0] == 0
     except:
-        return True  # tabella non esiste → consideriamola vuota
-
+        return True
 
 # =====================================================================
-# 3) FUNZIONE PER CARICARE UN CSV NELLA TABELLA
+#  CARICAMENTO CSV VELOCE: executemany in batch
 # =====================================================================
 
 def upload_csv(filename, table_name):
-
     file_path = os.path.join(CSV_DIR, filename)
 
     if not os.path.exists(file_path):
-        print(f"❌ ERRORE: file {filename} NON trovato!\n")
+        print(f" File mancante: {filename}")
         return
 
-    # Evita ricaricamenti
     if not table_is_empty(table_name):
-        print(f"⏩ La tabella {table_name} contiene già dati → salto.\n")
+        print(f" Tabella {table_name} già popolata → salto.\n")
         return
 
-    print(f"⬆ Caricamento CSV: {filename} → {table_name}")
+    print(f"⬆ Caricamento {filename} → {table_name}")
 
     with open(file_path, "r", encoding="utf-8") as f:
         reader = csv.reader(f)
-        cols = next(reader)  # header CSV
+        cols = next(reader)
 
-        n_cols = len(cols)
-        placeholders = ",".join(["?"] * n_cols)
-
+        placeholders = ",".join(["?"] * len(cols))
         query = f"INSERT INTO {table_name} ({','.join(cols)}) VALUES ({placeholders})"
 
-        inserted = 0
+        batch = []
+        count = 0
 
         for row in reader:
             clean_row = [None if v in ("", "NULL") else v for v in row]
+            batch.append(clean_row)
 
-            try:
-                cursor.execute(query, clean_row)
-                inserted += 1
+            # quando raggiungiamo 500 righe, eseguiamo batch
+            if len(batch) == 500:
+                cursor.executemany(query, batch)
+                conn.commit()
+                count += len(batch)
+                batch = []
 
-            except Exception as e:
+        # carica le ultime righe rimaste
+        if batch:
+            cursor.executemany(query, batch)
+            conn.commit()
+            count += len(batch)
 
-                print("\n==================== ERRORE SQL ====================")
-                print(f"TABELLA: {table_name}")
-                print("RIGA PROBLEMATICA:")
-
-                for c, v in zip(cols, clean_row):
-                    print(f"  {c}: {v}")
-
-                print("ERRORE SQL:")
-                print(e)
-                print("====================================================\n")
-                # Non stoppiamo, continuiamo il caricamento
-
-        conn.commit()
-        print(f"✔ Inserite {inserted} righe in {table_name}\n")
-
+    print(f"✔ Inserite {count} righe in {table_name}\n")
 
 # =====================================================================
-# 4) CICLO DI CARICAMENTO
+#  LOOP DI CARICAMENTO
 # =====================================================================
+
+print(" INIZIO CARICAMENTO...\n")
 
 for csv_file, table_name in TABLES:
     upload_csv(csv_file, table_name)
 
-print("🎉 ASSIGNMENT 6 COMPLETATO! Tutte le tabelle richieste sono state caricate.")
+print(" ASSIGNMENT 6 COMPLETATO! Tutte le tabelle caricate correttamente.")
