@@ -6,15 +6,16 @@ import os
 # 0) PATH INPUT / OUTPUT
 # ============================================================
 
-BASE = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project"
+# BASE = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project"
+BASE = os.getcwd()
 
-ARTISTS_PATH = os.path.join(BASE, r"dataset\cleaned_json\artists_clean.json")
-TRACKS_PATH  = os.path.join(BASE, r"dataset\cleaned_json\tracks_clean.json")
-PART_PATH    = os.path.join(BASE, r"dataset\cleaned_json\participations_clean.json")
-DATES_PATH   = os.path.join(BASE, r"dataset\cleaned_json\dates_clean.json")
-GEO_PATH     = os.path.join(BASE, r"dataset\cleaned_json\geo_clean.json")
+ARTISTS_PATH = os.path.join(BASE, r"dataset/cleaned_json/artists_clean.json")
+TRACKS_PATH  = os.path.join(BASE, r"dataset/cleaned_json/tracks_clean.json")
+PART_PATH    = os.path.join(BASE, r"dataset/cleaned_json/participations_clean.json")
+DATES_PATH   = os.path.join(BASE, r"dataset/cleaned_json/dates_clean.json")
+GEO_PATH     = os.path.join(BASE, r"dataset/cleaned_json/geo_clean.json")
 
-OUT_DIR = os.path.join(BASE, r"dataset\Assignment5_CSV")
+OUT_DIR = os.path.join(BASE, r"dataset/Assignment5_CSV")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ============================================================
