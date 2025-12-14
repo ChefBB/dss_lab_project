@@ -18,9 +18,14 @@ category_stats AS (
     SELECT DISTINCT
         Category,
         COUNT(*) OVER (PARTITION BY Category) AS song_count,
-        PERCENTILE_CONT(0.75)
-            WITHIN GROUP (ORDER BY streams)
-            OVER (PARTITION BY Category) AS p75_streams
+        -- 75th percentile only if 4 or more songs; else set to MIN(streams) to include all
+        CASE 
+            WHEN COUNT(*) OVER (PARTITION BY Category) >= 4
+            THEN PERCENTILE_CONT(0.75) 
+                    WITHIN GROUP (ORDER BY streams) 
+                    OVER (PARTITION BY Category)
+            ELSE MAX(streams) OVER (PARTITION BY Category)
+        END AS p75_streams
     FROM recent_songs
 )
 
@@ -35,8 +40,7 @@ JOIN category_stats cs
 JOIN DimArtist a
     ON a.ArtistKey = rs.ArtistKey
 WHERE
-    cs.song_count >= 4
-    AND rs.streams >= cs.p75_streams
+    rs.streams >= cs.p75_streams
 GROUP BY
     a.ArtistKey,
     a.Name,
