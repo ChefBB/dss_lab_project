@@ -1,0 +1,45 @@
+WITH recent_songs AS (
+    SELECT
+        fp.SongKey,
+        fp.ArtistKey,
+        ds.Category,
+        fp.Streams1Month AS streams
+    FROM FactParticipation fp
+    JOIN DimSong ds
+        ON ds.SongKey = fp.SongKey
+    JOIN DimDate d
+        ON d.DateKey = fp.DateKey
+    WHERE
+        fp.IsPrimary = 1
+        AND d.Year >= YEAR(GETDATE()) - 2
+),
+
+category_stats AS (
+    SELECT DISTINCT
+        Category,
+        COUNT(*) OVER (PARTITION BY Category) AS song_count,
+        PERCENTILE_CONT(0.75)
+            WITHIN GROUP (ORDER BY streams)
+            OVER (PARTITION BY Category) AS p75_streams
+    FROM recent_songs
+)
+
+SELECT
+    a.ArtistKey,
+    a.Name,
+    rs.Category,
+    COUNT(*) AS NumTopQuartileSongs
+FROM recent_songs rs
+JOIN category_stats cs
+    ON rs.Category = cs.Category
+JOIN DimArtist a
+    ON a.ArtistKey = rs.ArtistKey
+WHERE
+    cs.song_count >= 4
+    AND rs.streams >= cs.p75_streams
+GROUP BY
+    a.ArtistKey,
+    a.Name,
+    rs.Category
+ORDER BY
+    NumTopQuartileSongs DESC;
