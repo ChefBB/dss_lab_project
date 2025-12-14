@@ -1,0 +1,69 @@
+WITH SongStats AS (
+    -- Compute per song info
+    SELECT
+        s.SongKey,
+        s.Category,
+        d.Season,
+        f.Streams1Month
+    FROM FactParticipation f
+    JOIN DimSong s ON f.SongKey = s.SongKey
+    JOIN DimDate d ON f.DateKey = d.DateKey
+    WHERE f.IsPrimary = 1
+),
+CategoryStats AS (
+    -- Compute average and stddev per category
+    SELECT
+        Category,
+        AVG(Streams1Month) AS avg_streams,
+        STDDEV(Streams1Month) AS std_streams
+    FROM SongStats
+    GROUP BY Category
+),
+SeasonCategoryStats AS (
+    -- Compute counts per season and category
+    SELECT
+        ss.Season,
+        ss.Category,
+        COUNT(*) AS songs_in_season
+    FROM SongStats ss
+    GROUP BY ss.Season, ss.Category
+),
+CategoryTotal AS (
+    -- Total songs per category
+    SELECT
+        Category,
+        COUNT(*) AS total_songs
+    FROM SongStats
+    GROUP BY Category
+),
+TrendingSongs AS (
+    -- Flag trending songs
+    SELECT
+        ss.Season,
+        ss.Category,
+        COUNT(*) AS trending_count
+    FROM SongStats ss
+    JOIN CategoryStats cs 
+      ON ss.Category = cs.Category
+    WHERE ss.Streams1Month > cs.avg_streams + cs.std_streams
+    GROUP BY ss.Season, ss.Category
+)
+SELECT
+    sc.Season,
+    sc.Category,
+    sc.songs_in_season * 100.0 / ct.total_songs AS pct_songs,
+    COALESCE(ts.trending_count, 0) * 100.0 / sc.songs_in_season AS pct_trending
+FROM SeasonCategoryStats sc
+JOIN CategoryTotal ct
+  ON sc.Category = ct.Category
+LEFT JOIN TrendingSongs ts
+  ON sc.Season = ts.Season AND sc.Category = ts.Category
+ORDER BY
+    CASE sc.Season
+        WHEN 'Winter' THEN 1
+        WHEN 'Spring' THEN 2
+        WHEN 'Summer' THEN 3
+        WHEN 'Autumn' THEN 4
+        ELSE 5
+    END,
+    sc.Category;
