@@ -1,0 +1,62 @@
+WITH recent_songs AS (
+    -- Only primary artists in the last 3 years
+    SELECT
+        fp.SongKey,
+        fp.ArtistKey,
+        ds.Category,
+        fp.Streams1Month AS streams
+    FROM FactParticipation fp
+    JOIN DimSong ds
+        ON ds.SongKey = fp.SongKey
+    JOIN DimDate d
+        ON d.DateKey = fp.DateKey
+    WHERE
+        fp.IsPrimary = 1
+        AND d.Year >= YEAR(GETDATE()) - 2
+),
+
+category_stats AS (
+    -- 75th percentile per category with edge case handling
+    SELECT DISTINCT
+        Category,
+        COUNT(*) OVER (PARTITION BY Category) AS song_count,
+        CASE 
+            WHEN COUNT(*) OVER (PARTITION BY Category) >= 4
+            THEN PERCENTILE_CONT(0.75) 
+                    WITHIN GROUP (ORDER BY streams) 
+                    OVER (PARTITION BY Category)
+            ELSE MAX(streams) OVER (PARTITION BY Category)
+        END AS p75_streams
+    FROM recent_songs
+),
+
+artist_category_flags AS (
+    -- Flag each song as top-quartile or not
+    SELECT
+        rs.ArtistKey,
+        rs.SongKey,
+        rs.Category,
+        CASE WHEN rs.streams >= cs.p75_streams THEN 1 ELSE 0 END AS is_top_quartile
+    FROM recent_songs rs
+    JOIN category_stats cs
+        ON rs.Category = cs.Category
+)
+
+SELECT
+    a.ArtistKey,
+    a.Name,
+    acf.Category,
+    SUM(acf.is_top_quartile) AS NumTopQuartileSongs,
+    COUNT(acf.SongKey) AS TotalSongs,
+    SUM(acf.is_top_quartile) * 1.0 / COUNT(acf.SongKey) AS PctTopQuartileSongs
+FROM artist_category_flags acf
+JOIN DimArtist a
+    ON a.ArtistKey = acf.ArtistKey
+GROUP BY
+    a.ArtistKey,
+    a.Name,
+    acf.Category
+HAVING SUM(acf.is_top_quartile) > 0
+ORDER BY
+    PctTopQuartileSongs DESC,
+    NumTopQuartileSongs DESC;
