@@ -1,5 +1,5 @@
 WITH SongStats AS (
-    -- Compute per song info
+    -- stats for each song
     SELECT
         s.SongKey,
         s.Category,
@@ -10,8 +10,9 @@ WITH SongStats AS (
     JOIN DimDate d ON f.DateKey = d.DateKey
     WHERE f.IsPrimary = 1
 ),
+
 CategoryStats AS (
-    -- Compute average and stddev per category
+    -- stats for each category
     SELECT
         Category,
         AVG(Streams1Month) AS avg_streams,
@@ -19,45 +20,72 @@ CategoryStats AS (
     FROM SongStats
     GROUP BY Category
 ),
+
 SeasonCategoryStats AS (
-    -- Compute counts per season and category
+    -- stats for season, category
     SELECT
-        ss.Season,
-        ss.Category,
+        Season,
+        Category,
         COUNT(*) AS songs_in_season
-    FROM SongStats ss
-    GROUP BY ss.Season, ss.Category
+    FROM SongStats
+    GROUP BY Season, Category
 ),
+
 CategoryTotal AS (
-    -- Total songs per category
+    -- number of songs in the category
     SELECT
         Category,
         COUNT(*) AS total_songs
     FROM SongStats
     GROUP BY Category
 ),
+
 TrendingSongs AS (
-    -- Flag trending songs
+    -- number of trending songs for each season, category
     SELECT
         ss.Season,
         ss.Category,
         COUNT(*) AS trending_count
     FROM SongStats ss
-    JOIN CategoryStats cs 
+    JOIN CategoryStats cs
       ON ss.Category = cs.Category
     WHERE ss.Streams1Month > cs.avg_streams + cs.std_streams
     GROUP BY ss.Season, ss.Category
+),
+
+TrendingCategoryTotal AS (
+    -- total number of trending songs for each category
+    SELECT
+        Category,
+        SUM(trending_count) AS total_trending
+    FROM TrendingSongs
+    GROUP BY Category
 )
+
 SELECT
     sc.Season,
     sc.Category,
-    sc.songs_in_season * 100.0 / ct.total_songs AS pct_songs,
-    COALESCE(ts.trending_count, 0) * 100.0 / sc.songs_in_season AS pct_trending
+
+    -- 1. % of songs in this season (within category)
+    sc.songs_in_season * 100.0 / ct.total_songs
+        AS pct_songs_in_season,
+
+    -- 2. % of trending songs in this season (within category)
+    COALESCE(ts.trending_count, 0) * 100.0 / tct.total_trending
+        AS pct_trending_songs_in_season,
+
+    -- 3. % of songs that are trending in this season
+    COALESCE(ts.trending_count, 0) * 100.0 / sc.songs_in_season
+        AS pct_songs_trending_in_season
+
 FROM SeasonCategoryStats sc
 JOIN CategoryTotal ct
   ON sc.Category = ct.Category
 LEFT JOIN TrendingSongs ts
-  ON sc.Season = ts.Season AND sc.Category = ts.Category
+  ON sc.Season = ts.Season
+ AND sc.Category = ts.Category
+JOIN TrendingCategoryTotal tct
+  ON sc.Category = tct.Category
 ORDER BY
     CASE sc.Season
         WHEN 'Winter' THEN 1
