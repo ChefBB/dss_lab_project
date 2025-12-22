@@ -53,7 +53,7 @@ participations_trending_flags AS (
         ON rp.Category = cs.Category
 ),
 
-WITH artist_role_aggregates AS (
+ artist_role_aggregates AS (
     SELECT
         ptf.Category,
         ptf.ArtistKey,

@@ -73,7 +73,7 @@ def upload_csv(filename, table_name):
             clean_row = [None if v in ("", "NULL") else v for v in row]
             batch.append(clean_row)
 
-            if len(batch) == 500:
+            if len(batch) == 100:
                 cursor.executemany(query, batch)
                 conn.commit()
                 count += len(batch)
