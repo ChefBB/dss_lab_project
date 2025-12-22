@@ -1,0 +1,6 @@
+# Visual Studio / SSIS
+.vs/
+bin/
+obj/
+*.user
+*.suo
