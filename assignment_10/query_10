@@ -1,0 +1,32 @@
+with  vw_CategoryRegionStreams AS(
+SELECT
+    ds.Category,
+    dag.Region,
+
+    SUM(fp.Streams1Month) AS StreamsInRegion,
+    SUM(SUM(fp.Streams1Month)) OVER (PARTITION BY ds.Category) AS TotalStreamsPerCategory
+FROM FactParticipation fp
+JOIN DimSong ds 
+    ON ds.SongKey = fp.SongKey
+JOIN DimArtist da
+    ON fp.ArtistKey = da.ArtistKey
+JOIN DimArtistGeography dag
+    ON da.GeoKey = dag.GeoKey
+WHERE  fp.IsPrimary = 1  -- solo MAIN ARTIST
+AND ds.Category IS NOT NULL
+GROUP BY 
+    ds.Category,
+    dag.Region
+
+)
+SELECT
+    Category, 
+    Region,
+    StreamsInRegion,
+    TotalStreamsPerCategory - StreamsInRegion AS StreamsOtherRegions,
+    CASE 
+        WHEN (TotalStreamsPerCategory - StreamsInRegion) = 0 THEN NULL
+        ELSE StreamsInRegion * 1.0 / (TotalStreamsPerCategory - StreamsInRegion)
+    END AS Ratio
+FROM vw_CategoryRegionStreams
+ORDER BY Category, Region;
