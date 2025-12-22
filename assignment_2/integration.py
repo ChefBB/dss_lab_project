@@ -21,7 +21,8 @@ gender_map = {
 
 def compute_all_matching_scores(dataset_og: list, dataset_retrieved: list) -> list:
     """
-    Computes all matching scores.
+    Computes all matching scores, and the best match for each
+    item.
     
     Parameters
     ----------
