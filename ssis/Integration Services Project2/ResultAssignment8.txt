@@ -1,0 +1,1215 @@
+1992,99 posse,2
+1992,articolo 31,1
+1992,bassi maestro,8
+1992,frankie hi-nrg mc,1
+1993,99 posse,13
+1993,articolo 31,15
+1993,bassi maestro,8
+1993,frankie hi-nrg mc,14
+1994,articolo 31,22
+1994,colle der fomento,1
+1994,cor veleno,1
+1994,frankie hi-nrg mc,1
+1994,sottotono,11
+1995,frankie hi-nrg mc,1
+1995,la pina,11
+1996,99 posse,10
+1996,articolo 31,23
+1996,bassi maestro,14
+1996,colle der fomento,15
+1996,neffa,16
+1996,sottotono,15
+1997,articolo 31,4
+1997,fabri fibra,1
+1997,frankie hi-nrg mc,13
+1997,la pina,1
+1997,neffa,2
+1997,piotta,1
+1997,sottotono,1
+1998,99 posse,12
+1998,articolo 31,18
+1998,bassi maestro,17
+1998,caparezza,28
+1998,colle der fomento,1
+1998,cor veleno,1
+1998,inoki,5
+1998,la pina,8
+1998,neffa,17
+1998,piotta,10
+1999,articolo 31,18
+1999,caparezza,4
+1999,colle der fomento,15
+1999,cor veleno,5
+1999,don joe,2
+1999,guè pequeno,1
+1999,inoki,1
+1999,neffa,5
+1999,nesli,10
+1999,piotta,2
+1999,sottotono,18
+1999,tormento,3
+2000,99 posse,14
+2000,articolo 31,3
+2000,bassi maestro,20
+2000,caparezza,16
+2000,cor veleno,1
+2000,frankie hi-nrg mc,1
+2000,la pina,4
+2000,piotta,1
+2000,sottotono,1
+2001,99 posse,2
+2001,bassi maestro,12
+2001,cor veleno,2
+2001,inoki,13
+2001,mistaman,10
+2001,neffa,13
+2001,shablo,1
+2001,sottotono,3
+2002,articolo 31,15
+2002,bassi maestro,15
+2002,fabri fibra,17
+2002,mistaman,1
+2002,piotta,8
+2002,shablo,1
+2003,articolo 31,17
+2003,bassi maestro,14
+2003,caparezza,16
+2003,clementino,1
+2003,club dogo,20
+2003,frankie hi-nrg mc,18
+2003,mondo marcio,14
+2003,neffa,14
+2003,nesli,14
+2004,articolo 31,2
+2004,babaman,1
+2004,bassi maestro,27
+2004,caparezza,3
+2004,club dogo,4
+2004,cor veleno,14
+2004,don joe,1
+2004,fabri fibra,20
+2004,guè pequeno,2
+2004,inoki,2
+2004,jake la furia,3
+2004,marracash,1
+2004,mistaman,1
+2004,mondo marcio,37
+2004,neffa,2
+2004,nesli,16
+2004,piotta,4
+2004,rancore,1
+2004,salmo,11
+2004,shablo,1
+2004,tormento,13
+2004,vacca,18
+2005,bassi maestro,21
+2005,brusco,1
+2005,caparezza,1
+2005,club dogo,1
+2005,coez,1
+2005,colle der fomento,2
+2005,don joe,3
+2005,fabri fibra,1
+2005,frankie hi-nrg mc,2
+2005,ghemon,2
+2005,guè pequeno,7
+2005,inoki,44
+2005,jack the smoker,1
+2005,jake la furia,2
+2005,marracash,10
+2005,mistaman,20
+2005,mondo marcio,2
+2005,noyz narcos,26
+2005,rancore,1
+2005,salmo,13
+2005,tormento,2
+2005,willie peyote,1
+2006,babaman,15
+2006,bassi maestro,17
+2006,brusco,1
+2006,caneda,12
+2006,caparezza,19
+2006,clementino,16
+2006,club dogo,15
+2006,colle der fomento,1
+2006,cor veleno,1
+2006,dargen d_amico,22
+2006,fabri fibra,32
+2006,gemitaiz,1
+2006,ghemon,6
+2006,grido,1
+2006,guè pequeno,20
+2006,inoki,1
+2006,j-ax,17
+2006,madman,1
+2006,marracash,1
+2006,mondo marcio,48
+2006,neffa,6
+2006,noyz narcos,4
+2006,rancore,13
+2006,tormento,12
+2006,vacca,1
+2006,willie peyote,5
+2007,bassi maestro,7
+2007,club dogo,15
+2007,colle der fomento,14
+2007,cor veleno,14
+2007,emis killa,2
+2007,entics,1
+2007,fabri fibra,18
+2007,fedez,11
+2007,gemitaiz,1
+2007,ghemon,35
+2007,inoki,14
+2007,jack the smoker,1
+2007,j-ax,1
+2007,johnny marsiglia,11
+2007,madman,17
+2007,miss simpatia,1
+2007,mondo marcio,21
+2007,nesli,15
+2007,noyz narcos,17
+2007,o zulù,1
+2007,piotta,3
+2007,salmo,5
+2007,sfera ebbasta,1
+2007,tormento,8
+2007,vacca,16
+2008,babaman,15
+2008,baby k,3
+2008,bassi maestro,3
+2008,caparezza,17
+2008,club dogo,1
+2008,colle der fomento,4
+2008,dargen d_amico,35
+2008,ensi,20
+2008,entics,1
+2008,fabri fibra,5
+2008,fedez,2
+2008,frankie hi-nrg mc,10
+2008,gemitaiz,1
+2008,ghemon,3
+2008,guè pequeno,1
+2008,j-ax,2
+2008,madman,10
+2008,marracash,17
+2008,mistaman,14
+2008,mondo marcio,16
+2008,nesli,1
+2008,noyz narcos,24
+2008,rancore,5
+2008,salmo,1
+2008,sfera ebbasta,1
+2008,shablo,13
+2008,vacca,11
+2009,bassi maestro,4
+2009,caneda,11
+2009,caparezza,1
+2009,club dogo,15
+2009,coez,12
+2009,cor veleno,8
+2009,emis killa,21
+2009,ensi,5
+2009,entics,1
+2009,fabri fibra,10
+2009,fedez,1
+2009,gemitaiz,20
+2009,ghemon,1
+2009,guè pequeno,22
+2009,inoki,1
+2009,jack the smoker,16
+2009,j-ax,19
+2009,madman,1
+2009,marracash,1
+2009,miss simpatia,1
+2009,mondo marcio,13
+2009,neffa,12
+2009,nesli,22
+2009,noyz narcos,15
+2009,sfera ebbasta,2
+2009,vacca,5
+2010,babaman,15
+2010,baby k,1
+2010,bassi maestro,12
+2010,caneda,4
+2010,clementino,1
+2010,club dogo,15
+2010,cor veleno,12
+2010,dargen d_amico,16
+2010,emis killa,19
+2010,ensi,7
+2010,entics,2
+2010,fabri fibra,34
+2010,fedez,15
+2010,gemitaiz,30
+2010,ghemon,12
+2010,guè pequeno,47
+2010,hell raton,1
+2010,inoki,1
+2010,johnny marsiglia,13
+2010,luchè,1
+2010,madman,16
+2010,marracash,11
+2010,mondo marcio,24
+2010,nesli,11
+2010,noyz narcos,13
+2010,rancore,9
+2010,rocco hunt,1
+2010,salmo,1
+2010,shablo,1
+2010,tedua,1
+2010,vacca,15
+2011,99 posse,12
+2011,achille lauro,2
+2011,babaman,2
+2011,baby k,5
+2011,bassi maestro,18
+2011,caneda,20
+2011,caparezza,16
+2011,clementino,9
+2011,club dogo,4
+2011,coez,16
+2011,dargen d_amico,2
+2011,don joe,16
+2011,emis killa,26
+2011,entics,22
+2011,fabri fibra,14
+2011,fedez,45
+2011,frankie hi-nrg mc,1
+2011,gemitaiz,23
+2011,grido,4
+2011,guè pequeno,15
+2011,hell raton,5
+2011,inoki,14
+2011,jack the smoker,19
+2011,j-ax,17
+2011,johnny marsiglia,2
+2011,madman,5
+2011,marracash,26
+2011,mondo marcio,39
+2011,noyz narcos,1
+2011,rancore,18
+2011,rocco hunt,3
+2011,salmo,15
+2011,sfera ebbasta,3
+2011,shablo,1
+2011,tormento,1
+2011,vacca,16
+2011,willie peyote,9
+2012,achille lauro,29
+2012,babaman,9
+2012,baby k,7
+2012,bassi maestro,12
+2012,caneda,35
+2012,caparezza,1
+2012,club dogo,20
+2012,coez,5
+2012,cor veleno,2
+2012,dargen d_amico,3
+2012,drefgold,1
+2012,emis killa,18
+2012,ensi,27
+2012,entics,15
+2012,fabri fibra,16
+2012,fedez,1
+2012,frah quintale,8
+2012,fred de palma,2
+2012,gemitaiz,25
+2012,ghemon,19
+2012,guè pequeno,18
+2012,hell raton,1
+2012,inoki,5
+2012,jack the smoker,8
+2012,j-ax,2
+2012,johnny marsiglia,15
+2012,lazza,25
+2012,luchè,12
+2012,madman,1
+2012,mike24,2
+2012,mistaman,10
+2012,mondo marcio,30
+2012,mudimbi,1
+2012,nitro,1
+2012,noyz narcos,1
+2012,piotta,9
+2012,rancore,17
+2012,rocco hunt,5
+2012,salmo,9
+2012,samuel heron,7
+2012,sfera ebbasta,1
+2012,slait,11
+2012,vacca,2
+2012,willie peyote,4
+2013,achille lauro,6
+2013,babaman,1
+2013,baby k,12
+2013,bassi maestro,12
+2013,bushwaka,2
+2013,caneda,27
+2013,capo plaza,1
+2013,clementino,18
+2013,club dogo,1
+2013,coez,9
+2013,colle der fomento,1
+2013,dargen d_amico,22
+2013,dark polo gang,1
+2013,drefgold,1
+2013,emis killa,20
+2013,ensi,1
+2013,ernia,7
+2013,fabri fibra,20
+2013,fedez,24
+2013,fred de palma,3
+2013,gemitaiz,35
+2013,ghali,10
+2013,ghemon,13
+2013,guè pequeno,24
+2013,inoki,2
+2013,jack the smoker,19
+2013,jake la furia,17
+2013,lazza,1
+2013,luchè,3
+2013,madman,20
+2013,marracash,2
+2013,miss keta,1
+2013,mondo marcio,9
+2013,mudimbi,1
+2013,neffa,9
+2013,nerone,8
+2013,nitro,11
+2013,noyz narcos,15
+2013,rancore,5
+2013,rocco hunt,13
+2013,salmo,16
+2013,sfera ebbasta,20
+2013,shade,1
+2013,shiva,2
+2013,tedua,4
+2013,vacca,16
+2013,willie peyote,1
+2014,99 posse,3
+2014,achille lauro,18
+2014,bushwaka,3
+2014,caneda,10
+2014,caparezza,19
+2014,capo plaza,2
+2014,clementino,3
+2014,club dogo,14
+2014,dani faiv,1
+2014,dargen d_amico,12
+2014,dark polo gang,8
+2014,emis killa,5
+2014,ensi,11
+2014,entics,7
+2014,ernia,1
+2014,eva rea,1
+2014,fabri fibra,2
+2014,fedez,21
+2014,frankie hi-nrg mc,5
+2014,fred de palma,12
+2014,gemitaiz,34
+2014,ghali,2
+2014,ghemon,13
+2014,grido,6
+2014,hell raton,6
+2014,inoki,6
+2014,jake la furia,1
+2014,j-ax,2
+2014,johnny marsiglia,14
+2014,lazza,16
+2014,luchè,12
+2014,madman,1
+2014,marracash,5
+2014,massimo pericolo,1
+2014,mistaman,16
+2014,mondo marcio,13
+2014,mr. rain,1
+2014,mudimbi,5
+2014,nesli,1
+2014,noyz narcos,4
+2014,rancore,3
+2014,rkomi,6
+2014,rocco hunt,22
+2014,salmo,5
+2014,sfera ebbasta,5
+2014,shade,1
+2014,shiva,5
+2014,vacca,6
+2014,willie peyote,13
+2015,achille lauro,23
+2015,babaman,3
+2015,baby k,14
+2015,bassi maestro,1
+2015,beba,10
+2015,brusco,1
+2015,bushwaka,7
+2015,caneda,3
+2015,capo plaza,2
+2015,clementino,28
+2015,coez,13
+2015,dani faiv,3
+2015,dargen d_amico,14
+2015,dark polo gang,26
+2015,don joe,9
+2015,drefgold,3
+2015,emis killa,16
+2015,ensi,6
+2015,fabri fibra,20
+2015,fedez,2
+2015,fred de palma,21
+2015,gemitaiz,19
+2015,ghali,10
+2015,ghemon,2
+2015,guè pequeno,29
+2015,il tre,10
+2015,jake la furia,1
+2015,j-ax,24
+2015,johnny marsiglia,2
+2015,lazza,1
+2015,luchè,2
+2015,madman,18
+2015,marracash,17
+2015,miss keta,4
+2015,mondo marcio,2
+2015,mr. rain,13
+2015,mudimbi,1
+2015,neffa,5
+2015,nerone,6
+2015,nesli,11
+2015,nitro,15
+2015,noyz narcos,13
+2015,piotta,1
+2015,rancore,7
+2015,rkomi,2
+2015,rocco hunt,16
+2015,rosa chemical,7
+2015,salmo,1
+2015,sfera ebbasta,15
+2015,shablo,2
+2015,shade,14
+2015,shiva,2
+2015,slait,22
+2015,tedua,21
+2015,thasup,1
+2015,tormento,10
+2015,vacca,18
+2015,willie peyote,20
+2016,99 posse,7
+2016,achille lauro,19
+2016,alfa,7
+2016,babaman,10
+2016,baby k,5
+2016,bassi maestro,6
+2016,beba,1
+2016,brusco,27
+2016,caneda,15
+2016,caparezza,9
+2016,capo plaza,19
+2016,clementino,23
+2016,club dogo,1
+2016,coez,9
+2016,cor veleno,17
+2016,dani faiv,18
+2016,dargen d_amico,1
+2016,dark polo gang,43
+2016,doll kill,10
+2016,drefgold,21
+2016,emis killa,22
+2016,ensi,2
+2016,entics,42
+2016,ernia,11
+2016,fabri fibra,9
+2016,fedez,3
+2016,frah quintale,7
+2016,frankie hi-nrg mc,3
+2016,fred de palma,4
+2016,gemitaiz,32
+2016,geolier,18
+2016,ghali,15
+2016,grido,11
+2016,hell raton,1
+2016,il tre,17
+2016,inoki,11
+2016,jack the smoker,15
+2016,jake la furia,15
+2016,j-ax,9
+2016,joey funboy,1
+2016,johnny marsiglia,2
+2016,la pina,7
+2016,lazza,9
+2016,luchè,17
+2016,madman,16
+2016,mahmood,2
+2016,mambolosco,2
+2016,marracash,35
+2016,massimo pericolo,1
+2016,mike24,15
+2016,miss keta,17
+2016,miss simpatia,1
+2016,mistaman,13
+2016,mistico,4
+2016,mondo marcio,33
+2016,mr. rain,2
+2016,mudimbi,1
+2016,neffa,24
+2016,nerone,29
+2016,nesli,18
+2016,niky savage,4
+2016,nitro,5
+2016,noyz narcos,1
+2016,piotta,28
+2016,rancore,13
+2016,rkomi,9
+2016,rocco hunt,16
+2016,rondodasosa,14
+2016,rosa chemical,1
+2016,rose villain,3
+2016,roshelle,6
+2016,salmo,14
+2016,samuel heron,8
+2016,sfera ebbasta,18
+2016,shablo,11
+2016,shade,22
+2016,shiva,28
+2016,skioffi,7
+2016,sottotono,11
+2016,tedua,24
+2016,thasup,10
+2016,tony boy,35
+2016,tormento,13
+2016,vacca,23
+2017,achille lauro,3
+2017,alfa,9
+2017,babaman,7
+2017,baby k,4
+2017,bassi maestro,20
+2017,beba,2
+2017,caneda,5
+2017,caparezza,16
+2017,capo plaza,5
+2017,clementino,15
+2017,club dogo,8
+2017,coez,13
+2017,dani faiv,18
+2017,dargen d_amico,14
+2017,dark polo gang,15
+2017,doll kill,5
+2017,drefgold,10
+2017,emis killa,1
+2017,ensi,14
+2017,entics,11
+2017,ernia,16
+2017,fabri fibra,23
+2017,fedez,1
+2017,frah quintale,18
+2017,fred de palma,19
+2017,gemitaiz,4
+2017,ghali,15
+2017,ghemon,15
+2017,grido,14
+2017,guè pequeno,21
+2017,hell raton,2
+2017,il tre,4
+2017,inoki,1
+2017,jake la furia,1
+2017,j-ax,19
+2017,johnny marsiglia,2
+2017,la pina,1
+2017,lazza,18
+2017,madame,1
+2017,madman,2
+2017,mahmood,1
+2017,mambolosco,9
+2017,massimo pericolo,10
+2017,mike24,11
+2017,miss keta,7
+2017,mondo marcio,1
+2017,mr. rain,3
+2017,mudimbi,13
+2017,nerone,21
+2017,nesli,13
+2017,nitro,1
+2017,noyz narcos,1
+2017,piotta,2
+2017,priestess,6
+2017,rkomi,17
+2017,rocco hunt,4
+2017,rose villain,2
+2017,roshelle,1
+2017,salmo,5
+2017,samuel heron,2
+2017,sfera ebbasta,2
+2017,shade,17
+2017,shiva,10
+2017,skioffi,24
+2017,tedua,7
+2017,thasup,6
+2017,tormento,1
+2017,vacca,12
+2017,willie peyote,13
+2018,achille lauro,11
+2018,alfa,3
+2018,baby k,8
+2018,bassi maestro,2
+2018,beba,6
+2018,caneda,8
+2018,capo plaza,17
+2018,chadia rodriguez,6
+2018,clementino,1
+2018,colle der fomento,14
+2018,cor veleno,16
+2018,dani faiv,8
+2018,dargen d_amico,1
+2018,dark polo gang,23
+2018,doll kill,3
+2018,drefgold,10
+2018,emis killa,15
+2018,ensi,2
+2018,entics,4
+2018,ernia,14
+2018,eva rea,3
+2018,fabri fibra,1
+2018,fedez,1
+2018,frah quintale,8
+2018,fred de palma,2
+2018,gemitaiz,31
+2018,geolier,4
+2018,ghali,3
+2018,ghemon,2
+2018,guè pequeno,18
+2018,il tre,17
+2018,inoki,1
+2018,jake la furia,3
+2018,j-ax,2
+2018,johnny marsiglia,14
+2018,lazza,2
+2018,luchè,15
+2018,madame,3
+2018,madman,13
+2018,mahmood,6
+2018,mambolosco,1
+2018,marracash,6
+2018,massimo pericolo,4
+2018,mike24,13
+2018,miss keta,14
+2018,mondo marcio,2
+2018,mr. rain,13
+2018,mudimbi,3
+2018,nerone,21
+2018,nesli,2
+2018,nitro,14
+2018,noyz narcos,13
+2018,piotta,6
+2018,priestess,3
+2018,rancore,10
+2018,rkomi,7
+2018,rocco hunt,3
+2018,rosa chemical,8
+2018,rose villain,3
+2018,roshelle,2
+2018,salmo,13
+2018,samuel heron,3
+2018,sfera ebbasta,24
+2018,shade,21
+2018,shiva,12
+2018,skioffi,7
+2018,tedua,17
+2018,thasup,10
+2018,tony boy,5
+2018,vacca,14
+2018,willie peyote,2
+2019,achille lauro,12
+2019,alfa,13
+2019,anna pepe,2
+2019,baby k,2
+2019,bassi maestro,9
+2019,beba,7
+2019,bigmama,1
+2019,caneda,6
+2019,capo plaza,3
+2019,chadia rodriguez,3
+2019,clementino,16
+2019,coez,10
+2019,dani faiv,11
+2019,dargen d_amico,1
+2019,dark polo gang,7
+2019,don joe,4
+2019,drefgold,2
+2019,emis killa,4
+2019,ensi,17
+2019,ernia,8
+2019,eva rea,3
+2019,fabri fibra,7
+2019,fedez,15
+2019,frah quintale,2
+2019,fred de palma,10
+2019,gemitaiz,13
+2019,geolier,18
+2019,ghali,6
+2019,ghemon,2
+2019,grido,12
+2019,guè pequeno,6
+2019,hindaco,2
+2019,il tre,11
+2019,jake la furia,1
+2019,j-ax,2
+2019,joey funboy,1
+2019,johnny marsiglia,1
+2019,lazza,29
+2019,luchè,5
+2019,madame,5
+2019,madman,14
+2019,mahmood,7
+2019,mambolosco,19
+2019,marracash,18
+2019,massimo pericolo,13
+2019,mike24,8
+2019,miss keta,12
+2019,mistaman,8
+2019,mondo marcio,9
+2019,mr. rain,1
+2019,nerone,22
+2019,nesli,8
+2019,priestess,12
+2019,rkomi,14
+2019,rocco hunt,17
+2019,rosa chemical,14
+2019,rose villain,2
+2019,roshelle,1
+2019,salmo,3
+2019,samuel heron,7
+2019,sfera ebbasta,2
+2019,shablo,1
+2019,shade,5
+2019,shiva,12
+2019,skioffi,15
+2019,slait,1
+2019,tedua,3
+2019,thasup,21
+2019,tony boy,9
+2019,tony effe,1
+2019,tormento,3
+2019,vacca,19
+2019,willie peyote,11
+2019,yeиdry,1
+2020,achille lauro,26
+2020,alfa,5
+2020,anna pepe,5
+2020,babaman,1
+2020,baby k,4
+2020,beba,6
+2020,bigmama,2
+2020,caneda,6
+2020,capo plaza,3
+2020,chadia rodriguez,2
+2020,clementino,1
+2020,coez,2
+2020,dani faiv,19
+2020,dargen d_amico,15
+2020,dark polo gang,14
+2020,doll kill,4
+2020,don joe,1
+2020,drefgold,16
+2020,emis killa,22
+2020,ensi,8
+2020,ernia,12
+2020,eva rea,5
+2020,fabri fibra,1
+2020,fedez,3
+2020,frah quintale,14
+2020,frankie hi-nrg mc,2
+2020,fred de palma,3
+2020,gemitaiz,25
+2020,geolier,8
+2020,ghali,21
+2020,ghemon,12
+2020,guè pequeno,20
+2020,hindaco,1
+2020,il tre,7
+2020,inoki,3
+2020,jack the smoker,19
+2020,jake la furia,1
+2020,j-ax,19
+2020,joey funboy,1
+2020,lazza,17
+2020,luchè,1
+2020,madame,7
+2020,madman,2
+2020,mahmood,7
+2020,mambolosco,12
+2020,marracash,3
+2020,massimo pericolo,1
+2020,mike24,11
+2020,miss keta,8
+2020,mondo marcio,4
+2020,mr. rain,2
+2020,mudimbi,8
+2020,nerone,9
+2020,nitro,18
+2020,o zulù,1
+2020,papa v,2
+2020,piotta,11
+2020,priestess,7
+2020,rancore,4
+2020,rkomi,1
+2020,rocco hunt,4
+2020,rondodasosa,10
+2020,rosa chemical,20
+2020,rose villain,5
+2020,roshelle,3
+2020,salmo,2
+2020,samuel heron,5
+2020,sfera ebbasta,14
+2020,shablo,3
+2020,shade,4
+2020,shiva,13
+2020,skioffi,6
+2020,slait,15
+2020,tedua,25
+2020,thasup,13
+2020,tony boy,26
+2020,vacca,26
+2020,willie peyote,3
+2020,yeиdry,2
+2021,99 posse,2
+2021,achille lauro,20
+2021,alfa,10
+2021,anna pepe,3
+2021,baby k,11
+2021,beba,15
+2021,bigmama,2
+2021,brusco,10
+2021,caneda,12
+2021,caparezza,14
+2021,capo plaza,22
+2021,chadia rodriguez,3
+2021,clementino,1
+2021,coez,14
+2021,cor veleno,1
+2021,dani faiv,4
+2021,dargen d_amico,1
+2021,don joe,11
+2021,drefgold,8
+2021,emis killa,20
+2021,ensi,7
+2021,entics,1
+2021,ernia,6
+2021,eva rea,1
+2021,fedez,19
+2021,frah quintale,11
+2021,frankie hi-nrg mc,1
+2021,fred de palma,14
+2021,gemitaiz,3
+2021,geolier,1
+2021,ghali,2
+2021,ghemon,15
+2021,grido,1
+2021,guè pequeno,40
+2021,il tre,19
+2021,inoki,27
+2021,j-ax,12
+2021,lazza,2
+2021,madame,18
+2021,madman,16
+2021,mahmood,18
+2021,mambolosco,5
+2021,marracash,13
+2021,massimo pericolo,14
+2021,mike24,1
+2021,miss keta,2
+2021,mondo marcio,7
+2021,mr. rain,9
+2021,neffa,12
+2021,nerone,17
+2021,niky savage,2
+2021,nitro,5
+2021,noyz narcos,1
+2021,piotta,2
+2021,rancore,1
+2021,rkomi,31
+2021,rocco hunt,15
+2021,rondodasosa,10
+2021,rosa chemical,5
+2021,rose villain,2
+2021,roshelle,6
+2021,salmo,19
+2021,samuel heron,3
+2021,sfera ebbasta,3
+2021,shade,4
+2021,shiva,20
+2021,skioffi,17
+2021,slait,1
+2021,sottotono,14
+2021,tedua,7
+2021,thasup,4
+2021,tony boy,28
+2021,tony effe,17
+2021,tormento,1
+2021,vacca,15
+2021,willie peyote,1
+2021,yeиdry,4
+2022,achille lauro,8
+2022,alfa,7
+2022,anna pepe,7
+2022,baby k,2
+2022,beba,1
+2022,bigmama,8
+2022,brusco,3
+2022,capo plaza,12
+2022,chadia rodriguez,3
+2022,clementino,16
+2022,coez,8
+2022,cor veleno,10
+2022,dani faiv,17
+2022,dargen d_amico,12
+2022,doll kill,4
+2022,drefgold,3
+2022,emis killa,2
+2022,ensi,4
+2022,ernia,17
+2022,fabri fibra,18
+2022,fedez,3
+2022,frah quintale,4
+2022,fred de palma,9
+2022,gemitaiz,12
+2022,geolier,2
+2022,ghali,11
+2022,grido,1
+2022,guè pequeno,2
+2022,il tre,4
+2022,inoki,7
+2022,jack the smoker,1
+2022,jake la furia,12
+2022,lazza,28
+2022,luchè,18
+2022,madame,3
+2022,madman,1
+2022,mahmood,1
+2022,mambolosco,3
+2022,marracash,1
+2022,massimo pericolo,2
+2022,mike24,1
+2022,miss keta,15
+2022,mistaman,12
+2022,mondo marcio,14
+2022,mr. rain,11
+2022,nerone,3
+2022,nesli,6
+2022,niky savage,5
+2022,noyz narcos,19
+2022,papa v,14
+2022,priestess,2
+2022,rancore,14
+2022,rkomi,8
+2022,rocco hunt,5
+2022,rondodasosa,20
+2022,rosa chemical,2
+2022,rose villain,2
+2022,salmo,12
+2022,shablo,1
+2022,shade,2
+2022,shiva,29
+2022,skioffi,2
+2022,sottotono,1
+2022,tedua,2
+2022,thasup,23
+2022,tony boy,13
+2022,tormento,2
+2022,vacca,15
+2022,willie peyote,12
+2022,yeиdry,3
+2022,yung snapp,3
+2023,achille lauro,2
+2023,alfa,3
+2023,anna pepe,4
+2023,articolo 31,4
+2023,baby k,1
+2023,beba,1
+2023,bigmama,2
+2023,caneda,5
+2023,capo plaza,2
+2023,chadia rodriguez,3
+2023,clementino,1
+2023,coez,12
+2023,dani faiv,27
+2023,dargen d_amico,1
+2023,don joe,12
+2023,drefgold,3
+2023,emis killa,20
+2023,ernia,3
+2023,fedez,2
+2023,fred de palma,3
+2023,gemitaiz,22
+2023,geolier,23
+2023,ghali,13
+2023,guè pequeno,12
+2023,il tre,19
+2023,inoki,2
+2023,j-ax,2
+2023,johnny marsiglia,16
+2023,lazza,3
+2023,luchè,7
+2023,madame,17
+2023,mahmood,3
+2023,mambolosco,17
+2023,marracash,1
+2023,massimo pericolo,16
+2023,mike24,3
+2023,miss keta,2
+2023,mondo marcio,1
+2023,mr. rain,3
+2023,mudimbi,9
+2023,nerone,13
+2023,nesli,17
+2023,niky savage,4
+2023,nitro,17
+2023,noyz narcos,3
+2023,papa v,6
+2023,priestess,1
+2023,rocco hunt,2
+2023,rondodasosa,6
+2023,rosa chemical,2
+2023,rose villain,13
+2023,roshelle,3
+2023,salmo,20
+2023,samuel heron,3
+2023,sfera ebbasta,13
+2023,shade,11
+2023,shiva,15
+2023,skioffi,2
+2023,tedua,16
+2023,thasup,6
+2023,tony boy,29
+2023,tony effe,2
+2023,vacca,6
+2023,willie peyote,2
+2023,yeиdry,2
+2023,yung snapp,12
+2024,achille lauro,4
+2024,alfa,11
+2024,anna pepe,18
+2024,articolo 31,17
+2024,baby k,1
+2024,beba,4
+2024,bigmama,13
+2024,caneda,5
+2024,capo plaza,24
+2024,chadia rodriguez,4
+2024,club dogo,11
+2024,cor veleno,13
+2024,dani faiv,8
+2024,dargen d_amico,12
+2024,doll kill,1
+2024,don joe,2
+2024,drefgold,19
+2024,emis killa,2
+2024,ensi,1
+2024,fabri fibra,2
+2024,fedez,7
+2024,fred de palma,4
+2024,gemitaiz,1
+2024,geolier,33
+2024,ghali,3
+2024,ghemon,2
+2024,grido,7
+2024,guè pequeno,1
+2024,il tre,4
+2024,inoki,2
+2024,jack the smoker,15
+2024,lazza,19
+2024,madame,1
+2024,madman,15
+2024,mahmood,13
+2024,mambolosco,3
+2024,marracash,14
+2024,massimo pericolo,7
+2024,mike24,11
+2024,miss keta,2
+2024,mondo marcio,2
+2024,mr. rain,9
+2024,mudimbi,5
+2024,neffa,1
+2024,nerone,6
+2024,nesli,2
+2024,niky savage,13
+2024,nitro,2
+2024,papa v,11
+2024,piotta,10
+2024,rkomi,1
+2024,rocco hunt,2
+2024,rondodasosa,22
+2024,rosa chemical,2
+2024,rose villain,12
+2024,salmo,5
+2024,samuel heron,2
+2024,shablo,1
+2024,shade,1
+2024,shiva,21
+2024,skioffi,12
+2024,tedua,7
+2024,thasup,11
+2024,tony boy,27
+2024,tony effe,19
+2024,vacca,15
+2024,willie peyote,9
+2024,yung snapp,7
+2025,achille lauro,11
+2025,alfa,5
+2025,anna pepe,1
+2025,baby k,1
+2025,beba,2
+2025,bigmama,2
+2025,capo plaza,1
+2025,chadia rodriguez,2
+2025,clementino,1
+2025,coez,12
+2025,dani faiv,20
+2025,dargen d_amico,1
+2025,doll kill,2
+2025,drefgold,2
+2025,emis killa,2
+2025,ernia,1
+2025,fabri fibra,4
+2025,fedez,3
+2025,frah quintale,1
+2025,fred de palma,2
+2025,gemitaiz,1
+2025,geolier,1
+2025,ghali,1
+2025,ghemon,24
+2025,guè pequeno,27
+2025,il tre,1
+2025,inoki,9
+2025,jake la furia,14
+2025,lazza,17
+2025,luchè,18
+2025,madman,1
+2025,mahmood,1
+2025,mambolosco,3
+2025,miss keta,11
+2025,mondo marcio,12
+2025,mr. rain,1
+2025,neffa,10
+2025,nerone,17
+2025,nesli,1
+2025,niky savage,3
+2025,nitro,2
+2025,papa v,17
+2025,priestess,1
+2025,rkomi,20
+2025,rocco hunt,14
+2025,rondodasosa,3
+2025,rosa chemical,9
+2025,rose villain,15
+2025,salmo,16
+2025,samuel heron,4
+2025,sfera ebbasta,12
+2025,shablo,3
+2025,shiva,2
+2025,skioffi,1
+2025,tedua,1
+2025,thasup,1
+2025,tony boy,2
+2025,tony effe,1
+2025,vacca,5
+2025,willie peyote,7
