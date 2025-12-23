@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{9ED94D73-6202-48A0-B8B9-9494C7918FFF}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{AF577705-0E5E-4D10-B240-65A95264D55D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,7 +29,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALVqHhoyzCk2Q45hnXB/39QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAGAxDztbp2sgB5EHs1towjiTb45jKYT8vrjBXRReh0HAAAAAAOgAAAAAIAACAAAACm0hp6n7cPYPCdM7rPPYIUIIiHz5MK9UcJyXCwRkisuyAAAAAsTaCx6QloxKspaYbVRoNH8XbTvMPJbK4lWQn4ms7fIUAAAADFKlx99zraByCrspbS8zQmICDIbcKT7RWK/QQ4i39CTw8UFOYtbJQlsuQWcxYcV0TxHJS2DWuAIajUmmjT/HgE</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALVqHhoyzCk2Q45hnXB/39QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA8xb/A7fbQpelkMZl08dSOWlppyHRwnJIK38tuimziwQAAAAAOgAAAAAIAACAAAAC//M/M3ymkh9JmpZi5BZHHjEvYx8MRsHrX29JKrBgJbyAAAAAy5VZhwffOduSWmM1hmfaABZjLpeVTd7c/Z3Vohzs8M0AAAABC0Uq3g2DzglQc7MszuQD/KLkwOmWwAV2lJujH+n1I9L3vzXJKGnLrcgKkspZqn8gru7ccJegE6cCpRvZSLlib</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -2353,7 +2353,7 @@
                       lineageId="Package\Sampling SSIS\MSongKey.Outputs[Merge Join Output].Columns[DateKey]" />
                     <inputColumn
                       refId="Package\Sampling SSIS\FactParticipation_SSIS.Inputs[OLE DB Destination Input].Columns[Streams1Month]"
-                      cachedDataType="r8"
+                      cachedDataType="i8"
                       cachedName="Streams1Month"
                       externalMetadataColumnId="Package\Sampling SSIS\FactParticipation_SSIS.Inputs[OLE DB Destination Input].ExternalColumns[Streams1Month]"
                       lineageId="Package\Sampling SSIS\MSongKey.Outputs[Merge Join Output].Columns[Streams1Month]" />
@@ -2383,7 +2383,7 @@
                       name="DateKey" />
                     <externalMetadataColumn
                       refId="Package\Sampling SSIS\FactParticipation_SSIS.Inputs[OLE DB Destination Input].ExternalColumns[Streams1Month]"
-                      dataType="r8"
+                      dataType="i8"
                       name="Streams1Month" />
                     <externalMetadataColumn
                       refId="Package\Sampling SSIS\FactParticipation_SSIS.Inputs[OLE DB Destination Input].ExternalColumns[IsPrimary]"
@@ -4017,7 +4017,7 @@
                       lineageId="Package\Sampling SSIS\SongKeyFK.Outputs[Sort Output].Columns[DateKey]" />
                     <inputColumn
                       refId="Package\Sampling SSIS\MSongKey.Inputs[Merge Join Left Input].Columns[Streams1Month]"
-                      cachedDataType="r8"
+                      cachedDataType="i8"
                       cachedName="Streams1Month"
                       lineageId="Package\Sampling SSIS\SongKeyFK.Outputs[Sort Output].Columns[Streams1Month]" />
                     <inputColumn
@@ -4095,7 +4095,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Sampling SSIS\MSongKey.Outputs[Merge Join Output].Columns[Streams1Month]"
-                      dataType="r8"
+                      dataType="i8"
                       lineageId="Package\Sampling SSIS\MSongKey.Outputs[Merge Join Output].Columns[Streams1Month]"
                       name="Streams1Month">
                       <properties>
@@ -5006,7 +5006,7 @@
                     </inputColumn>
                     <inputColumn
                       refId="Package\Sampling SSIS\SongKeyFK.Inputs[Sort Input].Columns[Streams1Month]"
-                      cachedDataType="r8"
+                      cachedDataType="i8"
                       cachedName="Streams1Month"
                       lineageId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Output].Columns[Streams1Month]">
                       <properties>
@@ -5091,7 +5091,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Sampling SSIS\SongKeyFK.Outputs[Sort Output].Columns[Streams1Month]"
-                      dataType="r8"
+                      dataType="i8"
                       lineageId="Package\Sampling SSIS\SongKeyFK.Outputs[Sort Output].Columns[Streams1Month]"
                       name="Streams1Month">
                       <properties>
@@ -7033,7 +7033,7 @@
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Output].Columns[Streams1Month]"
-                      dataType="r8"
+                      dataType="i8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Output].ExternalColumns[Streams1Month]"
@@ -7069,7 +7069,7 @@
                       name="DateKey" />
                     <externalMetadataColumn
                       refId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Output].ExternalColumns[Streams1Month]"
-                      dataType="r8"
+                      dataType="i8"
                       name="Streams1Month" />
                     <externalMetadataColumn
                       refId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Output].ExternalColumns[IsPrimary]"
@@ -7102,7 +7102,7 @@
                       name="DateKey" />
                     <outputColumn
                       refId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Error Output].Columns[Streams1Month]"
-                      dataType="r8"
+                      dataType="i8"
                       lineageId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Error Output].Columns[Streams1Month]"
                       name="Streams1Month" />
                     <outputColumn
@@ -7502,17 +7502,17 @@
           </components>
           <paths>
             <path
-              refId="Package\Sampling SSIS.Paths[Merge Join Output6]"
+              refId="Package\Sampling SSIS.Paths[Merge Join Output]"
               endId="Package\Sampling SSIS\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Merge Join Output"
               startId="Package\Sampling SSIS\Merge Join 2.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Merge Join Output4]"
+              refId="Package\Sampling SSIS.Paths[Merge Join Output1]"
               endId="Package\Sampling SSIS\Multicast 2.Inputs[Multicast Input 1]"
               name="Merge Join Output"
               startId="Package\Sampling SSIS\Merge Join.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Merge Join Output]"
+              refId="Package\Sampling SSIS.Paths[Merge Join Output2]"
               endId="Package\Sampling SSIS\DimLyrics_SSIS.Inputs[OLE DB Destination Input]"
               name="Merge Join Output"
               startId="Package\Sampling SSIS\MSongLyrics.Outputs[Merge Join Output]" />
@@ -7522,7 +7522,7 @@
               name="Merge Join Output"
               startId="Package\Sampling SSIS\MDateKey.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Merge Join Output2]"
+              refId="Package\Sampling SSIS.Paths[Merge Join Output4]"
               endId="Package\Sampling SSIS\Multicast 1.Inputs[Multicast Input 1]"
               name="Merge Join Output"
               startId="Package\Sampling SSIS\MSongKey.Outputs[Merge Join Output]" />
@@ -7532,17 +7532,17 @@
               name="Merge Join Output"
               startId="Package\Sampling SSIS\Merge Join 1.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Merge Join Output1]"
+              refId="Package\Sampling SSIS.Paths[Merge Join Output6]"
               endId="Package\Sampling SSIS\DimSymphony_SSIS.Inputs[OLE DB Destination Input]"
               name="Merge Join Output"
               startId="Package\Sampling SSIS\MSymphonyKey.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Multicast Output 11]"
+              refId="Package\Sampling SSIS.Paths[Multicast Output 1]"
               endId="Package\Sampling SSIS\FactParticipation_SSIS.Inputs[OLE DB Destination Input]"
               name="Multicast Output 1"
               startId="Package\Sampling SSIS\Multicast 1.Outputs[Multicast Output 1]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Multicast Output 1]"
+              refId="Package\Sampling SSIS.Paths[Multicast Output 11]"
               endId="Package\Sampling SSIS\DimSong_SSIS.Inputs[OLE DB Destination Input]"
               name="Multicast Output 1"
               startId="Package\Sampling SSIS\Multicast.Outputs[Multicast Output 1]" />
@@ -7553,6 +7553,11 @@
               startId="Package\Sampling SSIS\Multicast 2.Outputs[Multicast Output 1]" />
             <path
               refId="Package\Sampling SSIS.Paths[Multicast Output 22]"
+              endId="Package\Sampling SSIS\LyricsKeyFK.Inputs[Sort Input]"
+              name="Multicast Output 2"
+              startId="Package\Sampling SSIS\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Multicast Output 2]"
               endId="Package\Sampling SSIS\GeoKeyFK.Inputs[Sort Input]"
               name="Multicast Output 2"
               startId="Package\Sampling SSIS\Multicast 2.Outputs[Multicast Output 2]" />
@@ -7561,11 +7566,6 @@
               endId="Package\Sampling SSIS\DateKeyFK.Inputs[Sort Input]"
               name="Multicast Output 2"
               startId="Package\Sampling SSIS\Multicast 1.Outputs[Multicast Output 2]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Multicast Output 2]"
-              endId="Package\Sampling SSIS\LyricsKeyFK.Inputs[Sort Input]"
-              name="Multicast Output 2"
-              startId="Package\Sampling SSIS\Multicast.Outputs[Multicast Output 2]" />
             <path
               refId="Package\Sampling SSIS.Paths[Multicast Output 3]"
               endId="Package\Sampling SSIS\SongKeyPK.Inputs[Sort Input]"
@@ -7588,114 +7588,114 @@
               startId="Package\Sampling SSIS\Multicast.Outputs[Multicast Output 5]" />
             <path
               refId="Package\Sampling SSIS.Paths[OLE DB Source Output5]"
-              endId="Package\Sampling SSIS\ArtistKeyPK.Inputs[Sort Input]"
+              endId="Package\Sampling SSIS\SymphonyKeyPK.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\Source DimArtist.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[OLE DB Source Output]"
-              endId="Package\Sampling SSIS\30% sampling.Inputs[Percentage Sampling Input 1]"
-              name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\SourceDimSong.Outputs[OLE DB Source Output]" />
+              startId="Package\Sampling SSIS\SourceDimSymphony.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[OLE DB Source Output7]"
-              endId="Package\Sampling SSIS\AlbumKeyPK.Inputs[Sort Input]"
+              endId="Package\Sampling SSIS\GeoKeyPK.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\Source DimAlbum.Outputs[OLE DB Source Output]" />
+              startId="Package\Sampling SSIS\Source DimArtistGeography.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[OLE DB Source Output6]"
+              endId="Package\Sampling SSIS\LyricsKeyPK.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Sampling SSIS\SourceDimLyrics.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[OLE DB Source Output4]"
-              endId="Package\Sampling SSIS\DateKeyPK.Inputs[Sort Input]"
-              name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\Source DimDate.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[OLE DB Source Output3]"
               endId="Package\Sampling SSIS\SongKeyFK.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\Sampling SSIS\SourceFactParticipation.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[OLE DB Source Output2]"
-              endId="Package\Sampling SSIS\SymphonyKeyPK.Inputs[Sort Input]"
+              endId="Package\Sampling SSIS\AlbumKeyPK.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\SourceDimSymphony.Outputs[OLE DB Source Output]" />
+              startId="Package\Sampling SSIS\Source DimAlbum.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[OLE DB Source Output1]"
-              endId="Package\Sampling SSIS\LyricsKeyPK.Inputs[Sort Input]"
+              endId="Package\Sampling SSIS\30% sampling.Inputs[Percentage Sampling Input 1]"
               name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\SourceDimLyrics.Outputs[OLE DB Source Output]" />
+              startId="Package\Sampling SSIS\SourceDimSong.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[OLE DB Source Output6]"
-              endId="Package\Sampling SSIS\GeoKeyPK.Inputs[Sort Input]"
+              refId="Package\Sampling SSIS.Paths[OLE DB Source Output]"
+              endId="Package\Sampling SSIS\ArtistKeyPK.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Sampling SSIS\Source DimArtistGeography.Outputs[OLE DB Source Output]" />
+              startId="Package\Sampling SSIS\Source DimArtist.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[OLE DB Source Output3]"
+              endId="Package\Sampling SSIS\DateKeyPK.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Sampling SSIS\Source DimDate.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[Sampling Selected Output]"
               endId="Package\Sampling SSIS\Multicast.Inputs[Multicast Input 1]"
               name="Sampling Selected Output"
               startId="Package\Sampling SSIS\30% sampling.Outputs[Sampling Selected Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Sort Output11]"
-              endId="Package\Sampling SSIS\Merge Join 2.Inputs[Merge Join Left Input]"
+              refId="Package\Sampling SSIS.Paths[Sort Output12]"
+              endId="Package\Sampling SSIS\Merge Join.Inputs[Merge Join Right Input]"
               name="Sort Output"
-              startId="Package\Sampling SSIS\AlbumKeyFK.Outputs[Sort Output]" />
+              startId="Package\Sampling SSIS\ArtistKeyPK.Outputs[Sort Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Sort Output11]"
+              endId="Package\Sampling SSIS\MSongLyrics.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Sampling SSIS\LyricsKeyPK.Outputs[Sort Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[Sort Output10]"
-              endId="Package\Sampling SSIS\Merge Join 1.Inputs[Merge Join Right Input]"
+              endId="Package\Sampling SSIS\MSongLyrics.Inputs[Merge Join Right Input]"
               name="Sort Output"
-              startId="Package\Sampling SSIS\GeoKeyFK.Outputs[Sort Output]" />
+              startId="Package\Sampling SSIS\LyricsKeyFK.Outputs[Sort Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[Sort Output9]"
-              endId="Package\Sampling SSIS\Merge Join 1.Inputs[Merge Join Left Input]"
+              endId="Package\Sampling SSIS\MSymphonyKey.Inputs[Merge Join Right Input]"
               name="Sort Output"
-              startId="Package\Sampling SSIS\GeoKeyPK.Outputs[Sort Output]" />
+              startId="Package\Sampling SSIS\SymphonyKeyFK.Outputs[Sort Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Sort Output12]"
-              endId="Package\Sampling SSIS\Merge Join 2.Inputs[Merge Join Right Input]"
+              refId="Package\Sampling SSIS.Paths[Sort Output8]"
+              endId="Package\Sampling SSIS\MSymphonyKey.Inputs[Merge Join Left Input]"
               name="Sort Output"
-              startId="Package\Sampling SSIS\AlbumKeyPK.Outputs[Sort Output]" />
+              startId="Package\Sampling SSIS\SymphonyKeyPK.Outputs[Sort Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Sort Output5]"
+              refId="Package\Sampling SSIS.Paths[Sort Output7]"
+              endId="Package\Sampling SSIS\MSongKey.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Sampling SSIS\SongKeyFK.Outputs[Sort Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Sort Output4]"
               endId="Package\Sampling SSIS\MDateKey.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\Sampling SSIS\DateKeyPK.Outputs[Sort Output]" />
             <path
-              refId="Package\Sampling SSIS.Paths[Sort Output7]"
+              refId="Package\Sampling SSIS.Paths[Sort Output5]"
               endId="Package\Sampling SSIS\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\Sampling SSIS\ArtistKeyFK.Outputs[Sort Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Sort Output3]"
+              endId="Package\Sampling SSIS\Merge Join 2.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Sampling SSIS\AlbumKeyPK.Outputs[Sort Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Sort Output2]"
+              endId="Package\Sampling SSIS\Merge Join 1.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Sampling SSIS\GeoKeyPK.Outputs[Sort Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Sort Output1]"
+              endId="Package\Sampling SSIS\Merge Join 1.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Sampling SSIS\GeoKeyFK.Outputs[Sort Output]" />
+            <path
+              refId="Package\Sampling SSIS.Paths[Sort Output]"
+              endId="Package\Sampling SSIS\Merge Join 2.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Sampling SSIS\AlbumKeyFK.Outputs[Sort Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[Sort Output6]"
               endId="Package\Sampling SSIS\MDateKey.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\Sampling SSIS\DateKeyFK.Outputs[Sort Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Sort Output4]"
-              endId="Package\Sampling SSIS\MSongKey.Inputs[Merge Join Left Input]"
-              name="Sort Output"
-              startId="Package\Sampling SSIS\SongKeyFK.Outputs[Sort Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Sort Output3]"
-              endId="Package\Sampling SSIS\MSymphonyKey.Inputs[Merge Join Left Input]"
-              name="Sort Output"
-              startId="Package\Sampling SSIS\SymphonyKeyPK.Outputs[Sort Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Sort Output2]"
-              endId="Package\Sampling SSIS\MSymphonyKey.Inputs[Merge Join Right Input]"
-              name="Sort Output"
-              startId="Package\Sampling SSIS\SymphonyKeyFK.Outputs[Sort Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Sort Output1]"
-              endId="Package\Sampling SSIS\MSongLyrics.Inputs[Merge Join Right Input]"
-              name="Sort Output"
-              startId="Package\Sampling SSIS\LyricsKeyFK.Outputs[Sort Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Sort Output]"
-              endId="Package\Sampling SSIS\MSongLyrics.Inputs[Merge Join Left Input]"
-              name="Sort Output"
-              startId="Package\Sampling SSIS\LyricsKeyPK.Outputs[Sort Output]" />
-            <path
-              refId="Package\Sampling SSIS.Paths[Sort Output8]"
-              endId="Package\Sampling SSIS\Merge Join.Inputs[Merge Join Right Input]"
-              name="Sort Output"
-              startId="Package\Sampling SSIS\ArtistKeyPK.Outputs[Sort Output]" />
             <path
               refId="Package\Sampling SSIS.Paths[Sort Output13]"
               endId="Package\Sampling SSIS\MSongKey.Inputs[Merge Join Right Input]"
@@ -7731,103 +7731,195 @@
       <GraphLayout
         Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="153,42"
-          Id="Package\Sampling SSIS\SourceDimSong"
-          TopLeft="42.6666666666667,29.6666666666667" />
+          Size="135,42"
+          Id="Package\Sampling SSIS\LyricsKeyFK"
+          TopLeft="766,167.333333333333" />
         <NodeLayout
-          Size="146,42"
-          Id="Package\Sampling SSIS\30% sampling"
-          TopLeft="232.666666666667,30.6666666666667" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output]"
-          TopLeft="195.666666666667,51.1666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="37,0"
-              Start="0,0"
-              End="29.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="29.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="127,42"
+          Id="Package\Sampling SSIS\GeoKeyPK"
+          TopLeft="394,507.333333333333" />
         <NodeLayout
-          Size="149,42"
-          Id="Package\Sampling SSIS\DimSong_SSIS"
-          TopLeft="40.3333333333333,112" />
+          Size="179,42"
+          Id="Package\Sampling SSIS\SourceDimSymphony"
+          TopLeft="1134.55555555555,35.6666666666668" />
         <NodeLayout
-          Size="120,42"
-          Id="Package\Sampling SSIS\Multicast"
-          TopLeft="612,29.3333333333333" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 1]"
-          TopLeft="653.333333333334,71.3333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-538.5,40.6666666666667"
-              Start="0,0"
-              End="-538.5,33.1666666666667">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.5877192982456" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.5877192982456"
-                    Point2="0,16.5877192982456"
-                    Point3="-4,16.5877192982456" />
-                  <mssgle:LineSegment
-                    End="-534.5,16.5877192982456" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-534.5,16.5877192982456"
-                    Point2="-538.5,16.5877192982456"
-                    Point3="-538.5,20.5877192982456" />
-                  <mssgle:LineSegment
-                    End="-538.5,33.1666666666667" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="154,42"
+          Id="Package\Sampling SSIS\MSymphonyKey"
+          TopLeft="879.666666666667,110.666666666667" />
         <NodeLayout
-          Size="137,42"
-          Id="Package\Sampling SSIS\MSongLyrics"
-          TopLeft="882.333333333333,236" />
+          Size="139,42"
+          Id="Package\Sampling SSIS\Merge Join 2"
+          TopLeft="803.095238095238,298.095238095238" />
         <NodeLayout
           Size="156,42"
           Id="Package\Sampling SSIS\SourceDimLyrics"
           TopLeft="1146.66666666667,171.333333333333" />
         <NodeLayout
+          Size="126,42"
+          Id="Package\Sampling SSIS\MDateKey"
+          TopLeft="326.333333333333,437" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Sampling SSIS\Source DimArtistGeography"
+          TopLeft="144,508.333333333333" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Sampling SSIS\SongKeyFK"
+          TopLeft="330.666666666667,171.333333333333" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Sampling SSIS\SongKeyPK"
+          TopLeft="539.666666666667,121.333333333333" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Sampling SSIS\DimArtistGeography_SSIS"
+          TopLeft="145.666666666667,577.333333333333" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Sampling SSIS\Multicast"
+          TopLeft="612,29.3333333333333" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Sampling SSIS\DimSymphony_SSIS"
+          TopLeft="1137.66666666667,106.333333333333" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Sampling SSIS\SymphonyKeyFK"
+          TopLeft="777.666666666667,31.3333333333334" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Sampling SSIS\ArtistKeyPK"
+          TopLeft="737.714285714286,368.809523809524" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Sampling SSIS\Source DimArtist"
+          TopLeft="625.476190476191,298" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Sampling SSIS\DimLyrics_SSIS"
+          TopLeft="1147,234" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Sampling SSIS\DimArtist_SSIS"
+          TopLeft="888,506.333333333333" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Sampling SSIS\ArtistKeyFK"
+          TopLeft="590,369.666666666667" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Sampling SSIS\Source DimDate"
+          TopLeft="45.6666666666667,363.333333333333" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sampling SSIS\Merge Join 1"
+          TopLeft="453,576.666666666666" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Sampling SSIS\DimDate_SSIS"
+          TopLeft="43.3333333333333,436" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sampling SSIS\OLE DB Destination"
+          TopLeft="928.809523809524,370.952380952381" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Sampling SSIS\Multicast 2"
+          TopLeft="695,506.666666666666" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Sampling SSIS\DateKeyPK"
+          TopLeft="241.666666666667,367.333333333333" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Sampling SSIS\MSongLyrics"
+          TopLeft="882.333333333333,236" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Sampling SSIS\SourceFactParticipation"
+          TopLeft="95.6666666666666,169" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Sampling SSIS\SourceDimSong"
+          TopLeft="42.6666666666667,29.6666666666667" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Sampling SSIS\GeoKeyFK"
+          TopLeft="528,506.333333333333" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Sampling SSIS\DateKeyFK"
+          TopLeft="427,368.666666666667" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Sampling SSIS\AlbumKeyPK"
+          TopLeft="979.238095238095,298.095238095238" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Sampling SSIS\DimSong_SSIS"
+          TopLeft="40.3333333333333,112" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Sampling SSIS\Source DimAlbum"
+          TopLeft="1151.66666666667,296.666666666667" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Sampling SSIS\Multicast 1"
+          TopLeft="473.333333333334,297" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Sampling SSIS\AlbumKeyFK"
+          TopLeft="671.666666666667,215.238095238095" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Sampling SSIS\FactParticipation_SSIS"
+          TopLeft="253.333333333333,298" />
+        <NodeLayout
+          Size="128,42"
+          Id="Package\Sampling SSIS\MSongKey"
+          TopLeft="474.333333333334,231.333333333333" />
+        <NodeLayout
           Size="135,42"
           Id="Package\Sampling SSIS\LyricsKeyPK"
           TopLeft="971.333333333333,169" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Sampling SSIS\SymphonyKeyPK"
+          TopLeft="948.444444444445,32.7777777777778" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Sampling SSIS\30% sampling"
+          TopLeft="232.666666666667,30.6666666666667" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Sampling SSIS\Merge Join"
+          TopLeft="692,442" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output1]"
-          TopLeft="1146.66666666667,191.166666666667">
+          Id="Package\Sampling SSIS.Paths[Sort Output13]"
+          TopLeft="605.666666666667,163.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-40.3333333333321,0"
+              EndConnector="-47.3333333333333,68"
               Start="0,0"
-              End="-32.8333333333321,0">
+              End="-47.3333333333333,60.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-32.8333333333321,0" />
+                    End="0,36.2962962962963" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.2962962962963"
+                    Point2="0,40.2962962962963"
+                    Point3="-4,40.2962962962963" />
+                  <mssgle:LineSegment
+                    End="-43.3333333333333,40.2962962962963" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43.3333333333333,40.2962962962963"
+                    Point2="-47.3333333333333,40.2962962962963"
+                    Point3="-47.3333333333333,44.2962962962963" />
+                  <mssgle:LineSegment
+                    End="-47.3333333333333,60.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7837,7 +7929,41 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output]"
+          Id="Package\Sampling SSIS.Paths[Sort Output12]"
+          TopLeft="804.214285714286,410.809523809524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.8809523809524,31.190476190476"
+              Start="0,0"
+              End="-26.8809523809524,23.690476190476">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4867564046894" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4867564046894"
+                    Point2="0,18.4867564046894"
+                    Point3="-4,18.4867564046894" />
+                  <mssgle:LineSegment
+                    End="-22.8809523809524,18.4867564046894" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.8809523809524,18.4867564046894"
+                    Point2="-26.8809523809524,18.4867564046894"
+                    Point3="-26.8809523809524,22.4867564046894" />
+                  <mssgle:LineSegment
+                    End="-26.8809523809524,23.690476190476" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Sort Output11]"
           TopLeft="1038.83333333333,211">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -7870,46 +7996,8 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="135,42"
-          Id="Package\Sampling SSIS\LyricsKeyFK"
-          TopLeft="766,167.333333333333" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 2]"
-          TopLeft="705.6,71.3333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="127.9,95.9999999999999"
-              Start="0,0"
-              End="127.9,88.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.3333333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.3333333333333"
-                    Point2="0,29.3333333333333"
-                    Point3="4,29.3333333333333" />
-                  <mssgle:LineSegment
-                    End="123.9,29.3333333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="123.9,29.3333333333333"
-                    Point2="127.9,29.3333333333333"
-                    Point3="127.9,33.3333333333333" />
-                  <mssgle:LineSegment
-                    End="127.9,88.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output1]"
+          Id="Package\Sampling SSIS.Paths[Sort Output10]"
           TopLeft="833.5,209.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -7942,94 +8030,8 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="152,42"
-          Id="Package\Sampling SSIS\DimLyrics_SSIS"
-          TopLeft="1147,234" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Merge Join Output]"
-          TopLeft="1019.33333333333,256">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="127.666666666667,0"
-              Start="0,0"
-              End="120.166666666667,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="120.166666666667,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="179,42"
-          Id="Package\Sampling SSIS\SourceDimSymphony"
-          TopLeft="1134.55555555555,35.6666666666668" />
-        <NodeLayout
-          Size="157,42"
-          Id="Package\Sampling SSIS\SymphonyKeyPK"
-          TopLeft="948.444444444445,32.7777777777778" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output2]"
-          TopLeft="1134.55555555555,55.2222222222223">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-29.1111111111095,0"
-              Start="0,0"
-              End="-21.6111111111095,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-21.6111111111095,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="157,42"
-          Id="Package\Sampling SSIS\SymphonyKeyFK"
-          TopLeft="777.666666666667,31.3333333333334" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 4]"
-          TopLeft="732,51.3333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="45.6666666666667,0"
-              Start="0,0"
-              End="38.1666666666667,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="38.1666666666667,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Sampling SSIS\MSymphonyKey"
-          TopLeft="879.666666666667,110.666666666667" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output2]"
+          Id="Package\Sampling SSIS.Paths[Sort Output9]"
           TopLeft="856.166666666667,73.3333333333334">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8063,7 +8065,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output3]"
+          Id="Package\Sampling SSIS.Paths[Sort Output8]"
           TopLeft="1026.94444444444,74.7777777777778">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8096,106 +8098,8 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174,42"
-          Id="Package\Sampling SSIS\DimSymphony_SSIS"
-          TopLeft="1137.66666666667,106.333333333333" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Merge Join Output1]"
-          TopLeft="1033.66666666667,129.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="104,0"
-              Start="0,0"
-              End="96.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="96.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="189,42"
-          Id="Package\Sampling SSIS\SourceFactParticipation"
-          TopLeft="95.6666666666666,169" />
-        <NodeLayout
-          Size="132,42"
-          Id="Package\Sampling SSIS\SongKeyPK"
-          TopLeft="539.666666666667,121.333333333333" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 3]"
-          TopLeft="660.8,71.3333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-55.1333333333332,50"
-              Start="0,0"
-              End="-55.1333333333332,42.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.4264705882353" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.4264705882353"
-                    Point2="0,22.4264705882353"
-                    Point3="-4,22.4264705882353" />
-                  <mssgle:LineSegment
-                    End="-51.1333333333332,22.4264705882353" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-51.1333333333332,22.4264705882353"
-                    Point2="-55.1333333333332,22.4264705882353"
-                    Point3="-55.1333333333332,26.4264705882353" />
-                  <mssgle:LineSegment
-                    End="-55.1333333333332,42.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="132,42"
-          Id="Package\Sampling SSIS\SongKeyFK"
-          TopLeft="330.666666666667,171.333333333333" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output3]"
-          TopLeft="284.666666666667,191.166666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="46,0"
-              Start="0,0"
-              End="38.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="38.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="128,42"
-          Id="Package\Sampling SSIS\MSongKey"
-          TopLeft="474.333333333334,231.333333333333" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output4]"
+          Id="Package\Sampling SSIS.Paths[Sort Output7]"
           TopLeft="462.666666666667,192.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8214,164 +8118,6 @@
                     Point3="55.666666666667,4" />
                   <mssgle:LineSegment
                     End="55.666666666667,31.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Sampling SSIS\Multicast 1"
-          TopLeft="473.333333333334,297" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Merge Join Output2]"
-          TopLeft="538.333333333334,273.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,23.6666666666667"
-              Start="0,0"
-              End="0,16.1666666666667">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.1666666666667" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="184,42"
-          Id="Package\Sampling SSIS\FactParticipation_SSIS"
-          TopLeft="253.333333333333,298" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 11]"
-          TopLeft="473.333333333334,318.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-36,0"
-              Start="0,0"
-              End="-28.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-28.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Sampling SSIS\Source DimDate"
-          TopLeft="45.6666666666667,363.333333333333" />
-        <NodeLayout
-          Size="126,42"
-          Id="Package\Sampling SSIS\MDateKey"
-          TopLeft="326.333333333333,437" />
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Sampling SSIS\DateKeyPK"
-          TopLeft="241.666666666667,367.333333333333" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output4]"
-          TopLeft="200.666666666667,386.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="41,0"
-              Start="0,0"
-              End="33.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="33.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Sampling SSIS\DateKeyFK"
-          TopLeft="427,368.666666666667" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 21]"
-          TopLeft="518,339">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-26.0000000000002,29.6666666666666"
-              Start="0,0"
-              End="-26.0000000000002,22.1666666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8.08308004052683" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8.08308004052683"
-                    Point2="0,12.0830800405268"
-                    Point3="-4,12.0830800405268" />
-                  <mssgle:LineSegment
-                    End="-22.0000000000002,12.0830800405268" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-22.0000000000002,12.0830800405268"
-                    Point2="-26.0000000000002,12.0830800405268"
-                    Point3="-26.0000000000002,16.0830800405268" />
-                  <mssgle:LineSegment
-                    End="-26.0000000000002,22.1666666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output5]"
-          TopLeft="306.666666666667,409.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="63.0000000000001,27.6666666666665"
-              Start="0,0"
-              End="63.0000000000001,20.1666666666665">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.3918495297805" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.3918495297805"
-                    Point2="0,16.3918495297805"
-                    Point3="4,16.3918495297805" />
-                  <mssgle:LineSegment
-                    End="59.0000000000001,16.3918495297805" />
-                  <mssgle:CubicBezierSegment
-                    Point1="59.0000000000001,16.3918495297805"
-                    Point2="63.0000000000001,16.3918495297805"
-                    Point3="63.0000000000001,20.3918495297805" />
-                  <mssgle:LineSegment
-                    End="63.0000000000001,20.1666666666665" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8414,122 +8160,8 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Sampling SSIS\DimDate_SSIS"
-          TopLeft="43.3333333333333,436" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Merge Join Output3]"
-          TopLeft="326.333333333333,457.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-136,0"
-              Start="0,0"
-              End="-128.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-128.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Sampling SSIS\Source DimArtist"
-          TopLeft="625.476190476191,298" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Sampling SSIS\DimArtist_SSIS"
-          TopLeft="888,506.333333333333" />
-        <NodeLayout
-          Size="133,42"
-          Id="Package\Sampling SSIS\ArtistKeyPK"
-          TopLeft="737.714285714286,368.809523809524" />
-        <NodeLayout
-          Size="133,42"
-          Id="Package\Sampling SSIS\ArtistKeyFK"
-          TopLeft="590,369.666666666667" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output5]"
-          TopLeft="704.476190476191,340">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="99.7380952380952,28.8095238095239"
-              Start="0,0"
-              End="99.7380952380952,21.3095238095239">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.4047619047619" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.4047619047619"
-                    Point2="0,14.4047619047619"
-                    Point3="4,14.4047619047619" />
-                  <mssgle:LineSegment
-                    End="95.7380952380952,14.4047619047619" />
-                  <mssgle:CubicBezierSegment
-                    Point1="95.7380952380952,14.4047619047619"
-                    Point2="99.7380952380952,14.4047619047619"
-                    Point3="99.7380952380952,18.4047619047619" />
-                  <mssgle:LineSegment
-                    End="99.7380952380952,21.3095238095239" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 31]"
-          TopLeft="558.666666666667,339">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="97.8333333333331,30.6666666666666"
-              Start="0,0"
-              End="97.8333333333331,23.1666666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8.49037487335357" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8.49037487335357"
-                    Point2="0,12.4903748733536"
-                    Point3="4,12.4903748733536" />
-                  <mssgle:LineSegment
-                    End="93.8333333333331,12.4903748733536" />
-                  <mssgle:CubicBezierSegment
-                    Point1="93.8333333333331,12.4903748733536"
-                    Point2="97.8333333333331,12.4903748733536"
-                    Point3="97.8333333333331,16.4903748733536" />
-                  <mssgle:LineSegment
-                    End="97.8333333333331,23.1666666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Sampling SSIS\Merge Join"
-          TopLeft="692,442" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output7]"
+          Id="Package\Sampling SSIS.Paths[Sort Output5]"
           TopLeft="656.5,411.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8563,31 +8195,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output8]"
-          TopLeft="804.214285714286,410.809523809524">
+          Id="Package\Sampling SSIS.Paths[Sort Output4]"
+          TopLeft="306.666666666667,409.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-26.8809523809524,31.190476190476"
+              EndConnector="63.0000000000001,27.6666666666665"
               Start="0,0"
-              End="-26.8809523809524,23.690476190476">
+              End="63.0000000000001,20.1666666666665">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.4867564046894" />
+                    End="0,12.3918495297805" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.4867564046894"
-                    Point2="0,18.4867564046894"
-                    Point3="-4,18.4867564046894" />
+                    Point1="0,12.3918495297805"
+                    Point2="0,16.3918495297805"
+                    Point3="4,16.3918495297805" />
                   <mssgle:LineSegment
-                    End="-22.8809523809524,18.4867564046894" />
+                    End="59.0000000000001,16.3918495297805" />
                   <mssgle:CubicBezierSegment
-                    Point1="-22.8809523809524,18.4867564046894"
-                    Point2="-26.8809523809524,18.4867564046894"
-                    Point3="-26.8809523809524,22.4867564046894" />
+                    Point1="59.0000000000001,16.3918495297805"
+                    Point2="63.0000000000001,16.3918495297805"
+                    Point3="63.0000000000001,20.3918495297805" />
                   <mssgle:LineSegment
-                    End="-26.8809523809524,23.690476190476" />
+                    End="63.0000000000001,20.1666666666665" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8596,24 +8228,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Sampling SSIS\Multicast 2"
-          TopLeft="695,506.666666666666" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Merge Join Output4]"
-          TopLeft="758.5,484">
+          Id="Package\Sampling SSIS.Paths[Sort Output3]"
+          TopLeft="979.238095238095,319.095238095238">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,22.6666666666667"
+              EndConnector="-37.1428571428565,0"
               Start="0,0"
-              End="0,15.1666666666667">
+              End="-29.6428571428565,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.1666666666667" />
+                    End="-29.6428571428565,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8623,93 +8251,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 12]"
-          TopLeft="825,527.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="62.9999999999999,0"
-              Start="0,0"
-              End="55.4999999999999,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="55.4999999999999,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="209,42"
-          Id="Package\Sampling SSIS\Source DimArtistGeography"
-          TopLeft="144,508.333333333333" />
-        <NodeLayout
-          Size="201,42"
-          Id="Package\Sampling SSIS\DimArtistGeography_SSIS"
-          TopLeft="145.666666666667,577.333333333333" />
-        <NodeLayout
-          Size="127,42"
-          Id="Package\Sampling SSIS\GeoKeyPK"
-          TopLeft="394,507.333333333333" />
-        <NodeLayout
-          Size="127,42"
-          Id="Package\Sampling SSIS\GeoKeyFK"
-          TopLeft="528,506.333333333333" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Multicast Output 22]"
-          TopLeft="695,527.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-40,0"
-              Start="0,0"
-              End="-32.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-32.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[OLE DB Source Output6]"
-          TopLeft="353,528.833333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="41,0"
-              Start="0,0"
-              End="33.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="33.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="139,42"
-          Id="Package\Sampling SSIS\Merge Join 1"
-          TopLeft="453,576.666666666666" />
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output9]"
+          Id="Package\Sampling SSIS.Paths[Sort Output2]"
           TopLeft="457.5,549.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8743,7 +8285,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output10]"
+          Id="Package\Sampling SSIS.Paths[Sort Output1]"
           TopLeft="591.5,548.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8777,19 +8319,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Merge Join Output5]"
-          TopLeft="453,598">
+          Id="Package\Sampling SSIS.Paths[Sort Output]"
+          TopLeft="740.666666666667,257.238095238095">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-106.333333333333,0"
+              EndConnector="131.928571428571,40.8571428571429"
               Start="0,0"
-              End="-98.8333333333335,0">
+              End="131.928571428571,33.3571428571429">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-98.8333333333335,0" />
+                    End="0,16.4285714285715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.4285714285715"
+                    Point2="0,20.4285714285715"
+                    Point3="4,20.4285714285715" />
+                  <mssgle:LineSegment
+                    End="127.928571428571,20.4285714285715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="127.928571428571,20.4285714285715"
+                    Point2="131.928571428571,20.4285714285715"
+                    Point3="131.928571428571,24.4285714285715" />
+                  <mssgle:LineSegment
+                    End="131.928571428571,33.3571428571429" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8798,24 +8352,142 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Sampling SSIS\OLE DB Destination"
-          TopLeft="928.809523809524,370.952380952381" />
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Sampling SSIS\Source DimAlbum"
-          TopLeft="1151.66666666667,296.666666666667" />
-        <NodeLayout
-          Size="138,42"
-          Id="Package\Sampling SSIS\AlbumKeyPK"
-          TopLeft="979.238095238095,298.095238095238" />
-        <NodeLayout
-          Size="138,42"
-          Id="Package\Sampling SSIS\AlbumKeyFK"
-          TopLeft="671.666666666667,215.238095238095" />
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Sampling Selected Output]"
+          TopLeft="378.666666666667,51">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="233.333333333333,0"
+              Start="0,0"
+              End="225.833333333333,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="225.833333333333,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="54.9746158854167,5,115.8841015625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Sampling SSIS.Paths[OLE DB Source Output7]"
+          TopLeft="353,528.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41,0"
+              Start="0,0"
+              End="33.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="33.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output6]"
+          TopLeft="1146.66666666667,191.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-40.3333333333321,0"
+              Start="0,0"
+              End="-32.8333333333321,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-32.8333333333321,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output5]"
+          TopLeft="1134.55555555555,55.2222222222223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29.1111111111095,0"
+              Start="0,0"
+              End="-21.6111111111095,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-21.6111111111095,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output4]"
+          TopLeft="284.666666666667,191.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46,0"
+              Start="0,0"
+              End="38.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="38.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output3]"
+          TopLeft="200.666666666667,386.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41,0"
+              Start="0,0"
+              End="33.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="33.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output2]"
           TopLeft="1151.66666666667,318.380952380952">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8828,6 +8500,62 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="-26.9285714285706,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output1]"
+          TopLeft="195.666666666667,51.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37,0"
+              Start="0,0"
+              End="29.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="29.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[OLE DB Source Output]"
+          TopLeft="704.476190476191,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99.7380952380952,28.8095238095239"
+              Start="0,0"
+              End="99.7380952380952,21.3095238095239">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.4047619047619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.4047619047619"
+                    Point2="0,14.4047619047619"
+                    Point3="4,14.4047619047619" />
+                  <mssgle:LineSegment
+                    End="95.7380952380952,14.4047619047619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="95.7380952380952,14.4047619047619"
+                    Point2="99.7380952380952,14.4047619047619"
+                    Point3="99.7380952380952,18.4047619047619" />
+                  <mssgle:LineSegment
+                    End="99.7380952380952,21.3095238095239" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8870,36 +8598,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="139,42"
-          Id="Package\Sampling SSIS\Merge Join 2"
-          TopLeft="803.095238095238,298.095238095238" />
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output11]"
-          TopLeft="740.666666666667,257.238095238095">
+          Id="Package\Sampling SSIS.Paths[Multicast Output 4]"
+          TopLeft="732,51.3333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="131.928571428571,40.8571428571429"
+              EndConnector="45.6666666666667,0"
               Start="0,0"
-              End="131.928571428571,33.3571428571429">
+              End="38.1666666666667,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.4285714285715" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.4285714285715"
-                    Point2="0,20.4285714285715"
-                    Point3="4,20.4285714285715" />
-                  <mssgle:LineSegment
-                    End="127.928571428571,20.4285714285715" />
-                  <mssgle:CubicBezierSegment
-                    Point1="127.928571428571,20.4285714285715"
-                    Point2="131.928571428571,20.4285714285715"
-                    Point3="131.928571428571,24.4285714285715" />
-                  <mssgle:LineSegment
-                    End="131.928571428571,33.3571428571429" />
+                    End="38.1666666666667,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8909,19 +8621,233 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output12]"
-          TopLeft="979.238095238095,319.095238095238">
+          Id="Package\Sampling SSIS.Paths[Multicast Output 31]"
+          TopLeft="558.666666666667,339">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-37.1428571428565,0"
+              EndConnector="97.8333333333331,30.6666666666666"
               Start="0,0"
-              End="-29.6428571428565,0">
+              End="97.8333333333331,23.1666666666666">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-29.6428571428565,0" />
+                    End="0,8.49037487335357" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.49037487335357"
+                    Point2="0,12.4903748733536"
+                    Point3="4,12.4903748733536" />
+                  <mssgle:LineSegment
+                    End="93.8333333333331,12.4903748733536" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93.8333333333331,12.4903748733536"
+                    Point2="97.8333333333331,12.4903748733536"
+                    Point3="97.8333333333331,16.4903748733536" />
+                  <mssgle:LineSegment
+                    End="97.8333333333331,23.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 3]"
+          TopLeft="660.8,71.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-55.1333333333332,50"
+              Start="0,0"
+              End="-55.1333333333332,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.4264705882353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.4264705882353"
+                    Point2="0,22.4264705882353"
+                    Point3="-4,22.4264705882353" />
+                  <mssgle:LineSegment
+                    End="-51.1333333333332,22.4264705882353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-51.1333333333332,22.4264705882353"
+                    Point2="-55.1333333333332,22.4264705882353"
+                    Point3="-55.1333333333332,26.4264705882353" />
+                  <mssgle:LineSegment
+                    End="-55.1333333333332,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 22]"
+          TopLeft="705.6,71.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.9,95.9999999999999"
+              Start="0,0"
+              End="127.9,88.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.3333333333333"
+                    Point2="0,29.3333333333333"
+                    Point3="4,29.3333333333333" />
+                  <mssgle:LineSegment
+                    End="123.9,29.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.9,29.3333333333333"
+                    Point2="127.9,29.3333333333333"
+                    Point3="127.9,33.3333333333333" />
+                  <mssgle:LineSegment
+                    End="127.9,88.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 21]"
+          TopLeft="518,339">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.0000000000002,29.6666666666666"
+              Start="0,0"
+              End="-26.0000000000002,22.1666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.08308004052683" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.08308004052683"
+                    Point2="0,12.0830800405268"
+                    Point3="-4,12.0830800405268" />
+                  <mssgle:LineSegment
+                    End="-22.0000000000002,12.0830800405268" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.0000000000002,12.0830800405268"
+                    Point2="-26.0000000000002,12.0830800405268"
+                    Point3="-26.0000000000002,16.0830800405268" />
+                  <mssgle:LineSegment
+                    End="-26.0000000000002,22.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 2]"
+          TopLeft="695,527.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-40,0"
+              Start="0,0"
+              End="-32.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-32.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 12]"
+          TopLeft="825,527.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.9999999999999,0"
+              Start="0,0"
+              End="55.4999999999999,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.4999999999999,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 11]"
+          TopLeft="653.333333333334,71.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-538.5,40.6666666666667"
+              Start="0,0"
+              End="-538.5,33.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5877192982456" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5877192982456"
+                    Point2="0,16.5877192982456"
+                    Point3="-4,16.5877192982456" />
+                  <mssgle:LineSegment
+                    End="-534.5,16.5877192982456" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-534.5,16.5877192982456"
+                    Point2="-538.5,16.5877192982456"
+                    Point3="-538.5,20.5877192982456" />
+                  <mssgle:LineSegment
+                    End="-538.5,33.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Multicast Output 1]"
+          TopLeft="473.333333333334,318.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36,0"
+              Start="0,0"
+              End="-28.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-28.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8932,6 +8858,138 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sampling SSIS.Paths[Merge Join Output6]"
+          TopLeft="1033.66666666667,129.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104,0"
+              Start="0,0"
+              End="96.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="96.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Merge Join Output5]"
+          TopLeft="453,598">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-106.333333333333,0"
+              Start="0,0"
+              End="-98.8333333333335,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-98.8333333333335,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Merge Join Output4]"
+          TopLeft="538.333333333334,273.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.6666666666667"
+              Start="0,0"
+              End="0,16.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Merge Join Output3]"
+          TopLeft="326.333333333333,457.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-136,0"
+              Start="0,0"
+              End="-128.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-128.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Merge Join Output2]"
+          TopLeft="1019.33333333333,256">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.666666666667,0"
+              Start="0,0"
+              End="120.166666666667,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="120.166666666667,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Merge Join Output1]"
+          TopLeft="758.5,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,22.6666666666667"
+              Start="0,0"
+              End="0,15.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sampling SSIS.Paths[Merge Join Output]"
           TopLeft="872.595238095238,340.095238095238">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8964,119 +9022,9 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sampling Selected Output]"
-          TopLeft="378.666666666667,51">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="233.333333333333,0"
-              Start="0,0"
-              End="225.833333333333,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="225.833333333333,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="54.9746158854167,5,115.8841015625,11.6630859375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sampling SSIS.Paths[Sort Output13]"
-          TopLeft="605.666666666667,163.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-47.3333333333333,68"
-              Start="0,0"
-              End="-47.3333333333333,60.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.2962962962963" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,36.2962962962963"
-                    Point2="0,40.2962962962963"
-                    Point3="-4,40.2962962962963" />
-                  <mssgle:LineSegment
-                    End="-43.3333333333333,40.2962962962963" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-43.3333333333333,40.2962962962963"
-                    Point2="-47.3333333333333,40.2962962962963"
-                    Point3="-47.3333333333333,44.2962962962963" />
-                  <mssgle:LineSegment
-                    End="-47.3333333333333,60.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\SourceDimSong">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\DimSong_SSIS">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\SourceDimLyrics">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\DimLyrics_SSIS">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Sampling SSIS\SourceDimSymphony">
     <Properties>
@@ -9091,85 +9039,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\DimSymphony_SSIS">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\SourceFactParticipation">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\FactParticipation_SSIS">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\Source DimDate">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\DimDate_SSIS">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\Source DimArtist">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sampling SSIS\DimArtist_SSIS">
+    design-time-name="Package\Sampling SSIS\SourceDimLyrics">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -9208,6 +9078,84 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\DimSymphony_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\Source DimArtist">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\DimLyrics_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\DimArtist_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\Source DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\DimDate_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Sampling SSIS\OLE DB Destination">
     <Properties>
       <Property>
@@ -9221,7 +9169,59 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\SourceFactParticipation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\SourceDimSong">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\DimSong_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Sampling SSIS\Source DimAlbum">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sampling SSIS\FactParticipation_SSIS">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
