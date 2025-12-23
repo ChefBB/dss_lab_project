@@ -6,7 +6,6 @@ import os
 # 0) PATH INPUT / OUTPUT
 # ============================================================
 
-# BASE = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project"
 BASE = os.getcwd()
 
 ARTISTS_PATH = os.path.join(BASE, r"dataset/cleaned_json/artists_clean.json")
@@ -44,6 +43,21 @@ with open(os.path.join(OUT_DIR, "DimDate.csv"), "w", newline="", encoding="utf-8
     w.writerow(["DateKey", "Year", "Month", "Day", "Season"])
 
     for d in dates:
+        if not d["month"]:
+            d["month"] = 1
+            d["season"] = "Unknown"
+        elif not d["season"]:
+            if d["month"] in [1, 2, 3]:
+                d["season"] = "Winter"
+            elif d["month"] in [4, 5, 6]:
+                d["season"] = "Spring"
+            elif d["month"] in [7, 8, 9]:
+                d["season"] = "Summer"
+            else:
+                d["season"] = "Autumn"
+            
+        if not d["day"]:
+            d["day"] = 1
         w.writerow([
             d["date_id"],
             d["year"],
