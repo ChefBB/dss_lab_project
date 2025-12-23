@@ -2,16 +2,16 @@ import pyodbc
 import csv
 import os
 
-# =====================================================================
-# 0) CONFIGURAZIONE DATABASE + PATH CSV
-# =====================================================================
 
 SERVER = "131.114.50.57"
 DATABASE = "Group_ID_8_DB"
 USERNAME = "Group_ID_8"
 PASSWORD = "CU83R89P"
 
-CSV_DIR = r"C:\Users\Win10\OneDrive - Università degli Studi di Torino\Desktop\repo_dss\dss_lab_project\dataset\Assignment5_CSV"
+#path 
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_DIR = os.path.join(BASE_DIR, "dataset", "Assignment5_CSV")
 
 # SOLO le tabelle droppate
 TABLES = [
@@ -19,9 +19,7 @@ TABLES = [
     ("FactParticipation.csv", "FactParticipation")
 ]
 
-# =====================================================================
-# 1) CONNESSIONE
-# =====================================================================
+# connect to database
 
 print("Connessione al database...")
 conn = pyodbc.connect(
@@ -29,11 +27,9 @@ conn = pyodbc.connect(
     f"SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}"
 )
 cursor = conn.cursor()
-print("✔ Connessione stabilita.\n")
+print(" Connessione stabilita.\n")
 
-# =====================================================================
-# 2) CHECK SE TABELLA È VUOTA
-# =====================================================================
+# check if table is empty
 
 def table_is_empty(table):
     try:
@@ -42,9 +38,31 @@ def table_is_empty(table):
     except:
         return True
 
-# =====================================================================
-# 3) UPLOAD CSV (BATCH)
-# =====================================================================
+# casting function
+
+def cast_value(value, col_name):
+    
+    if value in ("", "NULL", "None", None):
+        return None
+
+    
+    if col_name == "Streams1Month":
+        try:
+            return int(float(value))   # gestisce "123", "123.0"
+        except:
+            return None
+
+    
+    if col_name == "IsPrimary":
+        try:
+            return int(value)
+        except:
+            return None
+
+    
+    return value
+
+# upload function with casting
 
 def upload_csv(filename, table_name):
     file_path = os.path.join(CSV_DIR, filename)
@@ -70,7 +88,11 @@ def upload_csv(filename, table_name):
         count = 0
 
         for row in reader:
-            clean_row = [None if v in ("", "NULL") else v for v in row]
+            clean_row = [
+                cast_value(v, cols[i])
+                for i, v in enumerate(row)
+            ]
+
             batch.append(clean_row)
 
             if len(batch) == 100:
@@ -86,9 +108,7 @@ def upload_csv(filename, table_name):
 
     print(f"✔ Inserite {count} righe in {table_name}\n")
 
-# =====================================================================
-# 4) ESECUZIONE
-# =====================================================================
+# esecuzione caricamento
 
 print("INIZIO CARICAMENTO...\n")
 

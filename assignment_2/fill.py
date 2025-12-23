@@ -10,11 +10,26 @@ import time
 
 def mb_lookup(entity: str, mbid: str, inc=None):
     """
-    Requests an entity from musicbrainz.
+    Requests an entity from musicbrainz through a single
+    lookup.
     
     Parameters
     ----------
-    entity: 
+    entity: str
+        type of the entity to look for
+        
+    mbid: str
+        id of the item to look for
+
+    inc : str, optional
+        Additional data to include in the response, as supported by the
+        MusicBrainz `inc` parameter
+
+    Returns
+    -------
+    dict
+        JSON response returned by the MusicBrainz API
+
     """
     base = f'https://musicbrainz.org/ws/2/{entity}/{mbid}'
     params = {'fmt': 'json'}
