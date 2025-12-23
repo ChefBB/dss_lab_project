@@ -302,8 +302,12 @@ for artist in artists:
                 ans = geo_query(artist['birth_place'])[0]
                 if ans['address'].get('county'):
                     artist['province'] = ans['address']['county']
+                else:
+                    artist['province'] = 'Unknown'
                 if ans['address'].get('state'):
                     artist['region'] = ans['address']['state']
+                else:
+                    artist['province'] = 'Unknown'
                 artist['country'] = ans['address']['country']
                 artist['latitude'] = ans['lat']
                 artist['longitude'] = ans['lon']

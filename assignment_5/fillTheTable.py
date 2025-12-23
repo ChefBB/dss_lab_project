@@ -27,13 +27,6 @@ parts   = json.load(open(PART_PATH,   "r", encoding="utf-8"))
 dates   = json.load(open(DATES_PATH,  "r", encoding="utf-8"))
 geo     = json.load(open(GEO_PATH,    "r", encoding="utf-8"))
 
-print("✔ Loaded datasets:")
-print(" Artists:", len(artists))
-print(" Tracks:", len(tracks))
-print(" Participation:", len(parts))
-print(" Dates:", len(dates))
-print(" Geography:", len(geo))
-
 # ============================================================
 # 2) DIM DATE
 # ============================================================
@@ -65,8 +58,7 @@ with open(os.path.join(OUT_DIR, "DimDate.csv"), "w", newline="", encoding="utf-8
             d["day"],
             d["season"]
         ])
-
-print("✔ DimDate.csv written")
+        
 
 # ============================================================
 # 3) DIM ARTIST GEOGRAPHY
@@ -88,7 +80,6 @@ with open(os.path.join(OUT_DIR, "DimArtistGeography.csv"), "w", newline="", enco
             g["longitude"]
         ])
 
-print("✔ DimArtistGeography.csv written")
 
 # ============================================================
 # 4) DIM ARTIST  (NO BIRTHPLACE QUI!)
@@ -117,7 +108,6 @@ with open(os.path.join(OUT_DIR, "DimArtist.csv"), "w", newline="", encoding="utf
             a["geo_id"]
         ])
 
-print("✔ DimArtist.csv written")
 
 # ============================================================
 # 5) DIM ALBUM
@@ -141,7 +131,6 @@ with open(os.path.join(OUT_DIR, "DimAlbum.csv"), "w", newline="", encoding="utf-
     for key, row in album_seen.items():
         w.writerow([key] + row)
 
-print("✔ DimAlbum.csv written")
 
 # ============================================================
 # 6) DIM LYRICS
@@ -175,7 +164,6 @@ with open(os.path.join(OUT_DIR, "DimLyrics.csv"), "w", newline="", encoding="utf
             t["lyrics"]
         ])
 
-print("✔ DimLyrics.csv written")
 
 # ============================================================
 # 7) DIM SYMPHONY
@@ -202,7 +190,6 @@ with open(os.path.join(OUT_DIR, "DimSymphony.csv"), "w", newline="", encoding="u
             t["loudness"]
         ])
 
-print("✔ DimSymphony.csv written")
 
 # ============================================================
 # 8) DIM SONG
@@ -232,7 +219,6 @@ with open(os.path.join(OUT_DIR, "DimSong.csv"), "w", newline="", encoding="utf-8
             t["category"]
         ])
 
-print("✔ DimSong.csv written")
 
 # ============================================================
 # 9) FACT PARTICIPATION
@@ -255,5 +241,3 @@ with open(os.path.join(OUT_DIR, "FactParticipation.csv"), "w", newline="", encod
                 tr["streams@1month"],
                 p["IsPrimary_final"]
             ])
-
-print("\n🎉 Assignment 5 COMPLETATO — TUTTI I CSV GENERATI CORRETTAMENTE ✔")
