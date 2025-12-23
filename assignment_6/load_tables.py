@@ -1,11 +1,6 @@
-
 """
-
 This script loads the CSV files produced by export_dw_csv.py
 into the SQL Server Data Warehouse.
-
-The loading order respects foreign key dependencies.
-Each table is populated only if it is empty.
 
 """
 
@@ -14,17 +9,19 @@ import csv
 import os
 from typing import List, Tuple
 
-# database connection settings
+# connection settings
 
 SERVER = "131.114.50.57"
 DATABASE = "Group_ID_8_DB"
 USERNAME = "Group_ID_8"
 PASSWORD = "CU83R89P"
 
-BASE_DIR = os.getcwd()
-CSV_DIR = os.path.join(BASE_DIR, "dataset/Assignment5_CSV")
+# path settings
 
-# tables to load (in order)
+BASE_DIR = os.getcwd()
+CSV_DIR = os.path.join(BASE_DIR, "dataset", "Assignment5_CSV")
+
+#tables to load
 
 TABLES: List[Tuple[str, str]] = [
     ("DimDate.csv",            "DimDate"),
@@ -39,7 +36,7 @@ TABLES: List[Tuple[str, str]] = [
 
 # connect to database
 
-print("Connecting to SQL Server")
+print("Connecting to SQL Server...")
 
 conn = pyodbc.connect(
     f"DRIVER={{ODBC Driver 17 for SQL Server}};"
@@ -52,12 +49,7 @@ print("Connection established.\n")
 # utility functions
 
 def table_is_empty(table_name: str) -> bool:
-    """
-    Checks whether a database table is empty.
-    If the table does not exist or an error occurs,
-    it is treated as empty.
-
-    """
+  
     try:
         cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
         return cursor.fetchone()[0] == 0
@@ -65,8 +57,27 @@ def table_is_empty(table_name: str) -> bool:
         return True
 
 
+def cast_value(value, column_name):
+    if value in ("", "NULL", "None", None):
+        return None
+
+    if column_name == "Streams1Month":
+        try:
+            return int(float(value))  
+        except Exception:
+            return None
+
+    if column_name == "IsPrimary":
+        try:
+            return int(value)
+        except Exception:
+            return None
+
+    return value
+
+
 def upload_csv_to_table(csv_file: str, table_name: str, batch_size: int = 500) -> None:
-    
+
     file_path = os.path.join(CSV_DIR, csv_file)
 
     if not os.path.exists(file_path):
@@ -77,7 +88,7 @@ def upload_csv_to_table(csv_file: str, table_name: str, batch_size: int = 500) -
         print(f"Table {table_name} already populated — skipped.\n")
         return
 
-    print(f" Loading {csv_file} → {table_name}")
+    print(f"Loading {csv_file} → {table_name}")
 
     with open(file_path, "r", encoding="utf-8") as f:
         reader = csv.reader(f)
@@ -90,7 +101,11 @@ def upload_csv_to_table(csv_file: str, table_name: str, batch_size: int = 500) -
         inserted = 0
 
         for row in reader:
-            clean_row = [None if v in ("", "NULL") else v for v in row]
+            clean_row = [
+                cast_value(v, columns[i])
+                for i, v in enumerate(row)
+            ]
+
             batch.append(clean_row)
 
             if len(batch) == batch_size:
@@ -104,17 +119,17 @@ def upload_csv_to_table(csv_file: str, table_name: str, batch_size: int = 500) -
             conn.commit()
             inserted += len(batch)
 
-    print(f" Inserted {inserted} rows into {table_name}\n")
+    print(f"Inserted {inserted} rows into {table_name}\n")
 
-# main
+#main function
 
 def main():
-    print(" Starting loading\n")
+    print("Starting DW loading...\n")
 
     for csv_file, table_name in TABLES:
         upload_csv_to_table(csv_file, table_name)
 
-    print(" DW populated.")
+    print("DW populated successfully.")
 
 if __name__ == "__main__":
     main()
