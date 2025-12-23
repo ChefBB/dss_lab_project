@@ -1,0 +1,103 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>Group_ID_8_Cube</Database>
+    <Server>http://131.114.50.57/olap/msmdpump.dll</Server>
+    <ConnectionString>Data Source=http://131.114.50.57/olap/msmdpump.dll;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>HY6WKbXZdLvAXnrRGpCBAXrRci8=23/12/2025 21:36:5523/12/2025 21:36:13</TimeStamp>
+        <ID>
+          <String>Group ID 8 DB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>fa2Mbf/BeJnKkjTOkGvl3cEa3Dk=23/12/2025 14:35:1623/12/2025 21:39:03</TimeStamp>
+        <ID>
+          <String>Group ID 8 DB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>v5tFt+eQONc12dfQQrxgy+kDs90=23/12/2025 14:21:5823/12/2025 21:39:27</TimeStamp>
+        <ID>
+          <String>Dim Date</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>h7JPCjyUc3ck8cQlD8YfGlNctsQ=23/12/2025 14:32:3323/12/2025 21:40:17</TimeStamp>
+        <ID>
+          <String>Dim Album</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>BWZTNYCjxXJH2xiIAlwG+1RO3fQ=23/12/2025 14:32:3323/12/2025 21:40:31</TimeStamp>
+        <ID>
+          <String>Dim Artist Geography</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>xhgmS20nJKXlVTHTv+Rk6ZFrck8=22/12/2025 00:20:2923/12/2025 21:40:41</TimeStamp>
+        <ID>
+          <String>Artist</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>4pT/xief8enfE4XbVlRqeQGMy6I=23/12/2025 14:32:4323/12/2025 21:41:00</TimeStamp>
+        <ID>
+          <String>Dim Lyrics</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>qbZJv8bdnI3n7TbQ7b+v0BzJm4E=23/12/2025 14:48:5923/12/2025 21:41:09</TimeStamp>
+        <ID>
+          <String>Dim Song</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>529KkXjewMNtfPHxcIcLJtpZF0k=23/12/2025 14:32:5823/12/2025 21:41:16</TimeStamp>
+        <ID>
+          <String>Dim Symphony</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>0ub63rMV6l9r1ixaNA1AemqTfEU=23/12/2025 14:52:4323/12/2025 21:42:18dEdf2+wR9HQ1saH2wX2pI7ECnAc=21/12/2025 15:17:3423/12/2025 21:42:18</TimeStamp>
+        <ID>
+          <String>Group ID 8 DB</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>nkxfWBFf7qhLQ1e47AN9GlFzGcI=23/12/2025 21:27:0723/12/2025 21:27:07</TimeStamp>
+      <ID>
+        <String>Group_ID_8_Cube</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2025-12-23T21:10:50.86Z</LastDeployed>
+</DeploymentSnapshot>

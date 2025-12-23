@@ -1,0 +1,29 @@
+<AnalysisServicesUserConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>Group ID 8 DB</Id>
+            <Name>Group ID 8 DB</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAKoMCUE9NVEihImBziBeaowAAAAAcAAAARwByAG8AdQBwACAASQBEACAAOAAgAEQAQgAAABBmAAAAAQAAIAAAAJ+dCJ8qUzVG7C5tJXKGXIFvt+fvKSWO3Rw/Wn5lgPMDAAAAAA6AAAAAAgAAIAAAADvfUGcUtLhTG8jkKcxA3B4Uhe9+SqCRCgLyZdkQgxq5IAAAAH72a2ZrcwQP4Wu7phv+a7jc9wN+S3s+6N8Me+kus3dwQAAAAFJ2+4PZO95o+tKHuGoOaPK79bg3NUkMSLe0bSA9Uuuj95Q96MNYg/VQQmqrTXicVyCi1iKnWUw4DsfKfe+fkik=</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>Group ID 8 DB</Id>
+            <Name>Group ID 8 DB</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAKoMCUE9NVEihImBziBeaowAAAAAcAAAARwByAG8AdQBwACAASQBEACAAOAAgAEQAQgAAABBmAAAAAQAAIAAAAEFZpPMpOx548SlEsMEvh+H+0RQDTdFFT9ETCDFWprIJAAAAAA6AAAAAAgAAIAAAAHAWXcJ5rZaJUeiOtP65lrYSUkGPRtg3dnu5Dq6LPn0nIAAAALQftJFpw3lbHdX1RTSKyKMrfZ71C5yHEJv1iVDlNE1/QAAAAEBx0g4ETu5l4iqX1Fq64PGZxGCbijk89dbziTJwpfaORCapfy/2k2Arx1gFTT2Sym3gthkDshYArbLTvKXCgrM=</Value>
+          </ConfigurationSetting>
+        </UserPasswords>
+        <TargetServer>http://131.114.50.57/olap/msmdpump.dll</TargetServer>
+        <TargetDatabase>Group_ID_8_Cube</TargetDatabase>
+        <StartObject>
+          <ObjectId></ObjectId>
+          <ObjectType>Current</ObjectType>
+        </StartObject>
+      </Options>
+    </Configuration>
+  </Configurations>
+</AnalysisServicesUserConfiguration>
