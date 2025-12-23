@@ -1,9 +1,7 @@
-
 """
 This script generates the CSV files used to populate the Data Warehouse.
 It takes as input the cleaned JSON datasets produced by prepare_dw_datasets.py
 and exports one CSV per dimension and fact table.
-
 """
 
 import json
@@ -40,20 +38,26 @@ parts   = load_json(PART_PATH)
 dates   = load_json(DATES_PATH)
 geo     = load_json(GEO_PATH)
 
-print(" Loaded datasets")
-print("  Artists:", len(artists))
-print("  Tracks:", len(tracks))
-print("  Participations:", len(parts))
-print("  Dates:", len(dates))
-print("  Geography:", len(geo))
 
 # DimDate
 
-def export_dim_date(dates: List[Dict[str, Any]]) -> None:
+def export_dim_date(dates: list):
+    """
+    Export the Date dimension table to a CSV file.
+
+    Parameters
+    ----------
+    dates : list of dict
+        List of date records.
+    """
+    # Open output CSV file for writing
     with open(os.path.join(OUT_DIR, "DimDate.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header row
         w.writerow(["DateKey", "Year", "Month", "Day", "Season"])
 
+        # Write one row per date record
         for d in dates:
             w.writerow([
                 d["date_id"],
@@ -63,18 +67,28 @@ def export_dim_date(dates: List[Dict[str, Any]]) -> None:
                 d["season"]
             ])
 
-    print(" DimDate.csv written")
-
 # DimArtistGeography
 
-def export_dim_artist_geography(geo: List[Dict[str, Any]]) -> None:
+def export_dim_artist_geography(geo: list):
+    """
+    Export the Artist Geography dimension table to a CSV file.
+
+    Parameters
+    ----------
+    geo : list of dict
+        List of geography records.
+    """
+    # Open output CSV file for writing
     with open(os.path.join(OUT_DIR, "DimArtistGeography.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header row
         w.writerow([
             "GeoKey", "BirthPlace", "Province",
             "Region", "Country", "Latitude", "Longitude"
         ])
 
+        # Write one row per geography record
         for g in geo:
             w.writerow([
                 g["geo_id"],
@@ -86,19 +100,30 @@ def export_dim_artist_geography(geo: List[Dict[str, Any]]) -> None:
                 g["longitude"]
             ])
 
-    print(" DimArtistGeography.csv written")
 
 # DimArtist
 
-def export_dim_artist(artists: List[Dict[str, Any]]) -> None:
+def export_dim_artist(artists: list):
+    """
+    Export the Artist dimension table to a CSV file.
+
+    Parameters
+    ----------
+    artists : list of dict
+        List of artist records.
+    """
+    # Open output CSV file for writing
     with open(os.path.join(OUT_DIR, "DimArtist.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header row
         w.writerow([
             "ArtistKey", "Name", "Gender", "BirthDate",
             "Nationality", "Description", "ActiveStart",
             "ActiveEnd", "Type", "GeoKey"
         ])
 
+        # Write one row per artist
         for a in artists:
             w.writerow([
                 a["new_id_artist"],
@@ -113,14 +138,22 @@ def export_dim_artist(artists: List[Dict[str, Any]]) -> None:
                 a["geo_id"]
             ])
 
-    print("DimArtist.csv written")
 
 #  DimAlbum
 
-def export_dim_album(tracks: List[Dict[str, Any]]) -> None:
+def export_dim_album(tracks: list):
+    """
+    Export the Album dimension table to a CSV file.
 
+    Parameters
+    ----------
+    tracks : list of dict
+        List of track records.
+    """
+    # Dictionary used to keep unique albums by album key
     album_seen = {}
 
+    # Extract unique albums from tracks
     for t in tracks:
         key = t["new_id_album"]
         if key not in album_seen:
@@ -130,21 +163,34 @@ def export_dim_album(tracks: List[Dict[str, Any]]) -> None:
                 t["album_type"]
             ]
 
+    # Write Album dimension CSV
     with open(os.path.join(OUT_DIR, "DimAlbum.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header
         w.writerow(["AlbumKey", "AlbumName", "ReleaseDate", "AlbumType"])
 
+        # Write one row per album
         for k, row in album_seen.items():
             w.writerow([k] + row)
 
-    print(" DimAlbum.csv written")
 
 # DimLyrics
 
-def export_dim_lyrics(tracks: List[Dict[str, Any]]) -> None:
-    
+def export_dim_lyrics(tracks: list):
+    """
+    Export the Lyrics dimension table to a CSV file.
+
+    Parameters
+    ----------
+    tracks : list of dict
+        List of track records.
+    """
+    # Open output CSV file for the Lyrics dimension
     with open(os.path.join(OUT_DIR, "DimLyrics.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header
         w.writerow([
             "LyricsKey", "Language", "Swear_IT", "Swear_EN",
             "Swear_IT_Words", "Swear_EN_Words", "NSentences",
@@ -152,8 +198,11 @@ def export_dim_lyrics(tracks: List[Dict[str, Any]]) -> None:
             "Explicit", "LyricsText"
         ])
 
+        # Write one row per track
         for t in tracks:
+            # Convert boolean explicit flag to integer
             explicit_flag = 1 if t["explicit"] else 0
+
             w.writerow([
                 t["LyricsKey"],
                 t["language"],
@@ -169,19 +218,29 @@ def export_dim_lyrics(tracks: List[Dict[str, Any]]) -> None:
                 t["lyrics"]
             ])
 
-    print("DimLyrics.csv written")
 
 # DimSymphony
 
-def export_dim_symphony(tracks: List[Dict[str, Any]]) -> None:
+def export_dim_symphony(tracks: list):
+    """
+    Export the Symphony dimension table to a CSV file.
 
+    Parameters
+    ----------
+    tracks : list of dict
+        List of track records.
+    """
+    # Open output CSV file for the Symphony dimension
     with open(os.path.join(OUT_DIR, "DimSymphony.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header
         w.writerow([
             "SymphonyKey", "BPM", "Rolloff", "Flux", "RMS",
             "Flatness", "SpectralComplexity", "Pitch", "Loudness"
         ])
 
+        # Write one row per track
         for t in tracks:
             w.writerow([
                 t["SymphonyKey"],
@@ -195,20 +254,30 @@ def export_dim_symphony(tracks: List[Dict[str, Any]]) -> None:
                 t["loudness"]
             ])
 
-    print(" DimSymphony.csv written")
 
 # DimSong
 
-def export_dim_song(tracks: List[Dict[str, Any]]) -> None:
+def export_dim_song(tracks: list):
+    """
+    Export the Song dimension table to a CSV file.
 
+    Parameters
+    ----------
+    tracks : list of dict
+        List of track records.
+    """
+    # Open output CSV file for the Song dimension
     with open(os.path.join(OUT_DIR, "DimSong.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header
         w.writerow([
             "SongKey", "Title", "DiscNumber", "TrackNumber",
             "DurationMs", "Popularity", "FeaturingArtists",
             "AlbumKey", "LyricsKey", "SymphonyKey", "Category"
         ])
 
+        # Write one row per track
         for t in tracks:
             w.writerow([
                 t["new_track_id"],
@@ -224,18 +293,32 @@ def export_dim_song(tracks: List[Dict[str, Any]]) -> None:
                 t["category"]
             ])
 
-    print("DimSong.csv written")
 
 # FactParticipation
 
-def export_fact_participation(tracks: List[Dict[str, Any]],parts: List[Dict[str, Any]]) -> None:
-   
+def export_fact_participation(tracks: list, parts: list):
+    """
+    Export the Participation fact table to a CSV file.
+
+    Parameters
+    ----------
+    tracks : list of dict
+        List of track records.
+
+    parts : list of dict
+        List of participation records.
+    """
+    # Build a lookup dictionary for tracks by track ID
     track_index = {t["new_track_id"]: t for t in tracks}
 
+    # Open output CSV file for the FactParticipation table
     with open(os.path.join(OUT_DIR, "FactParticipation.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
+
+        # Write header row
         w.writerow(["SongKey", "ArtistKey", "DateKey", "Streams1Month", "IsPrimary"])
 
+        # Write one row per participation record
         for p in parts:
             tr = track_index.get(p["new_track_id"])
             if tr:
@@ -247,21 +330,12 @@ def export_fact_participation(tracks: List[Dict[str, Any]],parts: List[Dict[str,
                     p["isPrimary"]
                 ])
 
-    print(" FactParticipation.csv written")
 
-# main
-
-def main():
-    export_dim_date(dates)
-    export_dim_artist_geography(geo)
-    export_dim_artist(artists)
-    export_dim_album(tracks)
-    export_dim_lyrics(tracks)
-    export_dim_symphony(tracks)
-    export_dim_song(tracks)
-    export_fact_participation(tracks, parts)
-
-    print("\n CSV files generated.")
-
-if __name__ == "__main__":
-    main()
+export_dim_date(dates)
+export_dim_artist_geography(geo)
+export_dim_artist(artists)
+export_dim_album(tracks)
+export_dim_lyrics(tracks)
+export_dim_symphony(tracks)
+export_dim_song(tracks)
+export_fact_participation(tracks, parts)

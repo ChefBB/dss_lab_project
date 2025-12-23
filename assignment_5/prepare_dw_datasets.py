@@ -1,6 +1,4 @@
-
 """
-
 This script prepares the datasets used in the Data Warehouse by:
 - loading JSON files from dataset/correct_ids
 - normalizing attributes and data types
@@ -8,53 +6,120 @@ This script prepares the datasets used in the Data Warehouse by:
 
 The script is meant to be executed once, after the exploratory notebook phase.
 """
-
 import os
 import json
 import uuid
-import argparse
-from typing import Any, Dict, List, Optional
-from collections import Counter
+from typing import Any, Dict, List
+
 
 def get_parent_dir() -> str:
+    """
+    Return the absolute path of the parent directory of the current working directory.
+    """
     return os.path.abspath(os.path.join(os.getcwd(), os.pardir))
 
 
-def ensure_dir(path: str) -> None:
+def ensure_dir(path: str):
+    """
+    Ensure that the given directory exists; create it if it does not.
+    """
     os.makedirs(path, exist_ok=True)
 
 
 # LOAD / SAVE
 
 def load_json(path: str) -> Any:
+    """
+    Load and return the contents of a JSON file.
+    
+    Parameters
+    ----------
+    path : str
+        Path to the JSON file.
+    
+    Returns
+    -------
+    Any
+        Parsed JSON data (dict, list, etc.).
+    """
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def save_json(path: str, data: Any) -> None:
+    """
+    Save data to a JSON file with UTF-8 encoding and formatted indentation.
+    
+    Parameters
+    ----------
+    path : str
+        Path where the JSON file will be saved.
+    data : Any
+        Data to serialize (dict, list, etc.).
+    """
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 
-def load_all_json(input_dir: str) -> Dict[str, Any]:
+def load_all_json(input_dir: str) -> dict:
+    """
+    Load all JSON files in a directory into a dictionary keyed by filename.
+    
+    Parameters
+    ----------
+    input_dir : str
+        Directory containing JSON files.
+    
+    Returns
+    -------
+    dict
+        Dictionary mapping filename to loaded JSON data.
+    """
     data = {}
     for fname in os.listdir(input_dir):
         if fname.endswith(".json"):
             data[fname] = load_json(os.path.join(input_dir, fname))
     return data
 
+
 # cleaning 
 
 MISSING = {None, "", " ", "none", "None", "null", "unknown", "Unknown"}
 
 
-def clean_string(v: Any) -> Optional[str]:
+def clean_string(v) -> str:
+    """
+    Convert a value to string, treating missing or invalid values as None.
+
+    Parameters
+    ----------
+    v
+        Input value.
+
+    Returns
+    -------
+    str
+        Cleaned string or None if value is missing.
+    """
     if v in MISSING:
         return None
     return str(v)
 
 
-def to_int(v: Any) -> Optional[int]:
+def to_int(v) -> int:
+    """
+    Convert a value to integer, treating missing or invalid values as None.
+
+    Parameters
+    ----------
+    v
+        Input value.
+
+    Returns
+    -------
+    int
+        Converted integer or None if conversion fails.
+    """
     if v in MISSING:
         return None
     try:
@@ -63,7 +128,20 @@ def to_int(v: Any) -> Optional[int]:
         return None
 
 
-def to_float(v: Any) -> Optional[float]:
+def to_float(v) -> float:
+    """
+    Convert a value to float, treating missing or invalid values as None.
+
+    Parameters
+    ----------
+    v
+        Input value.
+
+    Returns
+    -------
+    float
+        Converted float or None if conversion fails.
+    """
     if v in MISSING:
         return None
     try:
@@ -72,16 +150,30 @@ def to_float(v: Any) -> Optional[float]:
         return None
 
 
-def list_to_string(v: Any) -> Optional[str]:
+def list_to_string(v) -> str:
+    """
+    Convert a list of values to a comma-separated string.
+
+    Parameters
+    ----------
+    v
+        Input value, potentially a list.
+
+    Returns
+    -------
+    str
+        Comma-separated string or None if input is empty.
+    """
     if v in (None, "", []):
         return None
     if isinstance(v, list):
         return ", ".join(str(x) for x in v)
     return str(v)
 
+
 # artists
 
-def fix_artists_keys(artists: List[Dict[str, Any]]) -> None:
+def fix_artists_keys(artists: list):
     """
     Fixes inconsistent attribute naming inherited from raw data 
     
@@ -93,13 +185,19 @@ def fix_artists_keys(artists: List[Dict[str, Any]]) -> None:
             a.pop("active-end", None)
 
 
-def normalize_artists(artists: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def normalize_artists(artists: list) -> list:
     """
-    Normalizes artist records by:
-    - cleaning textual attributes
-    - enforcing numeric types on coordinates
-    - keeping surrogate keys and foreign keys unchanged
+    Normalize artist records for the Data Warehouse.
 
+    Parameters
+    ----------
+    artists : list
+        Raw artist records.
+
+    Returns
+    -------
+    list
+        Normalized artist records.
     """
     normalized = []
 
@@ -130,12 +228,19 @@ def normalize_artists(artists: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 #artists geography
 
-def normalize_geo(geo: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def normalize_geo(geo: list) -> list:
     """
-    Normalizes geographical records by:
-    - cleaning textual fields
-    - enforcing float type on latitude and longitude
+    Normalize geographical records for the Data Warehouse.
 
+    Parameters
+    ----------
+    geo : list of dict
+        Raw geographical records.
+
+    Returns
+    -------
+    list of dict
+        Normalized geographical records.
     """
     normalized = []
 
@@ -152,12 +257,24 @@ def normalize_geo(geo: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
     return normalized
 
+
 # date
 
 def determine_season(month: int, day: int) -> str:
     """
-    Determines the season based on month and day
+    Determine season for a given month and day.
 
+    Parameters
+    ----------
+    month : int
+        Month of the year.
+    day : int
+        Day of the month.
+
+    Returns
+    -------
+    str
+        Season name.
     """
     if (month == 12 and day >= 21) or month in (1, 2) or (month == 3 and day <= 20):
         return "Winter"
@@ -172,12 +289,19 @@ def determine_season(month: int, day: int) -> str:
 
 def normalize_dates(dates: List[Dict[str, Any]], default_year: int = 2016) -> List[Dict[str, Any]]:
     """
-    Normalizes date records by:
-    - enforcing integer types for year, month and day
-    - assigning a default year when missing
-    - handling incomplete dates conservatively
-    - deriving the season attribute
+    Normalize date records for the Data Warehouse.
+    
+    Parameters
+    ----------
+    dates : list of dict
+        Raw date records.
+    default_year : int, optional
+        Year to assign if missing (default is 2016).
 
+    Returns
+    -------
+    list of dict
+        Normalized date records.
     """
     normalized = []
 
@@ -208,16 +332,22 @@ def normalize_dates(dates: List[Dict[str, Any]], default_year: int = 2016) -> Li
 
     return normalized
 
+
 # songs / tracks
 
 def normalize_tracks(tracks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
-    Normalizes track records by:
-    - enforcing numeric types on audio and popularity features
-    - converting list-based attributes into comma-separated strings
-    - normalizing empty lyrics as proper missing values
-    - generating surrogate keys for Lyrics and Symphony only once
+    Normalize track records for the Data Warehouse.
 
+    Parameters
+    ----------
+    tracks : list of dict
+        Raw track records.
+
+    Returns
+    -------
+    list of dict
+        Normalized track records.
     """
     int_fields = [
         "disc_number", "track_number", "duration_ms",
@@ -252,62 +382,79 @@ def normalize_tracks(tracks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
     return tracks
 
-# duplicate check
 
 def count_duplicates(data: List[Dict[str, Any]], key: str) -> int:
+    """
+    Count the number of duplicate values for a given key in a dataset.
+
+    Parameters
+    ----------
+    data : list of dict
+        Records to check for duplicates.
+    key : str
+        Key whose values are checked for duplicates.
+
+    Returns
+    -------
+    int
+        Number of duplicate values for the given key.
+    """
     values = [d.get(key) for d in data if d.get(key) not in MISSING]
     return len(values) - len(set(values))
 
-# main
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--base-dir", default=get_parent_dir())
-    args = parser.parse_args()
-
-    base_dir = args.base_dir
-    input_dir = os.path.join(base_dir, "dataset/correct_ids")
-    output_dir = os.path.join(base_dir, "dataset/cleaned_json")
-
-    ensure_dir(output_dir)
-
-    raw = load_all_json(input_dir)
-
-    artists = raw.get("artists.json", [])
-    tracks = raw.get("tracks.json", [])
-    geo = raw.get("geo.json", [])
-    dates = raw.get("dates.json", [])
-    participations = raw.get("participations.json", [])
-
-    fix_artists_keys(artists)
-
-    artists_clean = normalize_artists(artists)
-    geo_clean = normalize_geo(geo)
-    dates_clean = normalize_dates(dates)
-    tracks_clean = normalize_tracks(tracks)
-
-    participations_clean = participations  # no changes needed
-
-    outputs = {
-        "artists_clean.json": artists_clean,
-        "geo_clean.json": geo_clean,
-        "dates_clean.json": dates_clean,
-        "tracks_clean.json": tracks_clean,
-        "participations_clean.json": participations_clean,
-    }
-
-    for fname, data in outputs.items():
-        save_json(os.path.join(output_dir, fname), data)
-        print(f" Saved {fname} ({len(data)} records)")
-
-    print("\nDuplicate check:")
-    print("Artists:", count_duplicates(artists_clean, "new_id_artist"))
-    print("Geo:", count_duplicates(geo_clean, "geo_id"))
-    print("Dates:", count_duplicates(dates_clean, "date_id"))
-    print("Tracks:", count_duplicates(tracks_clean, "new_track_id"))
-
-    print("\n Dataset preparation completed successfully.")
 
 
-if __name__ == "__main__":
-    main()
+
+parent_dir = get_parent_dir()
+
+# define input and output directories
+input_dir = os.path.join(parent_dir, "dataset", "correct_ids")
+output_dir = os.path.join(parent_dir, "dataset", "cleaned_json")
+
+# ensure output directory exists
+ensure_dir(output_dir)
+
+# load all files from input directory
+raw = load_all_json(input_dir)
+
+# Extract individual datasets
+artists = raw.get("artists.json", [])
+tracks = raw.get("tracks.json", [])
+geo = raw.get("geo.json", [])
+dates = raw.get("dates.json", [])
+participations = raw.get("participations.json", [])
+
+# Fix inconsistent artist keys
+fix_artists_keys(artists)
+
+# Normalize each dataset
+artists_clean = normalize_artists(artists)
+geo_clean = normalize_geo(geo)
+dates_clean = normalize_dates(dates)
+tracks_clean = normalize_tracks(tracks)
+
+# Participations do not require normalization
+participations_clean = participations
+
+# Prepare outputs mapping
+outputs = {
+    "artists_clean.json": artists_clean,
+    "geo_clean.json": geo_clean,
+    "dates_clean.json": dates_clean,
+    "tracks_clean.json": tracks_clean,
+    "participations_clean.json": participations_clean,
+}
+
+# Save cleaned datasets to output directory
+for fname, data in outputs.items():
+    save_json(os.path.join(output_dir, fname), data)
+    print(f" Saved {fname} ({len(data)} records)")
+
+# Check for duplicate keys in cleaned datasets
+print("\nDuplicate check:")
+print("Artists:", count_duplicates(artists_clean, "new_id_artist"))
+print("Geo:", count_duplicates(geo_clean, "geo_id"))
+print("Dates:", count_duplicates(dates_clean, "date_id"))
+print("Tracks:", count_duplicates(tracks_clean, "new_track_id"))
+
+print("\n Dataset preparation completed successfully.")
