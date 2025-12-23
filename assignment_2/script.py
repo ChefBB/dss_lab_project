@@ -12,7 +12,7 @@ import data_retrieval as dr
 
 parent_dir = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
 
-# musicbrainz credentials file
+# musicbrainz credentials file, kept private
 data_file = os.path.abspath(os.path.join(
     parent_dir, os.pardir, 'data.txt'
 ))
@@ -53,7 +53,8 @@ save_data(mb_artists, 'mb', 'mb_artists.json')
 from integration import compute_all_matching_scores
 import fill
 
-# compute best matching artists and tracks
+# compute best matching artists and tracks (1 match  per item)
+# also assigns matching score to each match
 mb_tracks = compute_all_matching_scores(tracks, mb_tracks)
 mb_artists = compute_all_matching_scores(artists, mb_artists)
 
@@ -79,6 +80,7 @@ for artist in artists:
     ids.add(new_id)
     artist['new_id_artist'] = new_id
     
+# reset ids set
 ids = set()
 
 for track in tracks:
@@ -95,7 +97,6 @@ for track in tracks:
 # save data
 save_data(tracks, 'correct_ids', 'tracks.json')
 save_data(artists, 'correct_ids', 'artists.json')
-
 
 
 ################
@@ -120,6 +121,7 @@ for track in tracks:
     if track.get('featured_artists'):
         featured = track['featured_artists'].split(',')
 
+        # iter features
         for f in featured:
             f = clean_artist(f)
             flag = False
@@ -176,9 +178,11 @@ from support import build_albums
 
 
 albums = list()
+# reset ids
 ids = set()
 
 for track in tracks:
+    # build album dict
     curr_album = build_albums(track)
     flag = False
 
@@ -211,7 +215,7 @@ save_data(albums, 'correct_ids', 'albums.json')
 # FIX DATES
 ###########
 
-dates = []
+dates = list()
 ids = set()
 
 for track in tracks:
@@ -283,14 +287,18 @@ import time
 
 
 geo = list()
+# reset ids
 ids = set()
 
+
+# set province, region and country to be in line with birthplace
 for artist in artists:
     ans = None
     while not ans:
         try:
             if artist.get('birth_place'):
                 time.sleep(0.3)
+                # interrogate openstreetmap to get geo info
                 ans = geo_query(artist['birth_place'])[0]
                 if ans['address'].get('county'):
                     artist['province'] = ans['address']['county']
@@ -303,8 +311,8 @@ for artist in artists:
                 break
         except Exception as e:
             print(e)
-            print(ans)
 
+    # check if birthplace has already been found
     flag = False
     for place in geo:
         # all match
@@ -313,11 +321,16 @@ for artist in artists:
             artist['region'] == place['region'] and
             artist['country'] == place['country']
         ):
+            # set geo, lat and long to the known place
+            # for consistency
             artist['geo_id'] = place['geo_id']
             artist['latitude'] = place['latitude']
             artist['longitude'] = place['longitude']
             flag = True
             break
+
+    # if birthplace has not been found yet,
+    # add it; create new id for the new place
     if not flag:
         new_id = str(uuid4())
         while new_id in ids:
