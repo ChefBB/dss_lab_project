@@ -1,0 +1,95 @@
+WITH recent_participations AS (
+    SELECT
+        fp.SongKey,
+        fp.ArtistKey,
+        ds.Category,
+        fp.IsPrimary,
+        fp.Streams1Month AS streams
+    FROM FactParticipation fp
+    JOIN DimSong ds
+        ON ds.SongKey = fp.SongKey
+    JOIN DimDate d
+        ON d.DateKey = fp.DateKey
+    WHERE
+        d.Year >= YEAR(GETDATE()) - 2
+),
+
+-- Deduplicate primary songs for category stats
+distinct_primary_songs AS (
+    SELECT DISTINCT
+        SongKey,
+        Category,
+        streams
+    FROM recent_participations
+    WHERE IsPrimary = 1
+),
+
+-- Category benchmarks
+category_stats AS (
+    SELECT
+        Category,
+        COUNT(*) AS n,
+        AVG(streams) AS avg_streams,
+        STDEV(streams) AS stddev_streams
+    FROM distinct_primary_songs
+    GROUP BY Category
+),
+
+-- Flag artist–song participations as trending
+participations_trending_flags AS (
+    SELECT
+        rp.ArtistKey,
+        rp.SongKey,
+        rp.Category,
+        rp.IsPrimary,
+        CASE
+            WHEN cs.n > 1
+                 AND rp.streams > cs.avg_streams + cs.stddev_streams
+            THEN 1
+            ELSE 0
+        END AS is_trending
+    FROM recent_participations rp
+    JOIN category_stats cs
+        ON rp.Category = cs.Category
+),
+
+ artist_role_aggregates AS (
+    SELECT
+        ptf.Category,
+        ptf.ArtistKey,
+        SUM(CASE WHEN ptf.IsPrimary = 1 THEN ptf.is_trending ELSE 0 END) AS NumTrendingPrimary,
+        SUM(CASE WHEN ptf.IsPrimary = 1 THEN 1 ELSE 0 END) AS TotalPrimarySongs,
+        SUM(CASE WHEN ptf.IsPrimary = 0 THEN ptf.is_trending ELSE 0 END) AS NumTrendingFeatured,
+        SUM(CASE WHEN ptf.IsPrimary = 0 THEN 1 ELSE 0 END) AS TotalFeaturedSongs
+    FROM participations_trending_flags ptf
+    GROUP BY
+        ptf.Category,
+        ptf.ArtistKey
+)
+
+SELECT
+    ara.Category,
+    a.Name,
+
+    -- Primary metrics
+    NumTrendingPrimary,
+    TotalPrimarySongs,
+    CASE WHEN TotalPrimarySongs > 0 THEN NumTrendingPrimary * 1.0 / TotalPrimarySongs ELSE 0 END AS PctTrendingPrimary,
+
+    -- Featured metrics
+    NumTrendingFeatured,
+    TotalFeaturedSongs,
+    CASE WHEN TotalFeaturedSongs > 0 THEN NumTrendingFeatured * 1.0 / TotalFeaturedSongs ELSE 0 END AS PctTrendingFeatured
+
+FROM artist_role_aggregates ara
+JOIN DimArtist a
+    ON a.ArtistKey = ara.ArtistKey
+
+WHERE (NumTrendingPrimary + NumTrendingFeatured) > 0  -- only artists with at least one trending song
+
+ORDER BY
+    ara.Category,
+    PctTrendingPrimary DESC,
+    NumTrendingPrimary DESC,
+    PctTrendingFeatured DESC,
+    NumTrendingFeatured DESC;

@@ -1,0 +1,15 @@
+dataset/mb_tracks_*.json filter=lfs diff=lfs merge=lfs -text
+dataset/DimArtist.csv filter=lfs diff=lfs merge=lfs -text
+dataset/DimArtistGeography.csv filter=lfs diff=lfs merge=lfs -text
+dataset/FactPublishedSong.csv filter=lfs diff=lfs merge=lfs -text
+dataset/Prove filter=lfs diff=lfs merge=lfs -text
+dataset/mb filter=lfs diff=lfs merge=lfs -text
+dataset/artists.json filter=lfs diff=lfs merge=lfs -text
+dataset/artists.xml filter=lfs diff=lfs merge=lfs -text
+dataset/nullclean_tests filter=lfs diff=lfs merge=lfs -text
+dataset/tracks.json filter=lfs diff=lfs merge=lfs -text
+dataset/BridgeSongArtist.csv filter=lfs diff=lfs merge=lfs -text
+dataset/DimAlbum.csv filter=lfs diff=lfs merge=lfs -text
+dataset/DimDate.csv filter=lfs diff=lfs merge=lfs -text
+dataset/filled filter=lfs diff=lfs merge=lfs -text
+dataset/tracks_filled_0.json filter=lfs diff=lfs merge=lfs -text
