@@ -1,0 +1,70 @@
+\subsection{Assignment 6 -- Data Uploading with Python}
+
+L’Assignment~6 richiedeva lo sviluppo di un programma Python in grado di
+popolare il database del Data Warehouse (\textit{Group\_ID\_8\_DB}),
+rispettando lo schema e le relazioni definite nell’Assignment~4 e utilizzando
+i dati preparati negli assignment precedenti.
+
+Poiché il caricamento completo dei dati può risultare oneroso in termini di
+tempo e risorse, è stato richiesto di progettare il codice in modo appropriato,
+tenendo conto sia delle prestazioni sia della stabilità del processo.
+
+Il caricamento dei dati è stato implementato tramite uno script Python che
+utilizza la libreria \texttt{pyodbc} per stabilire una connessione a
+\textit{SQL Server}. La connessione viene effettuata specificando server,
+database e credenziali, consentendo l’esecuzione diretta di istruzioni SQL
+dal codice Python. Una volta stabilita la connessione, viene creato un cursore
+che permette di eseguire operazioni di inserimento sulle tabelle del
+Data Warehouse.
+
+Per garantire il rispetto dei vincoli di integrità referenziale, le tabelle
+vengono caricate seguendo un ordine prestabilito, coerente con le relazioni
+di \textit{foreign key} definite nello schema:
+\begin{itemize}
+    \item dimensioni indipendenti;
+    \item dimensioni che dipendono da altre dimensioni;
+    \item fact table.
+\end{itemize}
+
+In particolare, le dimensioni vengono caricate prima della fact table
+\textit{FactParticipation}, assicurando che tutte le chiavi esterne siano già
+presenti nel database al momento dell’inserimento dei fatti.
+
+Prima di avviare il caricamento, lo script verifica se una tabella è già
+popolata tramite una semplice query di conteggio. Se una tabella risulta non
+vuota, il caricamento viene saltato, evitando duplicazioni accidentali dei
+dati. Questo controllo rende lo script riutilizzabile e consente di rilanciare
+il processo senza dover ripulire manualmente il database.
+
+I dati vengono letti dai file CSV prodotti nell’Assignment~5. Per ogni tabella,
+lo script:
+\begin{itemize}
+    \item legge l’intestazione del file per determinare le colonne;
+    \item costruisce dinamicamente la query di inserimento;
+    \item effettua una conversione esplicita dei tipi di dato per alcuni
+    attributi critici, in particolare:
+    \begin{itemize}
+        \item \textit{Streams1Month}, convertito in valore numerico;
+        \item \textit{IsPrimary}, convertito in valore booleano/integer;
+    \end{itemize}
+    \item gestisce correttamente i valori mancanti, convertendoli in
+    \texttt{NULL}.
+\end{itemize}
+
+Poiché il caricamento completo dei dati può richiedere tempi significativi,
+l’inserimento delle tuple è stato progettato in modalità \textit{batch}. I
+record vengono accumulati in gruppi di dimensione fissa e inseriti nel database
+tramite operazioni di inserimento multiplo, seguite da un commit esplicito.
+
+Questa scelta consente di ridurre il numero di comunicazioni tra Python e il
+database, migliorare le prestazioni complessive del caricamento e rendere il
+processo più stabile in presenza di grandi volumi di dati.
+
+Lo script presentato rappresenta la versione finale del processo di
+caricamento: durante lo sviluppo sono stati effettuati diversi test e lanci
+intermedi per verificare la connessione al database e il corretto inserimento
+dei dati, prima di consolidare la soluzione a batch adottata.
+
+L’Assignment~6 conclude quindi il processo di costruzione del Data Warehouse,
+collegando la fase di preparazione dei dati alla loro effettiva persistenza nel
+database in modo automatico, coerente e ripetibile.
