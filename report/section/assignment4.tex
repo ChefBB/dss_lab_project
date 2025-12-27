@@ -1,0 +1,149 @@
+\subsection{Assignment 4 -- Data Warehouse Schema Design}
+
+L’Assignment 4 richiedeva il passaggio da un database operativo a un
+data warehouse orientato all’analisi, con l’obiettivo di progettare
+uno schema multidimensionale in grado di analizzare il numero di stream
+registrati a un mese dalla pubblicazione di una canzone
+(\textit{Streams1Month}).
+
+Lo schema fornito nella consegna era indicato come riferimento non vincolante,
+lasciando libertà progettuale nella definizione della granularità,
+delle dimensioni e delle relazioni. Seguendo l’approccio discusso a lezione,
+la progettazione è partita dall’analisi delle \textit{business questions}
+e delle query che si intendevano supportare.
+
+Da tale analisi è emerso che la misura centrale del data warehouse è unica:
+\begin{itemize}
+    \item \textbf{Streams1Month}, ovvero il numero di stream registrati a un mese
+    dalla pubblicazione del brano.
+\end{itemize}
+
+A partire da questa misura sono state individuate le dimensioni rilevanti
+per l’analisi:
+\begin{itemize}
+    \item \textbf{DimSong}, che rappresenta la canzone pubblicata;
+    \item \textbf{DimArtist}, che rappresenta gli artisti che hanno partecipato
+    alla canzone;
+    \item \textbf{DimDate}, che rappresenta la data di pubblicazione del brano;
+    \item \textbf{DimArtistGeography}, che rappresenta il luogo di nascita
+    dell’artista;
+    \item \textbf{DimLyrics}, che rappresenta il testo del brano e le sue componenti;
+    \item \textbf{DimSymphony}, che rappresenta le caratteristiche acustiche
+    del brano;
+    \item \textbf{DimAlbum}, che rappresenta il contesto editoriale della canzone,
+    non necessariamente coincidente con un album tradizionale.
+\end{itemize}
+
+Un’ulteriore scelta progettuale rilevante è stata quella di non utilizzare
+le \textit{natural key} presenti nei dataset originali, in quanto fortemente
+duplicate e poco affidabili. Sono state pertanto introdotte chiavi surrogate
+univoche, generate tramite UUID, al fine di garantire coerenza, stabilità
+e corretta identificazione delle dimensioni.
+
+\subsubsection*{Evoluzione dello schema e scelte progettuali}
+
+In una prima fase progettuale è stata considerata una fact table denominata
+\textit{PublishedSong}, con granularità definita come
+\emph{una riga per canzone pubblicata da un artista}, collegata alle dimensioni
+Song, Artist, Date, Lyrics e Symphony.
+
+In tale schema, la gestione degli artisti in featuring sarebbe stata possibile
+esclusivamente tramite l’introduzione di una \textit{bridge table} tra
+\textit{DimSong} e \textit{DimArtist}. Tuttavia, questo approccio presentava
+alcune criticità rilevanti. In primo luogo, l’uso della bridge table avrebbe
+condotto a una struttura che non aderiva pienamente né allo \textit{star schema}
+né allo \textit{snowflake schema}, aumentando il numero di join necessari per
+l’esecuzione delle query analitiche e riducendo l’efficienza complessiva del
+sistema.
+
+In secondo luogo, la gestione dei featuring risultava meno naturale dal punto
+di vista analitico, poiché il ruolo dell’artista (artista primario o featuring)
+non era direttamente associato alla misura analizzata, ma derivato da una
+struttura intermedia.
+
+Sono state inoltre considerate altre alternative progettuali, tra cui:
+\begin{itemize}
+    \item l’introduzione di un attributo \textit{Role} nella bridge table;
+    \item l’utilizzo di una \textit{degenerate dimension} per distinguere tra
+    artisti primari e featuring;
+    \item la creazione di una dimensione di gruppo di artisti tra la fact table
+    e la dimensione Artist.
+\end{itemize}
+
+Sebbene concettualmente corrette, tali soluzioni introducevano una maggiore
+complessità strutturale o rendevano meno immediate le analisi per artista,
+risultando meno adatte agli obiettivi dell’assignment.
+
+\subsubsection*{Schema finale del Data Warehouse}
+
+La soluzione finale adottata è stata la creazione di una fact table denominata
+\textit{FactParticipation}, che modella esplicitamente la partecipazione di un
+artista a una canzone.
+
+La granularità finale è definita come:
+\begin{quote}
+\emph{una riga = partecipazione di un artista a una canzone in una determinata data}.
+\end{quote}
+
+Di conseguenza, la stessa canzone può comparire più volte all’interno della fact
+table, una volta per ciascun artista coinvolto. Questo comportamento è atteso
+ed è il risultato di una granularità più fine, scelta in modo consapevole per
+rappresentare correttamente la relazione molti-a-molti tra artisti e canzoni,
+evitando duplicazioni semantiche delle misure.
+
+Il ruolo dell’artista è rappresentato tramite l’attributo \textit{IsPrimary},
+modellato come \textit{degenerate dimension} all’interno della fact table:
+\begin{itemize}
+    \item \textit{IsPrimary = 1} identifica l’artista principale;
+    \item \textit{IsPrimary = 0} identifica gli artisti in featuring.
+\end{itemize}
+
+La fact table è collegata direttamente alle dimensioni \textit{DimSong},
+\textit{DimArtist} e \textit{DimDate}, mentre le dimensioni Song e Artist
+generano strutture a \textit{snowflake schema} rispettivamente verso
+\textit{DimAlbum}, \textit{DimLyrics}, \textit{DimSymphony} e
+\textit{DimArtistGeography}. L’insieme delle foreign key identifica univocamente
+i record della fact table, in accordo con quanto discusso a lezione.
+
+La dimensione \textit{DimDate} è stata collegata direttamente alla fact table,
+in quanto rappresenta il riferimento temporale dell’evento analizzato
+(stream a un mese dalla pubblicazione). Altre date semanticamente differenti,
+come la data di rilascio dell’album, sono state mantenute come attributi
+all’interno delle rispettive dimensioni, evitando ambiguità e join aggiuntivi.
+
+\subsubsection*{Implementazione}
+
+Una volta definito lo schema multidimensionale del Data Warehouse, è stata
+realizzata anche la sua implementazione fisica sul database server utilizzando
+SQL Server Management Studio. In particolare, è stato scritto ed eseguito uno
+script SQL per la creazione delle tabelle dimensionali e della fact table,
+in piena coerenza con lo schema logico descritto.
+
+Le tabelle sono state inizialmente create vuote, definendo esplicitamente:
+\begin{itemize}
+    \item gli attributi e i relativi tipi di dato;
+    \item le chiavi primarie;
+    \item le chiavi esterne che implementano le relazioni tra fact table e dimensioni.
+\end{itemize}
+
+Le foreign key riflettono correttamente la struttura del Data Warehouse,
+garantendo allineamento tra modello concettuale, logico e implementazione fisica.
+Sono stati inoltre introdotti vincoli e scelte sui tipi di dato per garantire
+coerenza e qualità dei dati. In particolare:
+\begin{itemize}
+    \item l’attributo \textit{Gender} della dimensione \textit{DimArtist} è stato
+    vincolato ai soli valori ammessi (\textit{M} o \textit{F}) tramite una
+    \textit{check constraint};
+    \item i tipi di dato numerici sono stati scelti in base alla natura degli
+    attributi, utilizzando \textit{INT} per conteggi discreti,
+    \textit{FLOAT} per misure continue e \textit{BIT} per attributi booleani
+    come \textit{IsPrimary};
+    \item la misura \textit{Streams1Month} è stata definita come attributo numerico
+    adeguato a rappresentare valori di conteggio di grandi dimensioni.
+\end{itemize}
+
+Questa fase ha permesso di separare in modo chiaro la progettazione dello schema
+dalla fase di popolamento dei dati, che viene affrontata negli assignment
+successivi. Il caricamento effettivo dei dati nel Data Warehouse è infatti
+realizzato nell’Assignment~6, tramite strumenti ETL, a partire dai file CSV
+prodotti nell’Assignment~5.

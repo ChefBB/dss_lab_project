@@ -1,0 +1,71 @@
+\subsection{Assignment 5 -- Data Preparation and Dataset Splitting}
+
+L’Assignment 5 richiedeva lo sviluppo di un programma Python in grado di
+suddividere i dati di input in file distinti, uno per ciascuna dimensione
+e per la fact table del Data Warehouse progettato nell’Assignment~4,
+al fine di preparare i dataset per le successive fasi di caricamento.
+
+Per soddisfare tale richiesta, il processo di \textit{data preparation}
+è stato articolato in due fasi consecutive e complementari:
+\begin{itemize}
+    \item pulizia e normalizzazione dei dati;
+    \item suddivisione ed esportazione dei dataset, uno per ciascuna tabella
+    del Data Warehouse.
+\end{itemize}
+
+\subsubsection*{Pulizia e normalizzazione dei dati}
+
+La prima fase è stata implementata tramite lo script
+\texttt{prepare\_dw\_datasets.py}, il cui obiettivo è rendere i dati coerenti
+con lo schema multidimensionale progettato.
+
+Lo script carica i dataset in formato JSON dalla directory
+\texttt{dataset/correct\_ids} ed esegue una serie di operazioni di pulizia
+e normalizzazione prima dello \textit{split} vero e proprio.
+In particolare, vengono effettuate le seguenti operazioni:
+\begin{itemize}
+    \item uniformazione dei tipi di dato (interi, float e stringhe);
+    \item gestione consistente dei valori mancanti e non validi;
+    \item normalizzazione degli attributi testuali;
+    \item correzione di incongruenze sintattiche ereditate dai dataset originali;
+    \item generazione e validazione delle chiavi surrogate, in linea con lo schema
+    del Data Warehouse;
+    \item normalizzazione della dimensione temporale e derivazione
+    dell’attributo \textit{Season}.
+\end{itemize}
+
+Il risultato di questa fase è un insieme di dataset puliti e coerenti,
+salvati nella directory \texttt{dataset/cleaned\_json}, che rappresentano
+una versione intermedia pronta per essere suddivisa secondo le tabelle
+del Data Warehouse.
+
+\subsubsection*{Esportazione}
+
+La seconda fase è stata implementata tramite lo script
+\texttt{export\_dw\_csv.py}, che realizza esplicitamente quanto richiesto
+dalla consegna, ovvero la suddivisione dei dati in file separati,
+uno per ciascuna tabella del Data Warehouse.
+
+A partire dai dataset normalizzati, lo script genera un file CSV per ogni
+dimensione e per la fact table. Ogni file CSV contiene esclusivamente
+gli attributi previsti dallo schema del Data Warehouse ed è costruito
+in modo da rispettarne la granularità.
+
+In particolare, la fact table \textit{FactParticipation} mantiene la
+granularità definita nell’Assignment~4, ovvero:
+\begin{quote}
+\emph{una riga per partecipazione artista--canzone}.
+\end{quote}
+Essa include la misura \textit{Streams1Month} e l’attributo \textit{IsPrimary},
+modellato come \textit{degenerate dimension}.
+
+I file CSV prodotti costituiscono quindi l’output finale dell’Assignment~5
+e rappresentano l’input diretto per le successive fasi di caricamento
+del Data Warehouse.
+
+L’Assignment 5 ha permesso di trasformare i dati di partenza in un insieme
+di file strutturati, uno per ciascuna tabella del Data Warehouse,
+come richiesto dalla consegna. La separazione tra fase di normalizzazione
+e fase di esportazione consente di ottenere dati puliti, coerenti e
+direttamente utilizzabili, facilitando le successive attività di
+popolamento e analisi.
