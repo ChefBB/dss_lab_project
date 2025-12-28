@@ -1,0 +1,46 @@
+\subsection{Assignment 9 -- Analisi Summer - Winter Score per regione}
+
+Per affrontare l’Assignment 9 è stato progettato un flusso di dati in
+\textit{SQL Server Integration Services} (SSIS) a partire dalla fact table dei
+brani pubblicati. In una prima fase, il flusso è stato filtrato tramite una
+trasformazione di \textit{Conditional Split} per mantenere esclusivamente le
+righe in cui l’artista ricopre il ruolo di \textit{main artist}, garantendo
+coerenza con la granularità dell’analisi.
+
+A partire da queste righe, sono state introdotte tre trasformazioni di
+\textit{Lookup}. Il primo Lookup con la dimensione \textit{Artist} consente di
+recuperare l’attributo \textit{GeoKey}, necessario per il secondo Lookup con la
+dimensione \textit{ArtistGeography}, che permette di associare a ciascun artista
+la regione e la nazione di riferimento. L’ultimo Lookup è stato effettuato sulla
+dimensione \textit{Date} al fine di ricavare la stagione di pubblicazione del
+brano. Al termine di questa fase, ogni riga del flusso risulta caratterizzata
+congiuntamente dalla regione dell’artista e dalla stagione di pubblicazione.
+
+Il flusso viene quindi suddiviso in due percorsi distinti, corrispondenti
+rispettivamente ai brani pubblicati in estate e a quelli pubblicati in inverno.
+Ciascun percorso è aggregato separatamente per regione tramite una
+trasformazione di \textit{Aggregate}, calcolando da un lato il numero di brani
+estivi e la somma degli \textit{Streams1Month}, e dall’altro le corrispondenti
+misure per i brani invernali.
+
+Poiché la trasformazione di \textit{Merge Join} richiede flussi ordinati, entrambi
+i percorsi sono sottoposti a un’operazione di \textit{Sort} prima di essere
+ricombinati. Nel \textit{Merge Join} è stata utilizzata una \textit{full outer
+join}, così da preservare anche le regioni presenti esclusivamente in uno dei
+due flussi stagionali.
+
+L’output risultante contiene, per ciascuna regione, quattro misure: il numero di
+brani estivi, il numero di brani invernali, la somma degli stream estivi e la
+somma degli stream invernali. A partire da questi valori, è stata introdotta una
+trasformazione di \textit{Derived Column} per calcolare i due indicatori
+richiesti: il \textit{summer--winter score} basato sul numero di brani e quello
+basato sul numero di stream.
+
+Entrambi i calcoli includono una gestione esplicita dei casi in cui il
+denominatore risulta pari a zero, restituendo un valore \textit{NULL} al fine di
+evitare divisioni invalide. Questa scelta previene la produzione di misure
+distorte e rende gli indicatori più robusti e interpretabili dal punto di vista
+analitico.
+
+Il flusso così completato viene infine indirizzato verso una \textit{Flat File
+Destination}, che rappresenta l’output finale. 
