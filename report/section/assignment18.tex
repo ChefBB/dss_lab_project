@@ -1,0 +1,34 @@
+\subsection{Assignment 18 -- Confronto stagionale delle categorie rispetto alla media dell’anno precedente}
+
+L’Assignment 18 richiedeva di individuare, per ciascuna stagione, le categorie
+musicali che nell’anno corrente registrano un numero di stream superiore alla
+media della stessa stagione nell’anno precedente, riportando anche la relativa
+variazione percentuale.
+
+L’obiettivo dell’analisi è confrontare le performance stagionali delle singole
+categorie con la tendenza complessiva del mercato nella medesima stagione
+dell’anno precedente, così da evidenziare i generi che mostrano una crescita
+significativa rispetto al benchmark stagionale.
+
+Per costruire questa analisi, è stato innanzitutto definito un membro calcolato
+che determina la media degli stream della stagione nell’anno precedente.
+Tale valore è ottenuto utilizzando la funzione \textit{PARALLELPERIOD} per
+risalire alla stessa stagione dell’anno precedente e la funzione \textit{AVG}
+per calcolare la media degli stream su tutte le categorie. In questo contesto,
+la “media della stagione” è stata interpretata come la media dell’intero mercato
+stagionale e non come una media storica specifica della singola categoria.
+
+Questo approccio consente di confrontare ogni categoria rispetto alla performance
+complessiva del mercato nella stessa stagione, permettendo di identificare i
+generi che performano meglio della tendenza stagionale generale.
+
+Successivamente, è stata calcolata la variazione percentuale degli stream di
+ciascuna categoria rispetto alla media stagionale dell’anno precedente. Il
+calcolo include una gestione esplicita dei casi in cui il valore storico risulti
+assente o pari a zero, al fine di evitare risultati non significativi o errori
+di divisione.
+
+Infine, è stato applicato un filtro per selezionare esclusivamente le categorie
+che superano effettivamente la media della stagione precedente. Contestualmente,
+sono state escluse la stagione \textit{Unknown} e le combinazioni prive di dati,
+garantendo un output finale pulito e interpretabile dal punto di vista analitico.

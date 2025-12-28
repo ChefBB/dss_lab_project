@@ -1,0 +1,41 @@
+\subsection{Assignment 10 -- Confronto regionale delle performance di streaming}
+
+L’Assignment 10 analizza il rapporto tra gli stream di una categoria musicale
+in una determinata regione e gli stream della stessa categoria nelle restanti
+regioni, considerando esclusivamente le canzoni in cui l’artista ricopre il ruolo
+di \textit{primary artist}.
+
+La logica analitica è stata inizialmente validata tramite una formulazione SQL
+al fine di verificarne la correttezza semantica e numerica, e successivamente
+implementata in \textit{SQL Server Integration Services} (SSIS) mediante un unico
+\textit{Data Flow}. Tale scelta garantisce coerenza con lo schema del
+\textit{Data Warehouse} e consente di mantenere un flusso di trasformazioni
+efficiente e facilmente tracciabile.
+
+Il flusso dati ha origine dalla fact table \textit{FactParticipation} ed è
+progressivamente arricchito tramite operazioni di \textit{Lookup} sulle
+dimensioni \textit{DimSong}, \textit{DimArtist} e \textit{DimArtistGeography}.
+Queste trasformazioni permettono di associare a ciascun record la categoria
+musicale del brano e la regione di nascita dell’artista principale. Un
+\textit{Conditional Split} viene utilizzato per selezionare esclusivamente le
+righe relative ai \textit{primary artist}, in accordo con la consegna.
+
+L’aggregazione degli stream per ciascuna coppia (categoria, regione) è realizzata
+tramite una trasformazione di \textit{Aggregate}. In parallelo, mediante una
+\textit{Multicast}, viene calcolato il totale degli stream per categoria, valore
+necessario per determinare il volume di stream della stessa categoria nelle
+altre regioni.
+
+I risultati intermedi vengono successivamente ricombinati attraverso una
+trasformazione di \textit{Merge Join}, che consente di calcolare sia gli stream
+nelle restanti regioni sia il rapporto finale tra stream nella regione e stream
+nelle altre regioni. Tali calcoli sono implementati mediante trasformazioni di
+\textit{Derived Column}, con una gestione esplicita dei casi di denominatore nullo.
+
+Prima della scrittura dell’output finale, è stata introdotta una trasformazione
+di \textit{Data Conversion} sulle colonne \textit{Category} e \textit{Region}.
+Questo passaggio è necessario poiché tali attributi provengono dalle dimensioni
+con tipo Unicode (\textit{DT\_WSTR}), mentre la \textit{Flat File Destination}
+richiede stringhe non Unicode (\textit{DT\_STR}). La conversione garantisce la
+compatibilità dei tipi di dato e previene errori in fase di esecuzione, senza
+alterare il contenuto informativo.

@@ -1,0 +1,41 @@
+\subsection{Assignment 16 -- Impatto annuale degli stream per artista}
+
+L’Assignment 16 richiedeva di analizzare l’impatto annuale degli stream per
+artista, applicando una ponderazione differenziata in base al ruolo ricoperto
+(\textit{Primary} o \textit{Featured Artist}) e normalizzando il risultato sul
+totale degli stream dell’anno di riferimento. A tal fine, sono stati implementati
+i seguenti passaggi:
+
+\begin{itemize}
+    \item \textbf{Ponderazione del ruolo (\textit{WeightedStreams}).}  
+    È stata definita una misura calcolata che applica un coefficiente pari a $0.8$
+    agli stream associati agli artisti che ricoprono il ruolo di
+    \textit{Primary Artist} e un coefficiente pari a $0.2$ nei casi di
+    \textit{Featured Artist}. Questa scelta consente di riflettere la diversa
+    rilevanza degli artisti all’interno del contributo complessivo al successo
+    dei brani.
+
+    \item \textbf{Normalizzazione temporale (\textit{GrandTotalYear}).}  
+    Per calcolare la quota relativa, è stato definito un denominatore che isola
+    il totale degli stream annuali del cubo, utilizzando il membro \textit{All}
+    sulle dimensioni \textit{Artist} e \textit{Role}. Questo approccio consente
+    di svincolare il calcolo dai filtri di riga relativi al singolo artista e di
+    confrontarne il contributo con l’intero mercato nell’anno di riferimento.
+
+    \item \textbf{Calcolo della misura finale (\textit{AvgYearlyArtistStreams}).}  
+    La misura finale è calcolata come rapporto tra la somma degli stream pesati
+    dell’artista e il totale degli stream dell’anno corrispondente. La
+    definizione della misura include controlli tramite le funzioni \textit{IIF}
+    e \textit{IsEmpty}, al fine di prevenire errori di divisione per zero e
+    garantire la pulizia del risultato finale.
+\end{itemize}
+
+Dal punto di vista analitico, è stata applicata la clausola \textit{NON EMPTY}
+per limitare l’analisi alle sole combinazioni Artista--Anno effettivamente
+attive, eliminando le occorrenze storiche prive di stream.
+
+La percentuale ottenuta rappresenta una \textbf{quota annuale normalizzata} che
+esprime l’impatto reale di ciascun artista sul totale degli stream del mercato.
+Valori più elevati indicano una maggiore incidenza dell’artista come
+\textit{Primary Artist}, mentre valori più contenuti sono tipici di artisti che
+partecipano prevalentemente come \textit{Featured Artist}.

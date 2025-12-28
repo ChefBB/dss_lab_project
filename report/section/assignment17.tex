@@ -1,0 +1,45 @@
+\subsection{Assignment 17 -- Variazione percentuale annuale degli stream per categoria}
+
+L’Assignment 17 richiedeva di analizzare la variazione percentuale, in aumento o
+in diminuzione, del numero di stream per ciascuna categoria musicale rispetto
+all’anno precedente.
+
+La query MDX è stata progettata per confrontare il volume di stream di ogni
+categoria musicale (\texttt{[Song].[Category]}) nell’anno corrente con quello
+registrato nello stesso periodo dell’anno precedente. A tal fine, sono stati
+utilizzati i seguenti costrutti.
+
+La funzione \textit{PARALLELPERIOD} è stata impiegata per navigare la gerarchia
+temporale e recuperare i valori relativi all’anno precedente, mantenendo
+invariata la granularità dell’analisi. È stata inoltre definita una misura
+calcolata, denominata \textit{Percentage Variation}, che automatizza il calcolo
+della variazione percentuale degli stream, includendo una gestione esplicita dei
+casi di divisione per zero tramite la funzione \textit{IIF}.
+
+Nella formulazione iniziale, la query produceva un numero elevato di valori
+\textit{NULL} o infiniti, rendendo i risultati difficili da interpretare. Per
+migliorare la qualità dell’output, la soluzione è stata ottimizzata applicando
+una clausola \textit{FILTER} combinata con \textit{NOT IsEmpty}, così da rimuovere
+tutte le righe per cui non era possibile effettuare un confronto significativo.
+In particolare, sono stati esclusi i casi in cui non esiste un anno precedente
+di riferimento, come il primo anno presente nel database.
+
+Questo filtraggio consente di isolare esclusivamente i record per i quali il
+confronto matematico è effettivamente definito. Di conseguenza, una variazione
+pari a $-100\%$ indica che una categoria musicale era presente nell’anno
+precedente ma non registra stream nell’anno corrente, rappresentando
+un’informazione di business reale. In assenza di tale filtraggio, non sarebbe
+stato possibile distinguere tra una categoria effettivamente scomparsa e una per
+cui mancano semplicemente dati storici.
+
+Infine, l’ordinamento basato sulla \textit{Member\_Key} della dimensione temporale
+assicura una progressione cronologica coerente, facilitando la lettura e
+l’interpretazione dei trend storici.
+
+Dall’output ottenuto emergono indicazioni rilevanti dal punto di vista del
+business. Variazioni percentuali fortemente positive segnalano l’emergere o
+l’esplosione di nuovi trend di mercato, mentre variazioni negative evidenziano
+fasi di contrazione che possono richiedere analisi strategiche dedicate. Un calo
+generalizzato nell’ultimo anno disponibile costituisce infine un indicatore
+tecnico della possibile incompletezza dei dati, dimostrando come la query sia
+sensibile alla completezza temporale del dataset.
