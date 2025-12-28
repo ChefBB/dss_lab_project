@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.27)  28 DEC 2025 16:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.27)  28 DEC 2025 19:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -486,26 +486,26 @@ Overfull \hbox (3.67815pt too wide) in paragraph at lines 54--56
 ) (section/assignment6.tex [4]) (section/assignment10.tex [5]) (section/assignment15.tex) (section/assignment16.tex
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 11.
- [6]) (section/assignment17.tex)) [7{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}] [8] (report_master.aux)
+ [6]) (section/assignment17.tex) (section/assignment18.tex [7{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]) (section/assignment19.tex [8])) [9] (report_master.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `report_master.out' has not changed.
-(rerunfilecheck)             Checksum: 6788D86CC76425ADB34D265E6C55DC17;3230.
+(rerunfilecheck)             Checksum: EB4AB4C223EB79288F0CED02BD7F0DAC;4256.
  ) 
 Here is how much of TeX's memory you used:
- 14131 strings out of 467871
- 229072 string characters out of 5418375
+ 14160 strings out of 467871
+ 229782 string characters out of 5418375
  667106 words of memory out of 5000000
- 42611 multiletter control sequences out of 15000+600000
- 689179 words of font info for 158 fonts, out of 8000000 for 9000
+ 42619 multiletter control sequences out of 15000+600000
+ 689785 words of font info for 164 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,6n,79p,1112b,553s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (8 pages, 261743 bytes).
+Output written on report_master.pdf (9 pages, 270405 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 27 named destinations out of 1000 (max. 500000)
- 33385 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 177 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
+ 33401 words of extra memory for PDF output out of 35830 (max. 10000000)
 

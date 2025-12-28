@@ -240,9 +240,15 @@ INPUT C:\Users\Win10\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT .\section\assignment17.tex
 INPUT .\section\assignment17.tex
 INPUT section\assignment17.tex
+INPUT .\section\assignment18.tex
+INPUT .\section\assignment18.tex
+INPUT section\assignment18.tex
 INPUT C:\Users\Win10\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Users\Win10\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\Win10\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
+INPUT .\section\assignment19.tex
+INPUT .\section\assignment19.tex
+INPUT section\assignment19.tex
 INPUT report_master.aux
 INPUT .\report_master.out
 INPUT .\report_master.out
