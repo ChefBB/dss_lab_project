@@ -1,45 +1,38 @@
 \subsection{Assignment 17 -- Variazione percentuale annuale degli stream per categoria}
 
-L’Assignment 17 richiedeva di analizzare la variazione percentuale, in aumento o
-in diminuzione, del numero di stream per ciascuna categoria musicale rispetto
-all’anno precedente.
+L’Assignment 17 analizza la variazione percentuale annuale degli stream per
+ciascuna categoria musicale, confrontando il volume di stream registrato
+nell’anno corrente con quello osservato nello stesso periodo dell’anno
+precedente.
 
-La query MDX è stata progettata per confrontare il volume di stream di ogni
-categoria musicale (\texttt{[Song].[Category]}) nell’anno corrente con quello
-registrato nello stesso periodo dell’anno precedente. A tal fine, sono stati
-utilizzati i seguenti costrutti.
+Per recuperare i valori relativi all’anno precedente è stata utilizzata la
+funzione \textit{PARALLELPERIOD}, che consente di navigare la gerarchia temporale e
+di mantenere invariata la granularità temporale dell’analisi. Sulla base di tali
+valori, è stata definita una misura, \textit{Percentage Variation}, che calcola la
+variazione percentuale degli stream tra due anni consecutivi. La definizione
+della misura include controlli tramite la funzione \textit{IIF}, al fine di
+gestire i casi in cui il confronto non sia definito, come le
+divisioni per zero.
 
-La funzione \textit{PARALLELPERIOD} è stata impiegata per navigare la gerarchia
-temporale e recuperare i valori relativi all’anno precedente, mantenendo
-invariata la granularità dell’analisi. È stata inoltre definita una misura
-calcolata, denominata \textit{Percentage Variation}, che automatizza il calcolo
-della variazione percentuale degli stream, includendo una gestione esplicita dei
-casi di divisione per zero tramite la funzione \textit{IIF}.
+Nella formulazione iniziale, la query restituiva un numero elevato di valori
+\textit{NULL} o non interpretabili, in particolare per il primo anno disponibile
+nel dataset, per il quale non esiste un periodo precedente di riferimento. Per
+migliorare la leggibilità e la qualità dell’output, è stato quindi applicato un
+filtraggio basato su \textit{FILTER} e \textit{NOT IsEmpty}, rimuovendo tutte le
+righe per cui il confronto temporale non risulta significativo.
 
-Nella formulazione iniziale, la query produceva un numero elevato di valori
-\textit{NULL} o infiniti, rendendo i risultati difficili da interpretare. Per
-migliorare la qualità dell’output, la soluzione è stata ottimizzata applicando
-una clausola \textit{FILTER} combinata con \textit{NOT IsEmpty}, così da rimuovere
-tutte le righe per cui non era possibile effettuare un confronto significativo.
-In particolare, sono stati esclusi i casi in cui non esiste un anno precedente
-di riferimento, come il primo anno presente nel database.
+Questo filtraggio consente di mantenere esclusivamente le osservazioni per le
+quali la variazione percentuale è effettivamente definita. In tale contesto, una
+variazione pari a $-100\%$ indica che una categoria musicale, pur essendo presente
+nell’anno precedente, non registra stream nell’anno corrente. In assenza di tale
+filtraggio, non sarebbe stato possibile distinguere tra una reale scomparsa di
+una categoria e una semplice assenza di dati storici.
 
-Questo filtraggio consente di isolare esclusivamente i record per i quali il
-confronto matematico è effettivamente definito. Di conseguenza, una variazione
-pari a $-100\%$ indica che una categoria musicale era presente nell’anno
-precedente ma non registra stream nell’anno corrente, rappresentando
-un’informazione di business reale. In assenza di tale filtraggio, non sarebbe
-stato possibile distinguere tra una categoria effettivamente scomparsa e una per
-cui mancano semplicemente dati storici.
+Infine, l’ordinamento dei risultati sulla base della \textit{Member\_Key} della
+dimensione temporale garantisce una progressione cronologica coerente.
 
-Infine, l’ordinamento basato sulla \textit{Member\_Key} della dimensione temporale
-assicura una progressione cronologica coerente, facilitando la lettura e
-l’interpretazione dei trend storici.
-
-Dall’output ottenuto emergono indicazioni rilevanti dal punto di vista del
-business. Variazioni percentuali fortemente positive segnalano l’emergere o
-l’esplosione di nuovi trend di mercato, mentre variazioni negative evidenziano
-fasi di contrazione che possono richiedere analisi strategiche dedicate. Un calo
-generalizzato nell’ultimo anno disponibile costituisce infine un indicatore
-tecnico della possibile incompletezza dei dati, dimostrando come la query sia
-sensibile alla completezza temporale del dataset.
+Variazioni percentuali positive segnalano la crescita o l’emergere di
+nuove categorie musicali, mentre variazioni negative evidenziano fasi di
+diminuzione. Un calo diffuso nell’ultimo anno disponibile può infine costituire
+un indicatore di incompletezza dei dati, poiché l’ultimo anno osservato non
+risulta ancora completo.

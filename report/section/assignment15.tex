@@ -1,32 +1,28 @@
-\subsection{Assignment 15 -- Distribuzione mensile degli stream per regione e totale nazionale}
+\subsection{Assignment 15 -- Distribuzione mensile degli stream per regione e il totale della nazionale}
 
-L’Assignment 15 richiede di mostrare, per ciascun mese, il numero totale di stream
-registrati in ogni regione e il totale complessivo a livello nazionale per ciascun
-paese.
-
-L’obiettivo dell’analisi è produrre, per ogni mese, una struttura ordinata che
-elenca tutte le regioni appartenenti a ciascun paese, seguite da una riga
-rappresentante il totale nazionale, riportando per ciascuna voce il numero di
+L’obiettivo dell'analisi è la rappresentazione, su base mensile, di una struttura ordinata che
+elenca tutte le regioni appartenenti a ciascun paese, affiancata da una riga
+di sintesi per il totale nazionale e del relativo numero di
 stream osservati. Per rendere esplicita e leggibile tale struttura nel risultato
-finale, sono stati introdotti due membri calcolati, denominati
+finale, sono stati definiti due membri calcolati,
 \textit{Paese\_Col} e \textit{Regione\_Col}, che consentono di visualizzare
-direttamente le etichette testuali del paese e della regione in ogni riga.
+ le etichette testuali del paese e della regione nel set di risultato.
 
-Questo approccio permette di rappresentare correttamente la riga di totale
+Questo approccio permette di gestire correttamente la riga del totale
 nazionale sostituendo la regione con una voce aggregata (\textit{Total}), senza
-la necessità di creare nuovi membri all’interno della gerarchia geografica del
+la necessità di creare nuovi elementi all’interno della gerarchia geografica del
 cubo.
 
 La costruzione dell’insieme completo delle righe è realizzata mediante la funzione
-\textit{GENERATE}, che per ciascun paese produce dapprima l’elenco delle regioni
+\textit{GENERATE}, che per ciascun paese produce l’elenco delle regioni
 associate, ottenute tramite la funzione \textit{DESCENDANTS} limitata al livello
 \textit{Region}, e successivamente una riga aggiuntiva corrispondente al totale
 nazionale. La combinazione di tale struttura con il livello \textit{Month} della
-gerarchia temporale consente di replicare, per ogni mese, la sequenza
+gerarchia Date consente di replicare, per ogni mese, la sequenza
 \emph{Paese–Regioni–Totale}.
 
-La clausola \textit{FILTER} è utilizzata per rimuovere eventuali membri vuoti o
+La clausola \textit{FILTER} è utilizzata per rimuovere i membri vuoti o
 privi di nome, mentre l’uso di \textit{NON EMPTY} consente di escludere
 automaticamente le combinazioni per cui il numero di stream risulta assente.
 Infine, l’ordinamento del risultato è ottenuto concatenando mese, paese e regione,
-così da garantire una presentazione coerente e facilmente interpretabile dei dati.
+in modo da garantire una presentazione interpretabile dei dati.

@@ -1,55 +1,38 @@
-\subsection{Assignment 19 -- Analisi stagionale e per genere dell’impatto dei featuring}
+\subsection{Assignment 19 -- Analisi stagionale e per categoria sull’impatto dei featuring}
 
-L’obiettivo dell’Assignment 19 è estendere e raffinare quanto analizzato
-nell’Assignment 16. Se in precedenza l’attenzione era rivolta all’impatto annuo
-degli stream per artista, in questa analisi il focus viene spostato sul ruolo dei
-\textit{featuring} all’interno di specifiche stagioni e generi musicali, al fine
-di comprendere in quali contesti essi rappresentino un fattore determinante per
-il successo commerciale.
+L’Assignment 19 estende l’analisi introdotta nell’Assignment 16, concentrandosi
+sull’impatto dei featuring in funzione della stagione e del genere musicale.
+L’obiettivo è valutare in quali contesti stagionali e musicali la presenza di
+artisti in featuring contribuisca in modo significativo al volume di stream.
 
-Dal punto di vista del business, questa query risulta particolarmente rilevante
-poiché consente di passare da un’indicazione aggregata a una strategia mirata.
-Non ci si limita a stabilire se le collaborazioni abbiano funzionato in un dato
-anno, ma si analizza se il loro impatto vari in funzione della stagione
-(ad esempio Estate per le hit stagionali o Inverno) e del genere musicale, nonché
-come tali dinamiche si siano evolute dal 1992 a oggi.
+La query riprende la logica di ponderazione degli stream definita
+nell’Assignment 16, assegnando un peso pari a $0.8$ agli stream associati
+all’artista principale e pari a $0.2$ a quelli relativi agli artisti in
+featuring, applicando tale criterio a livello stagionale e di genere.
 
-La query riprende la logica di ponderazione degli stream introdotta
-nell’Assignment 16, assegnando un peso pari all’80\% all’artista principale e al
-20\% agli artisti in featuring, introducendo tuttavia alcuni miglioramenti
-tecnici per una lettura più accurata dei dati. In particolare:
-
+Dal punto di vista tecnico, l’analisi si basa sui seguenti accorgimenti:
 \begin{itemize}
-    \item l’utilizzo di tuple MDX consente di separare in modo esplicito
-    l’impatto degli artisti primari da quello dei featuring sulla misura degli
-    stream;
-    \item i membri \textit{Unknown} sono stati rimossi dalla dimensione
-    stagionale tramite la funzione \textit{EXCEPT}, direttamente nel set delle
-    righe, garantendo che l’analisi si basi esclusivamente su periodi
-    temporalmente definiti;
-    \item tramite la funzione \textit{FILTER} sono stati selezionati unicamente
-    i casi in cui l’indice calcolato risulta positivo, escludendo gli anni dal
-    1992 al 1995, nei quali i featuring erano assenti. Questa scelta rende il
-    report più compatto e focalizzato sulle dinamiche effettivamente rilevanti.
+    \item i membri \textit{Unknown} della dimensione stagionale sono stati esclusi
+    tramite la funzione \textit{EXCEPT}, garantendo che l’analisi si basi
+    esclusivamente su stagioni temporalmente definite;
+    \item mediante la funzione \textit{FILTER} sono stati selezionati solo i casi
+    in cui l’indice calcolato risulta positivo, escludendo gli anni iniziali
+    (1992--1995), nei quali il fenomeno dei featuring risulta assente.
 \end{itemize}
 
-L’introduzione del dettaglio stagionale consente di individuare con precisione
-il momento in cui il fenomeno dei featuring inizia a emergere in modo
-significativo. L’analisi mostra infatti che le collaborazioni diventano
-rilevanti a partire dall’inverno del 1996; fino a quel momento, il mercato
-risulta prevalentemente solista e privo di collaborazioni con un impatto
-misurabile.
+L’introduzione del dettaglio stagionale consente di individuare con precisione il
+periodo in cui i featuring iniziano ad assumere un ruolo rilevante. I risultati
+mostrano che le collaborazioni diventano significative a partire dall’inverno
+del 1996; fino a tale momento, il mercato risulta prevalentemente caratterizzato
+da produzioni soliste.
 
-Il confronto con i risultati dell’Assignment 16 evidenzia ulteriormente il valore
-aggiunto di questa analisi. Mentre l’analisi annua precedente forniva una misura
-media dell’impatto dei singoli artisti, l’introduzione delle dimensioni
-stagionale e di genere rivela come il successo delle collaborazioni sia fortemente
-dipendente dal contesto. In stagioni specifiche, generi come Trap e Rap raggiungono
+Il confronto con i risultati dell’Assignment 16 evidenzia come l’impatto dei
+featuring non sia uniforme, ma fortemente dipendente dal contesto stagionale e
+dal genere musicale. In specifiche stagioni, generi come Trap e Rap raggiungono
 valori dell’indice di convenienza superiori al 20\%, indicando che in tali ambiti
-il featuring non rappresenta un evento marginale, ma costituisce il principale
-motore degli ascolti stagionali.
+il featuring rappresenta un fattore centrale nel successo stagionale.
 
-Il picco massimo osservato nel 2025, pari al 33.33\% per il genere
-\textit{dark\_poetic}, conferma infine come la collaborazione sia diventata una
-leva strategica di primaria importanza, in grado di influenzare in modo
-significativo il successo stagionale di un intero genere musicale.
+Il valore massimo osservato nel 2025, pari al 33.33\% per il genere
+\textit{dark\_poetic}, conferma il ruolo delle collaborazioni come componente
+rilevante nella determinazione delle performance stagionali di un genere
+musicale.
