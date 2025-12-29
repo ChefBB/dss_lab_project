@@ -1,0 +1,36 @@
+\subsection{Assignment 11 -- Analisi degli indicatori di Trending per artista}
+
+Il processo ha inizio con l’importazione della \textit{FactParticipation}, arricchita tramite due trasformazioni di \textit{Lookup}: la prima sulla dimensione \textit{Artist}, per recuperare le informazioni anagrafiche dell’artista, e la seconda sulla dimensione \textit{Date}, necessaria per ottenere gli attributi temporali (anno, mese e giorno) utili all’ordinamento cronologico dei brani.
+
+Successivamente, un componente \textit{Multicast} suddivide il flusso in due rami paralleli:
+\begin{itemize}
+    \item il primo dedicato al calcolo delle statistiche aggregate per artista;
+    \item il secondo destinato alla conservazione dei dati a livello di singolo brano, utilizzati nelle fasi successive.
+\end{itemize}
+
+Poiché la definizione di \textit{trending} è riferita esclusivamente all’artista principale del brano, un \textit{Conditional Split} filtra le sole osservazioni con ruolo \textit{Primary}. Su questo sottoinsieme viene introdotta una \textit{Derived Column} che calcola il quadrato degli stream mensili, necessario per implementare manualmente il calcolo della varianza, in assenza di funzioni statistiche avanzate native in SSIS.
+
+I dati vengono quindi aggregati per artista tramite una trasformazione \textit{Aggregate}, ottenendo:
+\begin{itemize}
+    \item il numero totale di brani pubblicati;
+    \item la somma totale degli stream;
+    \item la somma dei quadrati degli stream.
+\end{itemize}
+
+A partire da queste grandezze, ulteriori \textit{Derived Column} permettono di calcolare la media, la varianza e la deviazione standard degli stream per ciascun artista.
+
+Poiché la deviazione standard non è definibile per artisti con un solo brano, il flusso viene suddiviso in due rami:
+\begin{itemize}
+    \item \textit{Edge cases}, relativi agli artisti con un’unica pubblicazione, gestiti secondo le specifiche confrontandoli con la media dei primi brani degli altri artisti;
+    \item \textit{Casi standard}, relativi agli artisti con più brani, che proseguono nel flusso principale.
+\end{itemize}
+
+Infine, le statistiche a livello di artista vengono ricongiunte ai dati dei singoli brani mediante un \textit{Merge Join}, consentendo il confronto tra le performance di ciascun brano e la distribuzione statistica del relativo artista. Questo passaggio permette di classificare ogni canzone come \textit{Trending} o \textit{Flopping}.
+
+La seconda fase del workflow è finalizzata al calcolo degli indicatori \textit{Trending Percentage} e \textit{Trending Factor}, distinguendo il contributo dell’artista come \textit{Primary} o \textit{Featured}.
+
+Subito dopo il \textit{Merge Join}, una \textit{Derived Column} classifica ogni brano come \textit{Trending} o \textit{Flopping}, confrontando il numero di stream con le soglie statistiche (media e deviazione standard) calcolate nella fase precedente. Un \textit{Conditional Split} separa quindi il flusso in base al ruolo dell’artista nel brano, distinguendo tra contributi \textit{Primary} e \textit{Featured}.
+
+Per ciascun ramo, una trasformazione \textit{Aggregate} raggruppa i dati per artista, producendo il numero totale di brani, il numero di brani classificati come \textit{Trending} e il numero di brani classificati come \textit{Flopping}.
+
+Sulla base di tali aggregazioni, due \textit{Derived Column} calcolano gli indicatori finali \textit{Trending Percentage} e \textit{Trending Factor}. A ogni record viene quindi associata un’etichetta descrittiva del ruolo (\textit{main} o \textit{feat}). I due flussi vengono ordinati in base al \textit{Trending Factor} e successivamente riuniti tramite una trasformazione \textit{Union All}. Prima della scrittura finale su \textit{Flat File Destination}, viene applicata una \textit{Data Conversion} per garantire la compatibilità dei tipi di dato.
