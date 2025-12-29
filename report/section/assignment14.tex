@@ -1,0 +1,59 @@
+\subsection{Assignment 14 -- Datacube}
+Per la creazione del cubo è stata configurata la
+connessione al database tramite la definizione del Data Source.
+Una volta stabilito il collegamento, abbiamo costruito il Data Source
+View (DSV), nel quale abbiamo importato la fact table e tutte le
+dimensioni rilevanti.
+Per ciascuna dimensione è stato selezionato un sottoinsieme di
+attributi, includendo esclusivamente quelli necessari per gli
+assignment successivi.\\
+
+All'interno della dimensione Date è stata definita una gerarchia
+temporale, utilizzando gli attributi Year, Month e Day presenti nella
+dimensione.
+Per la definizione della gerarchia, sono stati introdotti due Named
+Calculations:
+\begin{itemize}
+    \item \texttt{YearMonth} = concatenazione Year-Month nel formato YYYYMM
+    \item \texttt{YearMonthDay} = concatenazione Year-Month-Day nel formato YYYYMMDD
+\end{itemize}
+
+Questi attributi ci hanno permesso di definire la gerarchia temporale:
+\begin{center}
+    Year → Month → Day
+\end{center}
+dove:
+\begin{itemize}
+    \item il livello Month utilizza come NameColumn l'attributo \texttt{YearMonth},
+    \item il livello Day utilizza come NameColumn l'attributo \texttt{YearMonthDay}.
+\end{itemize}
+
+All'interno della dimensione Date era presente anche l'attributo Season,
+mantenuto come attributo flat perché non introduce una relazione
+di aggregazione naturale e stabile con gli altri livelli temporali
+(giorno, mese, trimestre, anno).\\
+
+All'interno del cubo abbiamo definito una seconda gerarchia, appartenente
+alla dimensione Artist Geography, costruita per rappresentare il luogo
+di nascita degli artisti:
+\begin{center}
+    Country → Region → Province → BirthPlace
+\end{center}
+Per ciascun livello di entrambe le gerarchie sono state mantenute le
+versione sia l'attributo flat corrispondente.\\
+
+Rispetto alla consegna del midterm, sono state apportate alcune
+modifiche al modello:
+\begin{itemize}
+    \item eliminazione della misura \texttt{totalStreams},
+    in quanto ridondante rispetto alla misura \texttt{stream1Month};
+    \item eliminazione della misura calcolata \texttt{weightedStreams},
+    il cui calcolo viene eseguito dalla rispettiva query.
+\end{itemize}
+In particolare, 
+
+Inoltre, nel cubo è stata definita la dimensione \texttt{Role},
+modellata come \emph{degenerate dimension} per l'attributo
+\texttt{IsPrimary}. Tale attributo rappresenta una caratteristica
+intrinseca del fatto, priva di ulteriori attributi descrittivi o
+gerarchie.
