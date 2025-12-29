@@ -1,28 +1,18 @@
 \subsection{Assignment 8 -- Numero di canzoni pubblicate per artista e anno}
+Il processo ha inizio con l’importazione della tabella \textit{Fact Participation}.
+Successivamente, è stata applicata una trasformazione di tipo
+\textit{Conditional Split} per selezionare esclusivamente le righe in cui
+l’artista risulta essere il contributore principale.
 
-Per risolvere l’Assignment 8 è stato progettato un flusso di dati in
-\textit{SQL Server Integration Services} (SSIS) volto a estrarre tutte le tracce
-pubblicate e ad aggregarle a livello di artista e anno. Poiché una canzone può
-coinvolgere più artisti, l’analisi considera esclusivamente il \textit{main
-artist} associato al brano, in accordo con la definizione della granularità
-richiesta.
+Sono state quindi introdotte due trasformazioni di \textit{Lookup}: la prima
+utilizzata per recuperare l’anno di pubblicazione dalla dimensione
+\textit{Date}, la seconda per aggiungere il nome dell’artista dalla dimensione
+\textit{Artist}.
 
-Il flusso dati ha origine dalla fact table contenente le partecipazioni degli
-artisti ai brani. In una fase iniziale è stata applicata una trasformazione di
-\textit{Conditional Split} per selezionare unicamente le righe in cui l’artista
-risulta essere il contributore principale, escludendo i casi di featuring.
+Una trasformazione di tipo \textit{Aggregate} ha consentito di raggruppare i dati
+per anno e artista, calcolando per ciascun caso il numero totale di brani
+pubblicati. Il risultato è stato successivamente ordinato per anno e, a parità
+di anno, per numero decrescente di canzoni, ottenendo la graduatoria richiesta.
 
-Successivamente, sono state introdotte due trasformazioni di \textit{Lookup}.
-La prima consente di recuperare l’anno di pubblicazione del brano dalla
-dimensione \textit{Date}, mentre la seconda arricchisce il flusso con il nome
-dell’artista, prelevato dalla dimensione \textit{Artist}.
-
-Una trasformazione di \textit{Aggregate} permette quindi di raggruppare i dati
-per coppia (anno, artista), calcolando per ciascuna combinazione il numero totale
-di canzoni pubblicate. Al fine di ottenere una classifica facilmente
-interpretabile, il risultato viene ordinato tramite una trasformazione di
-\textit{Sort} prima per anno e, all’interno dello stesso anno, per numero
-decrescente di brani pubblicati.
-
-Infine, il dataset risultante viene esportato in un file \textit{flat}, che
-costituisce l’output finale utilizzato per la visualizzazione e il report.
+Infine, il dataset risultante è stato esportato in un file \textit{flat}, che
+viene utilizzato per la visualizzazione e il reporting finale.

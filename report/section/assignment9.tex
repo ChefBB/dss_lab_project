@@ -1,46 +1,36 @@
 \subsection{Assignment 9 -- Analisi Summer - Winter Score per regione}
 
-Per affrontare l’Assignment 9 è stato progettato un flusso di dati in
-\textit{SQL Server Integration Services} (SSIS) a partire dalla fact table dei
-brani pubblicati. In una prima fase, il flusso è stato filtrato tramite una
-trasformazione di \textit{Conditional Split} per mantenere esclusivamente le
-righe in cui l’artista ricopre il ruolo di \textit{main artist}, garantendo
-coerenza con la granularità dell’analisi.
+Il processo ha inizio con l’importazione della tabella \textit{Fact Participation},
+seguita da una trasformazione di tipo \textit{Conditional Split} per selezionare
+esclusivamente le righe relative ai \textit{Primary Artist}. Successivamente,
+sono state applicate tre trasformazioni di \textit{Lookup}: la prima sulla
+dimensione \textit{Artist}, utilizzata per ottenere il valore di \textit{GeoKey};
+la seconda sulla dimensione \textit{ArtistGeography}, che consente di recuperare
+la regione e la nazione associate all’artista; la terza sulla dimensione
+\textit{Date}, necessaria per determinare la stagione di pubblicazione del brano.
+In questo modo, ogni riga del flusso risulta caratterizzata sia dalla regione
+dell’artista sia dalla stagione associata al brano.
 
-A partire da queste righe, sono state introdotte tre trasformazioni di
-\textit{Lookup}. Il primo Lookup con la dimensione \textit{Artist} consente di
-recuperare l’attributo \textit{GeoKey}, necessario per il secondo Lookup con la
-dimensione \textit{ArtistGeography}, che permette di associare a ciascun artista
-la regione e la nazione di riferimento. L’ultimo Lookup è stato effettuato sulla
-dimensione \textit{Date} al fine di ricavare la stagione di pubblicazione del
-brano. Al termine di questa fase, ogni riga del flusso risulta caratterizzata
-congiuntamente dalla regione dell’artista e dalla stagione di pubblicazione.
+Prima di procedere all’aggregazione, è stata introdotta una trasformazione di
+tipo \textit{Derived Column}, denominata \textit{GroupRegion}, volta a
+riclassificare sotto un’unica etichetta (\textit{Other}) tutti gli artisti privi
+di regione o non appartenenti all’Italia.
 
-Il flusso viene quindi suddiviso in due percorsi distinti, corrispondenti
-rispettivamente ai brani pubblicati in estate e a quelli pubblicati in inverno.
-Ciascun percorso è aggregato separatamente per regione tramite una
-trasformazione di \textit{Aggregate}, calcolando da un lato il numero di brani
-estivi e la somma degli \textit{Streams1Month}, e dall’altro le corrispondenti
-misure per i brani invernali.
-
-Poiché la trasformazione di \textit{Merge Join} richiede flussi ordinati, entrambi
-i percorsi sono sottoposti a un’operazione di \textit{Sort} prima di essere
-ricombinati. Nel \textit{Merge Join} è stata utilizzata una \textit{full outer
-join}, così da preservare anche le regioni presenti esclusivamente in uno dei
-due flussi stagionali.
+Il flusso è stato quindi suddiviso in due percorsi distinti, relativi
+rispettivamente ai brani pubblicati in estate e in inverno. Ciascun percorso è
+stato aggregato separatamente per \textit{GroupRegion}, ottenendo, da un lato, il
+conteggio dei brani estivi e la somma degli \textit{Streams1Month}, e, dall’altro,
+le corrispondenti misure relative ai brani invernali. Poiché la trasformazione
+\textit{Merge Join} richiede flussi ordinati, entrambi i percorsi sono stati
+sottoposti a ordinamento prima di essere ricombinati. Nel \textit{Merge Join} è
+stata utilizzata una \textit{full outer join}, al fine di mantenere anche le
+regioni presenti in un solo flusso stagionale.
 
 L’output risultante contiene, per ciascuna regione, quattro misure: il numero di
 brani estivi, il numero di brani invernali, la somma degli stream estivi e la
-somma degli stream invernali. A partire da questi valori, è stata introdotta una
-trasformazione di \textit{Derived Column} per calcolare i due indicatori
-richiesti: il \textit{summer--winter score} basato sul numero di brani e quello
-basato sul numero di stream.
-
-Entrambi i calcoli includono una gestione esplicita dei casi in cui il
-denominatore risulta pari a zero, restituendo un valore \textit{NULL} al fine di
-evitare divisioni invalide. Questa scelta previene la produzione di misure
-distorte e rende gli indicatori più robusti e interpretabili dal punto di vista
-analitico.
-
-Il flusso così completato viene infine indirizzato verso una \textit{Flat File
-Destination}, che rappresenta l’output finale. 
+somma degli stream invernali. Successivamente, una trasformazione di
+\textit{Derived Column} ha consentito di calcolare i due indicatori richiesti: il
+\textit{summer--winter score} basato sul numero di brani e quello basato sul
+numero di stream. Entrambi i calcoli includono una gestione esplicita dei casi in
+cui il denominatore risulti pari a zero, restituendo \textit{NULL} e garantendo
+misure affidabili e facilmente interpretabili.

@@ -1,41 +1,30 @@
-\subsection{Assignment 10 -- Confronto regionale delle performance di streaming}
+\subsection{Assignment 10}
 
-L’Assignment 10 analizza il rapporto tra gli stream di una categoria musicale
-in una determinata regione e gli stream della stessa categoria nelle restanti
-regioni, considerando esclusivamente le canzoni in cui l’artista ricopre il ruolo
-di \textit{primary artist}.
+L’esecuzione del flusso SSIS è stata avviata importando la tabella
+\textit{Fact Participation}.
+Successivamente, sono state applicate tre trasformazioni di tipo \textit{Lookup}:
+la prima sulla dimensione \textit{Song}, utilizzata per recuperare l’attributo
+\textit{Category}; la seconda sulla dimensione \textit{Artist}, che consente di
+ottenere l’attributo \textit{GeoKey}, necessario per il terzo \textit{Lookup}
+sulla dimensione \textit{ArtistGeography}, tramite il quale viene determinata la
+regione associata a ciascun artista.
 
-La logica analitica è stata inizialmente validata tramite una formulazione SQL
-al fine di verificarne la correttezza semantica e numerica, e successivamente
-implementata in \textit{SQL Server Integration Services} (SSIS) mediante un unico
-\textit{Data Flow}. Tale scelta garantisce coerenza con lo schema del
-\textit{Data Warehouse} e consente di mantenere un flusso di trasformazioni
-efficiente e facilmente tracciabile.
+Il flusso dei dati viene quindi duplicato mediante una trasformazione
+\textit{Multicast}, al fine di eseguire due aggregazioni in parallelo: la prima
+calcola il numero di stream per ciascuna coppia
+(\textit{Category}, \textit{Region}), mentre la seconda determina il totale degli
+stream per ciascuna categoria, indipendentemente dalla regione.
 
-Il flusso dati ha origine dalla fact table \textit{FactParticipation} ed è
-progressivamente arricchito tramite operazioni di \textit{Lookup} sulle
-dimensioni \textit{DimSong}, \textit{DimArtist} e \textit{DimArtistGeography}.
-Queste trasformazioni permettono di associare a ciascun record la categoria
-musicale del brano e la regione di nascita dell’artista principale. Un
-\textit{Conditional Split} viene utilizzato per selezionare esclusivamente le
-righe relative ai \textit{primary artist}, in accordo con la consegna.
+I risultati delle due aggregazioni vengono successivamente ordinati e combinati
+tramite una trasformazione di tipo \textit{Merge Join}, ottenendo per ciascuna
+riga sia il valore degli stream relativi a una specifica regione sia il totale
+degli stream della categoria corrispondente. Una trasformazione
+\textit{Derived Column} consente quindi di calcolare il numero di stream nelle
+altre regioni e il rapporto richiesto dalla consegna, includendo una gestione
+esplicita dei casi in cui il denominatore risulti pari a zero.
 
-L’aggregazione degli stream per ciascuna coppia (categoria, regione) è realizzata
-tramite una trasformazione di \textit{Aggregate}. In parallelo, mediante una
-\textit{Multicast}, viene calcolato il totale degli stream per categoria, valore
-necessario per determinare il volume di stream della stessa categoria nelle
-altre regioni.
-
-I risultati intermedi vengono successivamente ricombinati attraverso una
-trasformazione di \textit{Merge Join}, che consente di calcolare sia gli stream
-nelle restanti regioni sia il rapporto finale tra stream nella regione e stream
-nelle altre regioni. Tali calcoli sono implementati mediante trasformazioni di
-\textit{Derived Column}, con una gestione esplicita dei casi di denominatore nullo.
-
-Prima della scrittura dell’output finale, è stata introdotta una trasformazione
-di \textit{Data Conversion} sulle colonne \textit{Category} e \textit{Region}.
-Questo passaggio è necessario poiché tali attributi provengono dalle dimensioni
-con tipo Unicode (\textit{DT\_WSTR}), mentre la \textit{Flat File Destination}
-richiede stringhe non Unicode (\textit{DT\_STR}). La conversione garantisce la
-compatibilità dei tipi di dato e previene errori in fase di esecuzione, senza
-alterare il contenuto informativo.
+Infine, prima della scrittura dell’output in formato \textit{.txt}, le colonne
+\textit{Category} e \textit{Region} vengono convertite dal tipo Unicode
+(\textit{DT\_WSTR}) al tipo \textit{DT\_STR} mediante una trasformazione di
+\textit{Data Conversion}, poiché la \textit{Flat File Destination} non supporta
+tipi di dato Unicode.
