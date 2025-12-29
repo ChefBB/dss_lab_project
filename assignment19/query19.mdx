@@ -1,0 +1,34 @@
+WITH 
+MEMBER [Measures].[Primary Impact] AS 
+    ([Measures].[Streams1 Month], [Role].[Is Primary].&[True]) * 0.8
+
+MEMBER [Measures].[Feat Impact] AS 
+    ([Measures].[Streams1 Month], [Role].[Is Primary].&[False]) * 0.2
+
+MEMBER [Measures].[Feat Index] 
+    AS IIF(
+        ([Measures].[Primary Impact] + [Measures].[Feat Impact]) = 0,
+        NULL,
+        [Measures].[Feat Impact] /
+        ([Measures].[Primary Impact] + [Measures].[Feat Impact])
+    )
+    , FORMAT_STRING = "0.00%"
+
+SELECT 
+    { 
+        [Measures].[Streams1 Month], 
+        [Measures].[Feat Index] 
+    } ON COLUMNS,
+
+    NON EMPTY
+    FILTER(
+        [Date].[YearMonthDay].[Year].MEMBERS
+        * EXCEPT(
+            [Date].[Season].[Season].MEMBERS,
+            { [Date].[Season].[Season].&[Unknown] }
+        )
+        * [Song].[Category].[Category].MEMBERS,
+        [Measures].[Feat Index] > 0
+    ) ON ROWS
+
+FROM [Group_Id_8 DB]
