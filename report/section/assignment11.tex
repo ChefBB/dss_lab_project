@@ -25,6 +25,8 @@ Poiché la deviazione standard non è definibile per artisti con un solo brano, 
     \item \textit{Casi standard}, relativi agli artisti con più brani, che proseguono nel flusso principale.
 \end{itemize}
 
+Gli \textit{edge cases} vengono gestiti tramite una \textit{Flat File Destination} separata, al fine di consentirne un’analisi distinta. Nel caso specifico del dataset analizzato, tale flusso risulta vuoto, in quanto non sono presenti artisti con un solo brano pubblicato.
+
 Infine, le statistiche a livello di artista vengono ricongiunte ai dati dei singoli brani mediante un \textit{Merge Join}, consentendo il confronto tra le performance di ciascun brano e la distribuzione statistica del relativo artista. Questo passaggio permette di classificare ogni canzone come \textit{Trending} o \textit{Flopping}.
 
 La seconda fase del workflow è finalizzata al calcolo degli indicatori \textit{Trending Percentage} e \textit{Trending Factor}, distinguendo il contributo dell’artista come \textit{Primary} o \textit{Featured}.
