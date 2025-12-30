@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.27)  30 DEC 2025 11:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.27)  30 DEC 2025 11:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -507,20 +507,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `report_master.out' has not changed.
-(rerunfilecheck)             Checksum: 436788D124D7F0A3B3189E65F91A7811;6664.
+(rerunfilecheck)             Checksum: 16DE54F6FCDA5326E788591418845BDE;6369.
  ) 
 Here is how much of TeX's memory you used:
- 14257 strings out of 467871
- 232068 string characters out of 5418375
+ 14256 strings out of 467871
+ 232046 string characters out of 5418375
  667108 words of memory out of 5000000
- 42652 multiletter control sequences out of 15000+600000
+ 42651 multiletter control sequences out of 15000+600000
  693907 words of font info for 184 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,1112b,553s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,1112b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (13 pages, 274127 bytes).
+Output written on report_master.pdf (13 pages, 273648 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
+ 214 PDF objects out of 1000 (max. 8388607)
  40 named destinations out of 1000 (max. 500000)
- 36521 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 36513 words of extra memory for PDF output out of 42996 (max. 10000000)
 
