@@ -7,9 +7,9 @@ Il dataset originale era una aggregazione di dati ottenuti da diversi
 servizi di streaming musicale; i dati erano inizialmente divisi in due
 file distinti:
 \begin{itemize}
-    \item \texttt{tracks.json}, contenente informazioni relative alle
+    \item \texttt{tracks.json}, contenente informazioni relative a 11166
     canzoni,
-    \item \texttt{artists.xml}, contenente informazioni relative agli
+    \item \texttt{artists.xml}, contenente informazioni relative a 104
     artisti.
 \end{itemize}
 
@@ -20,49 +20,85 @@ Fino alla successiva conversione in CSV, il dataset è stato quindi
 manipolato utilizzando file JSON e dizionari Python.\\
 
 \subsubsection*{Entità ed Attributi Principali}
-Il dataset era costruito attorno ai suddetti artisti e canzoni.
-La relazione tra queste due entità descriveva la partecipazione di
-un artista alla produzione e pubblicazione di una canzone, e definiva
+Il dataset si concentra su artisti e canzoni.
+La relazione tra queste due entità descrive la partecipazione di
+un artista alla produzione e pubblicazione di una canzone, e definisce
 due modalità separate:
-ogni canzone aveva un unico artista principale, e 0 o più artisti
-featured.
-Inoltre, vengono definite diversi ulteriori attributi ed entità,
-ritenuti centrali nella descrizione del dominio.\\
+ogni canzone ha un unico artista principale, ed eventualmente uno o più
+artisti featured.\\
+% Inoltre, vengono definite diversi ulteriori attributi ed entità,
+% ritenuti centrali nella descrizione del dominio.\\
 
-Per quanto riguarda le canzoni, i principali sono stati considerati i
-seguenti:
+I principali attributi relativi alle canzoni sono:
 \begin{itemize}
-    \item Alcune misure di popolarità, la più importante delle quali
-    era \texttt{streams@1month}, che misurava il numero di stream ad un
-    mese dalla pubblicazione;
-    \item I \textbf{lyrics} delle canzoni, con vari ulteriori attributi
-    descrittivi;
-    \item Le date di uscita delle canzoni, salvate separatamente
-    negli attributi \texttt{year}, \texttt{month} e \texttt{day};
-    \item Gli \textbf{album} contenenti le canzoni, di diversi tipi
-    (Singoli, Compilation ed Album). La loro descrizione era ulteriormente
-    arricchita dalla presenza di vari attributi aggiuntivi.
-    Seppure gli album non siano mai stati utilizzati nello studio,
-    la loro rilevanza nella definizione e descrizione del dominio è
-    stata ritenuta alta;
-    \item Varie informazioni aggiuntive su aspetti più tecnici (dai BPM,
-    Beats-Per-Minute, ad aspetti relativi ai file audio).
+    \item Misure di popolarità, tra cui \texttt{streams@1month}, che
+    indica gli stream nel primo mese dalla pubblicazione;  
+    \item I testi (\textbf{lyrics}) e relativi attributi descrittivi;  
+    \item Data di uscita (\texttt{year}, \texttt{month}, \texttt{day});  
+    \item Album di appartenenza (Singoli, Compilation, Album) con
+    ulteriori informazioni descrittive;
+    \item Dati tecnici come BPM e caratteristiche dei file audio.
 \end{itemize}
 
-Il grafico sottostante mostra la distribuzione dell'attributo
+Il grafico~\ref{fig:streams_distrib} mostra la distribuzione dell'attributo
 \texttt{streams@1month}, che è stato il più rilevante durante tutto
-il progetto.
+il progetto. Come si può notare, la distribuizione è caratterizzata da
+forte sbilanciamento verso valori bassi.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/streams_plot.png}
-    \caption{Caption describing the figure}
-    \label{fig:example}
+    \caption{Distribuzione di \texttt{streams@1month}}
+    \label{fig:streams_distrib}
 \end{figure}
+
+Per quanto riguarda gli artisti, il dataset conteneva varie informazioni
+anagrafiche, tra cui i principali erano data e luogo di nascita.
 
 
 \subsubsection*{Dati Mancanti ed Errati}
-Il dataset originale conteneva un alto numero di dati mancanti ed
-incongruenze nella definizione degli attributi.
+Il dataset originale presentava numerosi dati mancanti e alcune
+incongruenze nella definizione degli attributi.  
+Il problema era più marcato per gli artisti rispetto alle canzoni,
+sebbene anche queste ultime contenessero vari attributi con un numero
+significativo di missing values.\\
 
-\subsubsection*{Dati Esterni}
+Tra le \textbf{canzoni}, gli attributi più soggetti a valori mancanti erano
+\texttt{album} (13,6\%) e la data
+di uscita suddivisa in \texttt{day} (11,8\%), \texttt{month} (10,7\%)
+e \texttt{year} (4,0\%).
+Altri attributi tecnici e descrittivi, come \texttt{bpm},
+\texttt{loudness} e caratteristiche dei testi, presentavano percentuali
+di missing inferiori all'1\%.
+\texttt{featured\_artists} conteneva 68,5\% di valori mancanti, dovuto
+però al fatto che non tutti i pezzi presentano artisti featured.\\
+
+Per gli \textbf{artisti}, i problemi più rilevanti riguardavano gli
+attributi anagrafici e geografici, con \texttt{active\_start} assente
+nel 52\% dei casi e informazioni relative a \texttt{region},
+\texttt{province}, \texttt{country}, \texttt{nationality} e
+\texttt{birth\_place} mancanti tra il 30\% e il 35\%.
+Questi atttributi presentavano inoltre incongruenze: alcuni facevano
+riferimento al luogo di nascita, mentre altri alla residenza attuale.
+Anche \texttt{birth\_date} risultava incompleto nel 30\% circa dei casi.
+Alcuni di questi valori mancanti sono dovuti al fatto che tra gli artisti del
+dataset erano presenti sia artisti singoli che gruppi, creando
+problemi nella gestione dei dati anagrafici.
+\texttt{active\_end} era inoltre completamente mancante, dovuto al
+fatto che gli artisti del dataset sono considerati ancora attivi.
+
+
+\subsubsection*{Risorse Esterne Utilizzate}
+
+Per ridurre le incongruenze e colmare i valori mancanti presenti nel
+dataset, sono state integrate informazioni provenienti da fonti esterne.
+In particolare:
+\begin{itemize}
+    \item \textbf{MusicBrainz}, per ottenere dati completi e aggiornati
+    relativi ad artisti, canzoni e album. L'interazione è stata
+    gestita prevalentemente attraverso l'API \texttt{musicbrainzngs}
+    \item \textbf{OpenStreetMap}, per recuperare informazioni geografiche
+    sugli artisti, come luogo di nascita e coordinate geografiche.
+\end{itemize}
+Queste integrazioni hanno permesso di migliorare la qualità dei dati e
+garantire una maggiore affidabilità delle analisi successive.
