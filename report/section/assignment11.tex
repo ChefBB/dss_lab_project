@@ -1,4 +1,4 @@
-\subsection{Assignment 11 -- Analisi degli indicatori di Trending per artista}
+\subsection*{Assignment 11 -- Analisi degli indicatori di Trending per artista}
 
 Il processo ha inizio con l’importazione della \textit{FactParticipation}, arricchita tramite due trasformazioni di \textit{Lookup}: la prima sulla dimensione \textit{Artist}, per recuperare le informazioni anagrafiche dell’artista, e la seconda sulla dimensione \textit{Date}, necessaria per ottenere gli attributi temporali (anno, mese e giorno) utili all’ordinamento cronologico dei brani.
 
@@ -24,6 +24,8 @@ Poiché la deviazione standard non è definibile per artisti con un solo brano, 
     \item \textit{Edge cases}, relativi agli artisti con un’unica pubblicazione, gestiti secondo le specifiche confrontandoli con la media dei primi brani degli altri artisti;
     \item \textit{Casi standard}, relativi agli artisti con più brani, che proseguono nel flusso principale.
 \end{itemize}
+
+Gli \textit{edge cases} vengono gestiti tramite una \textit{Flat File Destination} separata, al fine di consentirne un’analisi distinta. Nel caso specifico del dataset analizzato, tale flusso risulta vuoto, in quanto non sono presenti artisti con un solo brano pubblicato.
 
 Infine, le statistiche a livello di artista vengono ricongiunte ai dati dei singoli brani mediante un \textit{Merge Join}, consentendo il confronto tra le performance di ciascun brano e la distribuzione statistica del relativo artista. Questo passaggio permette di classificare ogni canzone come \textit{Trending} o \textit{Flopping}.
 
