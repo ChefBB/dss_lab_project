@@ -1,7 +1,15 @@
 \subsection*{Assignment 10 -- Analisi del rapporto di stream per categoria e regione}
 
-L’esecuzione del flusso SSIS è stata avviata importando la tabella
-\textit{Fact Participation}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/assignment10.png}
+    \caption{Data Flow SSIS per il calcolo del rapporto di stream per categoria e regione}
+    \label{fig:assignment10}
+\end{figure}
+
+Come mostrato in Figura~\ref{fig:assignment10}, l’esecuzione del flusso SSIS ha
+inizio con l’importazione della tabella \textit{FactParticipation}.
+
 Successivamente, sono state applicate tre trasformazioni di tipo \textit{Lookup}:
 la prima sulla dimensione \textit{Song}, utilizzata per recuperare l’attributo
 \textit{Category}; la seconda sulla dimensione \textit{Artist}, che consente di

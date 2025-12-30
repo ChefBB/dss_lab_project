@@ -4,8 +4,16 @@ L’Assignment 13 richiede la definizione e l’implementazione, tramite SSIS, d
 In risposta alla consegna, è stata progettata un’analisi delle performance degli artisti distinguendo il contributo fornito come artista primario (\textit{IsPrimary = 1}) e come artista in featuring (\textit{IsPrimary = 0}). L’analisi è limitata alle canzoni pubblicate negli ultimi tre anni e, per ciascun artista e per ciascun ruolo, vengono calcolati il numero di canzoni \textit{trending} e la percentuale di canzoni \textit{trending} sul totale delle canzoni rilevanti.
 
 I risultati sono ordinati in base alle misure ottenute, secondo l’ordine specificato dalla query analitica.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/assignment13.png}
+    \caption{Data Flow SSIS per l’analisi delle performance degli artisti come primary e featured}
+    \label{fig:assignment13}
+\end{figure}
 
-Il flusso in SSIS utilizza la \textit{FactParticipation} come sorgente principale. I dati vengono inizialmente collegati alla dimensione \textit{DimDate} tramite un \textit{Lookup}; successivamente, un \textit{Conditional Split} consente di selezionare esclusivamente le canzoni pubblicate negli ultimi tre anni, applicando la condizione:
+Come mostrato in Figura~\ref{fig:assignment13}, il flusso in SSIS utilizza la
+\textit{FactParticipation} come sorgente principale.
+I dati vengono inizialmente collegati alla dimensione \textit{DimDate} tramite un \textit{Lookup}; successivamente, un \textit{Conditional Split} consente di selezionare esclusivamente le canzoni pubblicate negli ultimi tre anni, applicando la condizione:
 \[
 \texttt{Year >= (YEAR(GETDATE()) - 2)}
 \]
