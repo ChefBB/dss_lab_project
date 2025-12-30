@@ -14,8 +14,14 @@ Questa formulazione consente di analizzare sia la distribuzione assoluta delle c
 Una canzone viene definita \textit{trending} se il numero di stream registrati a un mese dalla pubblicazione supera una soglia statistica calcolata a livello di categoria musicale, pari alla somma tra la media e la deviazione standard degli stream mensili della categoria. Media e deviazione standard sono calcolate separatamente per ciascuna categoria. Questa scelta consente di individuare performance superiori al comportamento medio della categoria, evitando confronti tra categorie caratterizzate da volumi di stream strutturalmente differenti.
 
 Dal punto di vista di una record label, l’analisi fornisce un supporto decisionale rilevante per la pianificazione delle pubblicazioni e delle strategie promozionali, permettendo di identificare le combinazioni di categoria musicale e stagione in cui la probabilità di ottenere contenuti \textit{trending} risulta più elevata.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/assignment12.png}
+    \caption{Data Flow SSIS per l’analisi delle canzoni trending per stagione e categoria}
+    \label{fig:assignment12}
+\end{figure}
 
-L’implementazione è realizzata tramite un unico \textit{Data Flow}, con la \textit{FactParticipation} come sorgente principale. Il flusso include due operazioni di \textit{Lookup} verso le dimensioni \textit{DimSong} e \textit{DimDate}, utilizzate rispettivamente per associare a ciascun record la categoria musicale e la stagione di pubblicazione.
+Come mostrato in Figura~\ref{fig:assignment12}, l’implementazione è realizzata tramite un unico \textit{Data Flow}, con la \textit{FactParticipation} come sorgente principale. Il flusso include due operazioni di \textit{Lookup} verso le dimensioni \textit{DimSong} e \textit{DimDate}, utilizzate rispettivamente per associare a ciascun record la categoria musicale e la stagione di pubblicazione.
 
 Dopo i \textit{Lookup} sulle dimensioni \textit{DimSong} e \textit{DimDate}, il flusso viene ulteriormente suddiviso tramite una suddivisione condizionale, utilizzata per isolare le sole partecipazioni in cui l’artista ricopre il ruolo di artista primario (\textit{IsPrimary = TRUE}). Tale separazione consente di calcolare le statistiche di riferimento evitando distorsioni dovute alla presenza di più righe per la stessa canzone generate dai featuring.
 

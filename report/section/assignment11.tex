@@ -1,6 +1,14 @@
 \subsection*{Assignment 11 -- Analisi degli indicatori di Trending per artista}
 
-Il processo ha inizio con l’importazione della \textit{FactParticipation}, arricchita tramite due trasformazioni di \textit{Lookup}: la prima sulla dimensione \textit{Artist}, per recuperare le informazioni anagrafiche dell’artista, e la seconda sulla dimensione \textit{Date}, necessaria per ottenere gli attributi temporali (anno, mese e giorno) utili all’ordinamento cronologico dei brani.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/assignment11.png}
+    \caption{Data Flow SSIS per il calcolo degli indicatori di Trending per artista}
+    \label{fig:assignment11}
+\end{figure}
+
+Come mostrato in Figura~\ref{fig:assignment11}, il processo ha inizio con
+l’importazione della tabella \textit{FactParticipation}, arricchita da due \textit{Lookup}: il primo sulla dimensione \textit{Artist}, per recuperare le informazioni anagrafiche dell’artista, e il secondo sulla dimensione \textit{Date}, necessaria per ottenere gli attributi temporali (anno, mese e giorno) utili all’ordinamento cronologico dei brani.
 
 Successivamente, un componente \textit{Multicast} suddivide il flusso in due rami paralleli:
 \begin{itemize}

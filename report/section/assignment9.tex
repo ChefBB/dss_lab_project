@@ -1,7 +1,14 @@
-\subsection*{Assignment 9 -- Analisi Summer - Winter Score per regione}
+\subsection*{Assignment 9 -- Analisi Summer-Winter Score per regione}
 
-Il processo ha inizio con l’importazione della tabella \textit{Fact Participation},
-seguita da una trasformazione di tipo \textit{Conditional Split} per selezionare
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/assignment9.png}
+    \caption{Data Flow SSIS per il calcolo del Summer--Winter Score per regione}
+    \label{fig:assignment9}
+\end{figure}
+
+Come mostrato in Figura~\ref{fig:assignment9}, il processo ha inizio con
+l’importazione della tabella \textit{FactParticipation},seguita da una trasformazione di tipo \textit{Conditional Split} per selezionare
 esclusivamente le righe relative ai \textit{Primary Artist}. Successivamente,
 sono state applicate tre trasformazioni di \textit{Lookup}: la prima sulla
 dimensione \textit{Artist}, utilizzata per ottenere il valore di \textit{GeoKey};
@@ -34,3 +41,5 @@ somma degli stream invernali. Successivamente, una trasformazione di
 numero di stream. Entrambi i calcoli includono una gestione esplicita dei casi in
 cui il denominatore risulti pari a zero, restituendo \textit{NULL} e garantendo
 misure affidabili e facilmente interpretabili.
+Infine, il dataset risultante è stato esportato in un file \textit{flat}, che
+viene utilizzato per la visualizzazione e il reporting finale.

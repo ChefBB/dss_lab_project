@@ -1,5 +1,14 @@
 \subsection*{Assignment 8 -- Numero di canzoni pubblicate per artista e anno}
-Il processo ha inizio con l’importazione della tabella \textit{Fact Participation}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/assignment8.png}
+    \caption{Data Flow SSIS per il calcolo del numero di canzoni pubblicate per artista e anno}
+    \label{fig:assignment8}
+\end{figure}
+
+
+Come mostrato in Figura~\ref{fig:assignment8}, il processo ha inizio con l’importazione della tabella \textit{FactParticipation}.  
 Successivamente, è stata applicata una trasformazione di tipo
 \textit{Conditional Split} per selezionare esclusivamente le righe in cui
 l’artista risulta essere il contributore principale.
