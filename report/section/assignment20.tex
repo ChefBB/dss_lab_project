@@ -1,7 +1,43 @@
-\subsection*{Assignment 20 -- Dashboard delle Stream Totali per Categoria, Luogo di Nascita}
+\subsection*{Assignment 20 -- Dashboard delle Stream Totali per Categoria e Luogo di Nascita}
+
+La Figura~\ref{fig:ass_20} mostra la dashboard richiesta
+nell'Assignment 20.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/Screenshot 2025-12-30 at 11.02.03.png}
-    \caption{Dashboard delle stream totali per categoria, luogo di nascita dell'artista principale}
-    \label{fig:my_label}
+    \includegraphics[width=1\textwidth]{Figures/ass_20.png}
+    \caption{Dashboard delle stream totali per categoria e luogo di nascita dell'artista principale}
+    \label{fig:ass_20}
 \end{figure}
+
+La dashboard è composta da tre visualizzazioni:
+
+\begin{itemize}
+    \item Una \textbf{Filled Map} che rappresenta i luoghi di nascita
+    degli artisti principali. La mappa utilizza la gerarchia definita
+    in \emph{Artist Geography} e consente la navigazione a diversi livelli
+    di granularità (paese, regione, provincia e città).  
+    Questa visualizzazione funge da filtro per il Grafico a Torta.
+
+    \item Un \textbf{Grafico a Torta} che mostra la distribuzione delle
+    stream totali per categoria musicale, in base alla selezione corrente
+    del luogo di nascita effettuata sulla mappa.
+
+    \item Un \textbf{Istogramma} che riporta la distribuzione delle stream
+    totali per le regioni italiane. Questa visualizzazione non è
+    influenzata dalla selezione sulla mappa, ma può essere utilizzata
+    come filtro per le altre due componenti della dashboard.
+\end{itemize}
+
+Per evitare la duplicazione delle stream, l'analisi considera
+esclusivamente il luogo di nascita dell'artista principale associato a
+ciascuna canzone.
+
+In particolare, la figura~\ref{fig:ass_20} mostra, nel grafico a torta,
+la distribuzione degli ascolti per le categorie in Italia, evidenziando
+la predominanza dei generi \textit{rap\_street} e \textit{italian\_pop}.
+L'Istogramma invece mostra lo sbilanciamento degli stream nelle regioni
+italiane verso la Lombardia, che sembra avere la maggior parte degli ascolti.
+Nelle varie regioni, sembra ritrovarsi generalmente la distribuzione
+generale italiana, tranne che per la Campania, che è l'unica regione
+con alta presenza del genere \textit{neapolitan}.

@@ -324,23 +324,23 @@ INPUT section/assignment16.tex
 INPUT ./section/assignment17.tex
 INPUT ./section/assignment17.tex
 INPUT section/assignment17.tex
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT ./section/assignment18.tex
 INPUT ./section/assignment18.tex
 INPUT section/assignment18.tex
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT ./section/assignment19.tex
 INPUT ./section/assignment19.tex
 INPUT section/assignment19.tex
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT ./section/assignment20.tex
 INPUT ./section/assignment20.tex
 INPUT section/assignment20.tex
-INPUT ./Figures/Screenshot 2025-12-30 at 11.02.03.png
-INPUT ./Figures/Screenshot 2025-12-30 at 11.02.03.png
-INPUT ./Figures/Screenshot 2025-12-30 at 11.02.03.png
-INPUT ./Figures/Screenshot 2025-12-30 at 11.02.03.png
-INPUT ./Figures/Screenshot 2025-12-30 at 11.02.03.png
+INPUT ./Figures/ass_20.png
+INPUT ./Figures/ass_20.png
+INPUT ./Figures/ass_20.png
+INPUT ./Figures/ass_20.png
+INPUT ./Figures/ass_20.png
 INPUT ./section/assignment21.tex
 INPUT ./section/assignment21.tex
 INPUT section/assignment21.tex
@@ -352,6 +352,11 @@ INPUT ./Figures/Screenshot 2025-12-30 at 11.04.37.png
 INPUT ./section/assignment22.tex
 INPUT ./section/assignment22.tex
 INPUT section/assignment22.tex
+INPUT ./Figures/ass_22.png
+INPUT ./Figures/ass_22.png
+INPUT ./Figures/ass_22.png
+INPUT ./Figures/ass_22.png
+INPUT ./Figures/ass_22.png
 INPUT report_master.aux
 INPUT ./report_master.out
 INPUT ./report_master.out

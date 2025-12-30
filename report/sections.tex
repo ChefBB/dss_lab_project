@@ -13,6 +13,25 @@
 \input{section/assignment7.tex}
 
 \section*{Data Warehouse Design e Queries Analitiche}
+
+Per la risoluzione degli assignment è stato progettato un flusso ETL
+in SQL Server Integration Services (SSIS), attraverso il quale è stato
+prodotto un file di output in formato .txt contenente i risultati
+richiesti.
+Prima della costruzione dei flussi in SSIS, per ciascun assignment è
+stata preliminarmente redatta una query SQL manuale, al fine di
+comprendere chiaramente la logica richiesta e verificare immediatamente
+la correttezza dei risultati. Una volta validato l'output tramite SQL
+Server Management Studio, la stessa logica è stata tradotta in un data
+flow SSIS, riproducendo puntualmente tutte le operazioni necessarie.
+
+Nel data warehouse utilizzato, ogni brano può essere associato a più
+artisti, ciascuno con un ruolo differente (main artist /
+featured artist). Poiché negli assignment 8, 9 e 10 non viene specificato
+quale ruolo considerare, è stato adottato un criterio uniforme per
+l'attribuzione della pubblicazione e degli stream, basato esclusivamente
+sul main artist.
+
 \input{section/assignment8.tex}
 \input{section/assignment9.tex}
 \input{section/assignment10.tex}

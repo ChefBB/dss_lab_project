@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 16:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 17:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -334,11 +334,7 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count294
 \l__pdf_internal_box=\box56
-) (./report_master.aux
-
-LaTeX Warning: Label `fig:my_label' multiply defined.
-
-)
+) (./report_master.aux)
 \openout1 = `report_master.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
@@ -552,36 +548,35 @@ File: Figures/assignment8.png Graphic file (type png)
 Package pdftex.def Info: Figures/assignment8.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 242.23616pt.
  [10 <./Figures/Screenshot 2025-12-30 at 16.04.31.png>]) (./section/assignment9.tex
-<Figures/assignment9.png, id=95, 836.3747pt x 278.54062pt>
+<Figures/assignment9.png, id=96, 836.3747pt x 278.54062pt>
 File: Figures/assignment9.png Graphic file (type png)
 <use Figures/assignment9.png>
 Package pdftex.def Info: Figures/assignment9.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 143.31187pt.
- [11 <./Figures/assignment8.png>]) (./section/assignment10.tex
-<Figures/assignment10.png, id=105, 959.83594pt x 322.20375pt>
+ [11 <./Figures/assignment8.png> <./Figures/assignment9.png>]) (./section/assignment10.tex
+<Figures/assignment10.png, id=108, 959.83594pt x 322.20375pt>
 File: Figures/assignment10.png Graphic file (type png)
 <use Figures/assignment10.png>
 Package pdftex.def Info: Figures/assignment10.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 144.45445pt.
- [12 <./Figures/assignment9.png>]) (./section/assignment11.tex
-<Figures/assignment11.png, id=114, 1081.03876pt x 747.79375pt>
+ [12 <./Figures/assignment10.png>]) (./section/assignment11.tex
+<Figures/assignment11.png, id=117, 1081.03876pt x 747.79375pt>
 File: Figures/assignment11.png Graphic file (type png)
 <use Figures/assignment11.png>
 Package pdftex.def Info: Figures/assignment11.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 297.66307pt.
- [13 <./Figures/assignment10.png>] [14 <./Figures/assignment11.png>]) (./section/assignment12.tex
-<Figures/assignment12.png, id=130, 1003.49907pt x 371.13657pt>
+ [13 <./Figures/assignment11.png>]) (./section/assignment12.tex [14]
+<Figures/assignment12.png, id=131, 1003.49907pt x 371.13657pt>
 File: Figures/assignment12.png Graphic file (type png)
 <use Figures/assignment12.png>
 Package pdftex.def Info: Figures/assignment12.png  used on input line 19.
 (pdftex.def)             Requested size: 430.31812pt x 159.14955pt.
- [15]) (./section/assignment13.tex
-<Figures/assignment13.png, id=137, 944.02687pt x 216.05719pt>
+) (./section/assignment13.tex [15 <./Figures/assignment12.png>]
+<Figures/assignment13.png, id=139, 944.02687pt x 216.05719pt>
 File: Figures/assignment13.png Graphic file (type png)
 <use Figures/assignment13.png>
 Package pdftex.def Info: Figures/assignment13.png  used on input line 9.
 (pdftex.def)             Requested size: 430.31812pt x 98.48749pt.
- [16 <./Figures/assignment12.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 17.
 ) (./section/assignment14.tex
@@ -589,7 +584,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--10
 
  []
 
-[17 <./Figures/assignment13.png>]
+[16 <./Figures/assignment13.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
@@ -599,43 +594,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--44
 
  []
 
-) (./section/assignment15.tex) (./section/assignment16.tex [18]) (./section/assignment17.tex) (./section/assignment18.tex [19{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]) (./section/assignment19.tex) (./section/assignment20.tex
-<Figures/Screenshot 2025-12-30 at 11.02.03.png, id=170, 1074.0125pt x 608.2725pt>
-File: Figures/Screenshot 2025-12-30 at 11.02.03.png Graphic file (type png)
-<use Figures/Screenshot 2025-12-30 at 11.02.03.png>
-Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 11.02.03.png  used on input line 4.
-(pdftex.def)             Requested size: 362.37569pt x 205.23206pt.
-) (./section/assignment21.tex [20]
-<Figures/Screenshot 2025-12-30 at 11.04.37.png, id=177, 1054.94125pt x 593.21625pt>
+) (./section/assignment15.tex [17]) (./section/assignment16.tex) (./section/assignment17.tex [18{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]) (./section/assignment18.tex) (./section/assignment19.tex [19{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]) (./section/assignment20.tex
+<Figures/ass_20.png, id=173, 1196.47pt x 673.51625pt>
+File: Figures/ass_20.png Graphic file (type png)
+<use Figures/ass_20.png>
+Package pdftex.def Info: Figures/ass_20.png  used on input line 8.
+(pdftex.def)             Requested size: 452.9679pt x 254.98306pt.
+ [20 <./Figures/ass_20.png>]) (./section/assignment21.tex
+<Figures/Screenshot 2025-12-30 at 11.04.37.png, id=183, 1054.94125pt x 593.21625pt>
 File: Figures/Screenshot 2025-12-30 at 11.04.37.png Graphic file (type png)
 <use Figures/Screenshot 2025-12-30 at 11.04.37.png>
-Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 11.04.37.png  used on input line 4.
-(pdftex.def)             Requested size: 362.37569pt x 203.7637pt.
-) (./section/assignment22.tex)) [21 <./Figures/Screenshot 2025-12-30 at 11.02.03.png> <./Figures/Screenshot 2025-12-30 at 11.04.37.png>] (./report_master.aux)
+Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 11.04.37.png  used on input line 11.
+(pdftex.def)             Requested size: 452.9679pt x 254.7069pt.
+ [21 <./Figures/Screenshot 2025-12-30 at 11.04.37.png>]) (./section/assignment22.tex
+<Figures/ass_22.png, id=191, 1197.47375pt x 673.51625pt>
+File: Figures/ass_22.png Graphic file (type png)
+<use Figures/ass_22.png>
+Package pdftex.def Info: Figures/ass_22.png  used on input line 5.
+(pdftex.def)             Requested size: 452.9679pt x 254.76724pt.
+)) [22 <./Figures/ass_22.png>] (./report_master.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `report_master.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14313 strings out of 474116
- 231582 string characters out of 5743682
+ 14325 strings out of 474116
+ 231624 string characters out of 5743682
  1938187 words of memory out of 5000000
- 36136 multiletter control sequences out of 15000+600000
+ 36145 multiletter control sequences out of 15000+600000
  617907 words of font info for 174 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,79p,1100b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (21 pages, 1239393 bytes).
+Output written on report_master.pdf (22 pages, 1484226 bytes).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 75 named destinations out of 1000 (max. 500000)
- 32312 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 265 PDF objects out of 1000 (max. 8388607)
+ 196 compressed objects within 2 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 32317 words of extra memory for PDF output out of 35830 (max. 10000000)
 
