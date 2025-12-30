@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1767104422.67979 "/Users/brunobarbieri/Documents/Uni/master/second/first_sem/dss/lab/dss_lab_project/report/report_master.tex" "report_master.pdf" "report_master" 1767104423.38033 0
+["pdflatex"] 1767108271.0814 "/Users/brunobarbieri/Documents/Uni/master/second/first_sem/dss/lab/dss_lab_project/report/report_master.tex" "report_master.pdf" "report_master" 1767108271.84688 0
   "/Users/brunobarbieri/Documents/Uni/master/second/first_sem/dss/lab/dss_lab_project/report/report_master.tex" 1767096796.4171 844 1cbbff660934d6a4c15b9bc24f5bd8be ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -122,6 +122,7 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1718359646.02718 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1718359419 8221430 7882b9a7879b697c1714b9ec0b6e673c ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
+  "Figures/Screenshot 2025-12-30 at 16.04.31.png" 1767107076.96969 303719 8f03bc502ac71ad93f28c8314cf5c4a6 ""
   "Figures/assignment10.png" 1767019277.37551 45851 cedeaebb26cb9ef1f3e7ef6a0e22c966 ""
   "Figures/assignment11.png" 1767019277.37625 74826 74e0e780c8a7d3fbd021152dacbd0843 ""
   "Figures/assignment12.png" 1767019277.37728 157432 4d9e4e17aa00f543cb351d3943419b82 ""
@@ -129,8 +130,8 @@
   "Figures/assignment8.png" 1767019277.37836 21988 ca5a20acb8157ef2ad31de1efebc17eb ""
   "Figures/assignment9.png" 1767019277.37897 39516 4ae5fba878db0be363de58a4dbca66e5 ""
   "Figures/streams_plot.png" 1767095054.30361 18477 db3ba9c665930918f01a12b22a424fd0 ""
-  "report_master.aux" 1767104423.29791 2484 06710f26a1a2eda9c14bd6f7e01a6556 "pdflatex"
-  "report_master.out" 1767104422.98466 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "report_master.aux" 1767108271.77278 2803 c22ec2247180832aae7b9828ca55058c "pdflatex"
+  "report_master.out" 1767108271.39029 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "report_master.tex" 1767096796.4171 844 1cbbff660934d6a4c15b9bc24f5bd8be ""
   "section/assignment1.tex" 1767097976.27811 4890 6629eeea6d21f10698b78dfe21d523f1 ""
   "section/assignment10.tex" 1767094715.59638 2118 95c8a4cbff71d8fb15d47bfb644117f9 ""
@@ -147,14 +148,14 @@
   "section/assignment20.tex" 1766869775.37717 0 d41d8cd98f00b204e9800998ecf8427e ""
   "section/assignment21.tex" 1766869775.3772 0 d41d8cd98f00b204e9800998ecf8427e ""
   "section/assignment22.tex" 1766869775.37724 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "section/assignment3.tex" 1767104422.44042 1235 56dc0e69da163849efb03a1d9c2cd73c ""
+  "section/assignment3.tex" 1767104479.90701 1235 56dc0e69da163849efb03a1d9c2cd73c ""
   "section/assignment4.tex" 1767094662.98604 7636 3798ca4590a75a0c614f987bb3e86a14 ""
   "section/assignment5.tex" 1767094662.98627 3309 ecd14b5ee434e19a1585c20b0f401986 ""
   "section/assignment6.tex" 1767094662.98653 3603 56f2dd24a2c2988685f2a69fdd1ba867 ""
-  "section/assignment7.tex" 1766869775.37833 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "section/assignment7.tex" 1767108270.86808 1538 17ec77d862b3f9d9a134829b51dfe98b ""
   "section/assignment8.tex" 1767094715.59722 1351 2ef27486ed5ab54df8375429e7e8d4f0 ""
   "section/assignment9.tex" 1767094715.5975 2813 7c4b4f9cfbf49eeeb29d45436398b23f ""
-  "sections.tex" 1767089610.76114 791 b3f9de47112ae36ff214588dd7e1bea2 ""
+  "sections.tex" 1767106534.70279 960 00d38b5880f3d3f69bdfc5254f7ec267 ""
   (generated)
   "report_master.aux"
   "report_master.log"

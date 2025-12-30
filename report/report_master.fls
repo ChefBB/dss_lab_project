@@ -203,6 +203,8 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7
 INPUT ./sections.tex
 INPUT ./sections.tex
 INPUT sections.tex
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT ./section/assignment1.tex
 INPUT ./section/assignment1.tex
 INPUT section/assignment1.tex
@@ -243,6 +245,11 @@ INPUT section/assignment6.tex
 INPUT ./section/assignment7.tex
 INPUT ./section/assignment7.tex
 INPUT section/assignment7.tex
+INPUT ./Figures/Screenshot 2025-12-30 at 16.04.31.png
+INPUT ./Figures/Screenshot 2025-12-30 at 16.04.31.png
+INPUT ./Figures/Screenshot 2025-12-30 at 16.04.31.png
+INPUT ./Figures/Screenshot 2025-12-30 at 16.04.31.png
+INPUT ./Figures/Screenshot 2025-12-30 at 16.04.31.png
 INPUT ./section/assignment8.tex
 INPUT ./section/assignment8.tex
 INPUT section/assignment8.tex
@@ -312,15 +319,15 @@ INPUT section/assignment16.tex
 INPUT ./section/assignment17.tex
 INPUT ./section/assignment17.tex
 INPUT section/assignment17.tex
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT ./section/assignment18.tex
 INPUT ./section/assignment18.tex
 INPUT section/assignment18.tex
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT ./section/assignment19.tex
 INPUT ./section/assignment19.tex
 INPUT section/assignment19.tex
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT ./section/assignment20.tex
 INPUT ./section/assignment20.tex
 INPUT section/assignment20.tex
