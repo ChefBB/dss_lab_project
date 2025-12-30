@@ -1,0 +1,59 @@
+WITH 
+    MEMBER [Measures].[Paese_Col] AS 
+        IIF(
+            [Dim Artist Geography].[Geography].CurrentMember.Level.Name = "Country",
+            [Dim Artist Geography].[Geography].CurrentMember.Name,
+            [Dim Artist Geography].[Geography].CurrentMember.Parent.Name
+        )
+
+    MEMBER [Measures].[Regione_Col] AS 
+        IIF(
+            [Dim Artist Geography].[Geography].CurrentMember.Level.Name = "Country",
+            "Total",
+            [Dim Artist Geography].[Geography].CurrentMember.Name
+        )
+
+SELECT
+    {
+        [Measures].[Paese_Col],
+        [Measures].[Regione_Col],
+        [Measures].[Streams1 Month]
+    } ON COLUMNS,
+
+    NON EMPTY
+    ORDER(
+        FILTER(
+            [Date].[YearMonthDay].[Month].MEMBERS
+            *
+            GENERATE(
+                FILTER(
+                    [Dim Artist Geography].[Geography].[Country].MEMBERS,
+                    [Dim Artist Geography].[Geography].CurrentMember.Name <> ""
+                ),
+
+                {
+                    FILTER(
+                        DESCENDANTS(
+                            [Dim Artist Geography].[Geography].CurrentMember,
+                            [Dim Artist Geography].[Geography].[Region],
+                            SELF
+                        ),
+                        [Dim Artist Geography].[Geography].CurrentMember.Name <> ""
+                        AND [Dim Artist Geography].[Geography].CurrentMember.Name <> "(null)"
+                    ),
+
+                    [Dim Artist Geography].[Geography].CurrentMember
+                }
+            ),
+
+            [Measures].[Streams1 Month] > 0
+        ),
+
+        [Date].[YearMonthDay].CurrentMember.Name
+        + [Measures].[Paese_Col]
+        + [Measures].[Regione_Col],
+
+        BASC
+    ) ON ROWS
+
+FROM [Group_ID_8 DB]

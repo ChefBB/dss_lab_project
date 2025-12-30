@@ -1,0 +1,34 @@
+WITH 
+    MEMBER [Measures].[Avg Season Prev Year] AS 
+        AVG(
+            [Song].[Category].[Category].MEMBERS,
+            (
+                PARALLELPERIOD([Date].[YearMonthDay].[Year], 1, [Date].[YearMonthDay].CurrentMember),
+                [Measures].[Streams1 Month]
+            )
+        )
+
+    MEMBER [Measures].[Percentage Increase] AS 
+        IIF(
+            IsEmpty([Measures].[Avg Season Prev Year]) OR [Measures].[Avg Season Prev Year] = 0,
+            NULL,
+            ([Measures].[Streams1 Month] - [Measures].[Avg Season Prev Year]) / [Measures].[Avg Season Prev Year]
+        ),
+        FORMAT_STRING = "0.00%"
+
+SELECT 
+    { 
+      [Measures].[Streams1 Month], 
+      [Measures].[Avg Season Prev Year],
+      [Measures].[Percentage Increase] 
+    } ON COLUMNS,
+
+    NON EMPTY 
+    FILTER(
+        [Date].[YearMonthDay].[Year].MEMBERS * [Date].[Season].[Season].MEMBERS * [Song].[Category].[Category].MEMBERS,
+        
+        [Measures].[Streams1 Month] > [Measures].[Avg Season Prev Year]
+        AND NOT IsEmpty([Measures].[Avg Season Prev Year])
+        AND [Date].[Season].CurrentMember.Name <> "Unknown"
+    ) ON ROWS
+FROM [Group_Id_8 DB]

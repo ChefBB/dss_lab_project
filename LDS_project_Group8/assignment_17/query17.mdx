@@ -1,0 +1,24 @@
+WITH 
+    MEMBER [Measures].[Prev Year Streams] AS 
+        ([Measures].[Streams1 Month], 
+         PARALLELPERIOD([Date].[YearMonthDay].[Year], 1, [Date].[YearMonthDay].CurrentMember))
+
+    MEMBER [Measures].[Percentage Variation] AS 
+        IIF(IsEmpty([Measures].[Prev Year Streams]) OR [Measures].[Prev Year Streams] = 0,
+            NULL,
+            ([Measures].[Streams1 Month] - [Measures].[Prev Year Streams]) / [Measures].[Prev Year Streams]),
+        FORMAT_STRING = "0.00%"
+
+SELECT 
+    { [Measures].[Streams1 Month], [Measures].[Prev Year Streams], [Measures].[Percentage Variation] } ON COLUMNS,
+
+    NON EMPTY
+    ORDER(
+        FILTER(
+            [Date].[YearMonthDay].[Year].MEMBERS * [Song].[Category].[Category].MEMBERS,
+            NOT IsEmpty([Measures].[Prev Year Streams]) 
+            AND NOT IsEmpty([Measures].[Streams1 Month])
+        ),
+        [Date].[YearMonthDay].CurrentMember.Member_Key, ASC 
+    ) ON ROWS
+FROM [Group_Id_8 DB]

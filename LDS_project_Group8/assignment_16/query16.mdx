@@ -1,0 +1,25 @@
+WITH
+MEMBER [Measures].[WeightedStreams] AS
+    0.8 * ([Measures].[Streams1 Month], [Role].[Is Primary].&[True])
+    + 0.2 * ([Measures].[Streams1 Month], [Role].[Is Primary].&[False])
+
+MEMBER [Measures].[GrandTotalYear] AS
+    ([Measures].[Streams1 Month], [Artist].[Artist_Name].[All], [Role].[Is Primary].[All])
+
+MEMBER [Measures].[AvgYearlyArtistStreams] AS
+    IIF([Measures].[GrandTotalYear] = 0 OR IsEmpty([Measures].[WeightedStreams]),
+        NULL,
+        [Measures].[WeightedStreams] / [Measures].[GrandTotalYear]
+    ),
+    FORMAT_STRING = "0.00%"
+
+SELECT
+{
+    [Measures].[Streams1 Month],
+    [Measures].[WeightedStreams],
+    [Measures].[AvgYearlyArtistStreams]
+} ON COLUMNS,
+
+NON EMPTY
+    [Date].[YearMonthDay].[Year].Members * [Artist].[Artist_Name].[Artist_Name].Members ON ROWS
+FROM [Group_Id_8 DB];
