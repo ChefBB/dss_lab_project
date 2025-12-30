@@ -1,0 +1,28 @@
+\subsubsection*{Assignment 3 -- Song Profiling}
+L'Assignment 3 richiedeva di definire categorie di canzoni,
+basandosi sulle informazioni riguardanti i lyrics e/o altre informazioni.
+La classificazione è stata basata esclusivamente sul testo, applicando
+un modello di topic modeling.
+Il processo è stato articolato nei seguenti passaggi:
+
+\begin{enumerate}
+    \item \textbf{Preprocessing}: le lyrics sono state lemmatizzate con
+    \texttt{spaCy}, distinguendo automaticamente tra inglese e italiano,
+    e filtrando stopwords generali e specifiche del dataset.
+    
+    \item \textbf{Rappresentazione testuale}: costruzione di una matrice
+    documento-termine tramite TF-IDF.
+    
+    \item \textbf{Modellazione dei topic}: addestramento di un modello
+    NMF con 8 topic, ottenendo la matrice termine-topic e
+    documento-topic.
+    
+    \item \textbf{Assegnazione delle categorie}: ogni canzone è stata
+    associata al topic dominante.
+    Basandosi sulle parole più presenti in ogni topic, ad ognuno di essi
+    sono stati assegnati nomi interpretabili.
+\end{enumerate}
+
+Il dataset finale contiene quindi, per ogni canzone con lyrics
+disponibili, un attributo \texttt{category} che ne descrive il genere
+tematico principale.
