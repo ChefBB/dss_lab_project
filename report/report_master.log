@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 16:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 16:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -334,7 +334,11 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count294
 \l__pdf_internal_box=\box56
-) (./report_master.aux)
+) (./report_master.aux
+
+LaTeX Warning: Label `fig:my_label' multiply defined.
+
+)
 \openout1 = `report_master.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
@@ -601,27 +605,37 @@ File: Figures/Screenshot 2025-12-30 at 11.02.03.png Graphic file (type png)
 <use Figures/Screenshot 2025-12-30 at 11.02.03.png>
 Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 11.02.03.png  used on input line 4.
 (pdftex.def)             Requested size: 362.37569pt x 205.23206pt.
-) (./section/assignment21.tex [20]) (./section/assignment22.tex)) [21 <./Figures/Screenshot 2025-12-30 at 11.02.03.png>] (./report_master.aux)
+) (./section/assignment21.tex [20]
+<Figures/Screenshot 2025-12-30 at 11.04.37.png, id=177, 1054.94125pt x 593.21625pt>
+File: Figures/Screenshot 2025-12-30 at 11.04.37.png Graphic file (type png)
+<use Figures/Screenshot 2025-12-30 at 11.04.37.png>
+Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 11.04.37.png  used on input line 4.
+(pdftex.def)             Requested size: 362.37569pt x 203.7637pt.
+) (./section/assignment22.tex)) [21 <./Figures/Screenshot 2025-12-30 at 11.02.03.png> <./Figures/Screenshot 2025-12-30 at 11.04.37.png>] (./report_master.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `report_master.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14304 strings out of 474116
- 231191 string characters out of 5743682
+ 14313 strings out of 474116
+ 231582 string characters out of 5743682
  1938187 words of memory out of 5000000
- 36129 multiletter control sequences out of 15000+600000
+ 36136 multiletter control sequences out of 15000+600000
  617907 words of font info for 174 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,79p,1100b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (21 pages, 1120355 bytes).
+Output written on report_master.pdf (21 pages, 1239393 bytes).
 PDF statistics:
- 250 PDF objects out of 1000 (max. 8388607)
- 186 compressed objects within 2 object streams
- 73 named destinations out of 1000 (max. 500000)
- 32307 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 254 PDF objects out of 1000 (max. 8388607)
+ 188 compressed objects within 2 object streams
+ 75 named destinations out of 1000 (max. 500000)
+ 32312 words of extra memory for PDF output out of 35830 (max. 10000000)
 
