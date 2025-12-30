@@ -1,0 +1,26 @@
+\subsection{Assignment 12 -- Analisi delle canzoni trending per stagione e categoria}
+
+L’Assignment 12 richiede di definire una query analitica di interesse business, basata sulle evidenze emerse dalle analisi precedenti e dalla fase di \textit{data understanding}, e di implementarla tramite SSIS, motivandone la rilevanza dal punto di vista aziendale.
+
+In risposta alla consegna, è stata definita un’analisi finalizzata allo studio del comportamento delle canzoni \textit{trending} in relazione alla stagionalità e alla categoria musicale. In particolare, per ciascuna combinazione di stagione e categoria, l’analisi calcola:
+\begin{itemize}
+    \item il numero di canzoni \textit{trending};
+    \item la percentuale di canzoni \textit{trending} della categoria rispetto al totale delle canzoni \textit{trending} della stessa categoria;
+    \item la percentuale di canzoni \textit{trending} della categoria rispetto al totale delle canzoni \textit{trending} nella stessa stagione.
+\end{itemize}
+
+Questa formulazione consente di analizzare sia la distribuzione assoluta delle canzoni \textit{trending}, sia il loro peso relativo all’interno delle categorie musicali e nel contesto stagionale.
+
+Una canzone viene definita \textit{trending} se il numero di stream registrati a un mese dalla pubblicazione supera una soglia statistica calcolata a livello di categoria musicale, pari alla somma tra la media e la deviazione standard degli stream mensili della categoria. Media e deviazione standard sono calcolate separatamente per ciascuna categoria. Questa scelta consente di individuare performance superiori al comportamento medio della categoria, evitando confronti tra categorie caratterizzate da volumi di stream strutturalmente differenti.
+
+Dal punto di vista di una record label, l’analisi fornisce un supporto decisionale rilevante per la pianificazione delle pubblicazioni e delle strategie promozionali, permettendo di identificare le combinazioni di categoria musicale e stagione in cui la probabilità di ottenere contenuti \textit{trending} risulta più elevata.
+
+L’implementazione è realizzata tramite un unico \textit{Data Flow}, con la \textit{FactParticipation} come sorgente principale. Il flusso include due operazioni di \textit{Lookup} verso le dimensioni \textit{DimSong} e \textit{DimDate}, utilizzate rispettivamente per associare a ciascun record la categoria musicale e la stagione di pubblicazione.
+
+Dopo i \textit{Lookup} sulle dimensioni \textit{DimSong} e \textit{DimDate}, il flusso viene ulteriormente suddiviso tramite una suddivisione condizionale, utilizzata per isolare le sole partecipazioni in cui l’artista ricopre il ruolo di artista primario (\textit{IsPrimary = TRUE}). Tale separazione consente di calcolare le statistiche di riferimento evitando distorsioni dovute alla presenza di più righe per la stessa canzone generate dai featuring.
+
+Per supportare aggregazioni a livelli differenti, il flusso viene successivamente suddiviso tramite un \textit{Multicast}, consentendo il calcolo parallelo delle statistiche per categoria, per combinazione stagione--categoria e dei totali necessari al calcolo delle percentuali. La presenza di più \textit{Merge Join} è una conseguenza diretta della necessità di ricombinare risultati intermedi calcolati a differenti livelli di aggregazione.
+
+Il \textit{Sort} finale genera un warning in fase di esecuzione, dovuto alla presenza di righe duplicate introdotte intenzionalmente dalla granularità della fact table e dalle aggregazioni intermedie. Tale warning non compromette la correttezza dei risultati, che risultano coerenti con quelli ottenuti tramite la versione SQL precedentemente validata in SSMS.
+
+L’Assignment 12 dimostra quindi come una query analitica complessa, orientata all’analisi congiunta di stagionalità e categoria musicale, possa essere tradotta efficacemente in un flusso SSIS coerente con lo schema del Data Warehouse e con gli obiettivi di business.

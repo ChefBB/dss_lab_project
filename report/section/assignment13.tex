@@ -1,0 +1,20 @@
+\subsection{Assignment 13 -- Analisi delle performance degli artisti come primary vs featured}
+L’Assignment 13 richiede la definizione e l’implementazione, tramite SSIS, di una query analitica di interesse business a supporto di un’attività di consulenza per una record label, basata sui risultati delle analisi precedenti e sulla fase di \textit{data understanding}.
+
+In risposta alla consegna, è stata progettata un’analisi delle performance degli artisti distinguendo il contributo fornito come artista primario (\textit{IsPrimary = 1}) e come artista in featuring (\textit{IsPrimary = 0}). L’analisi è limitata alle canzoni pubblicate negli ultimi tre anni e, per ciascun artista e per ciascun ruolo, vengono calcolati il numero di canzoni \textit{trending} e la percentuale di canzoni \textit{trending} sul totale delle canzoni rilevanti.
+
+I risultati sono ordinati in base alle misure ottenute, secondo l’ordine specificato dalla query analitica.
+
+Il flusso in SSIS utilizza la \textit{FactParticipation} come sorgente principale. I dati vengono inizialmente collegati alla dimensione \textit{DimDate} tramite un \textit{Lookup}; successivamente, un \textit{Conditional Split} consente di selezionare esclusivamente le canzoni pubblicate negli ultimi tre anni, applicando la condizione:
+\[
+\texttt{Year >= (YEAR(GETDATE()) - 2)}
+\]
+Un ulteriore \textit{Lookup} sulla dimensione \textit{DimSong} permette di associare a ciascun brano la relativa categoria musicale.
+
+Un componente \textit{Multicast} separa il ramo destinato al calcolo delle statistiche di benchmark dal ramo contenente tutte le partecipazioni artista--canzone. Il benchmark statistico viene calcolato considerando esclusivamente le canzoni con \textit{IsPrimary = 1}, evitando distorsioni dovute alla presenza di più righe per la stessa canzone generate dai featuring. Media e deviazione standard vengono calcolate tramite trasformazioni \textit{Aggregate} e \textit{Derived Column}.
+
+I risultati del benchmark vengono successivamente combinati tramite un \textit{Merge Join}, consentendo di classificare ogni partecipazione come \textit{trending} o \textit{non trending}. I dati vengono quindi aggregati per artista e ruolo al fine di ottenere i conteggi e le percentuali richieste.
+
+Dopo il \textit{Lookup} sulla dimensione \textit{DimArtist}, viene applicato un \textit{Conditional Split} denominato \textit{SplitOnlyArtistsVsTrending}, che seleziona esclusivamente gli artisti con almeno un brano \textit{trending}, verificando che la somma dei contributi \textit{trending} come artista primario e come artista in featuring sia maggiore di zero.
+
+Dal punto di vista di una record label, questa analisi consente di confrontare in modo diretto le performance degli artisti nei due ruoli (\textit{primary} vs \textit{featured}), supportando decisioni strategiche legate alle collaborazioni, alla valorizzazione degli artisti e alla pianificazione delle future pubblicazioni.

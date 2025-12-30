@@ -11,8 +11,8 @@
   DTS:LocaleID="1040"
   DTS:ObjectName="Assignment13"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{97450D73-CB1B-49E4-81FE-3F2AE86879ED}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{4973CE7D-1011-4500-B9C3-64A614A28A53}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,7 +29,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeN3tc9Fqc0ODGUk0/mwgfAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAc+HFx5rW7Ba+Puj82O8eG5OF9NnnocNPcoE4W5FfbagAAAAAOgAAAAAIAACAAAABFCqTs+00Msd5Eq/3weFo38idBIj2pV0MGPS247S1PAiAAAACWDqJZs3VG8kPfXwGYPIc4QWC0nWITLsw4bL/X4WqBw0AAAACal3yII3uBdI89kOctVgNCElkjT2y2NPk38aW34YWuoFwEDuTX0P5Jh3MjvxKgkvkPICzAzrSEKKeKHuUSgmd4</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeN3tc9Fqc0ODGUk0/mwgfAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA/Z9gEsB4HcoW8AuWTt3NW3pBRVgfuxO0FPcIpgr2+nQAAAAAOgAAAAAIAACAAAADbRM4xOUIkS+fXSdsWkdBpHOp0xKGUechLYJ67fi2kVSAAAAB34WfHaZ9O+YIpVtIeLCJAWYI46AbLt78vyGUxb/OSt0AAAABWhoZOIfg0umw8S23tjmCQG9B6U5ciuNdxP86nPfD71dVq8BdCTQz5083ggDb6Abu6SCVJadIIMB6GAhc+liVj</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1736,13 +1736,13 @@
                   description="Specifica l'istruzione SQL che genera la tabella di ricerca."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Group_ID_8].[DimArtist]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Group_ID_8].[DimArtist]</property>
                 <property
                   dataType="System.String"
                   description="Specifica un'istruzione SQL che utilizza parametri per generare la tabella di ricerca."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Group_ID_8].[DimArtist]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Group_ID_8].[DimArtist]) [refTable]
 where [refTable].[ArtistKey] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1896,13 +1896,13 @@ where [refTable].[ArtistKey] = ?</property>
                   description="Specifica l'istruzione SQL che genera la tabella di ricerca."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Group_ID_8].[DimDate]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Group_ID_8].[DimDate]</property>
                 <property
                   dataType="System.String"
                   description="Specifica un'istruzione SQL che utilizza parametri per generare la tabella di ricerca."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Group_ID_8].[DimDate]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Group_ID_8].[DimDate]) [refTable]
 where [refTable].[DateKey] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -2055,13 +2055,13 @@ where [refTable].[DateKey] = ?</property>
                   description="Specifica l'istruzione SQL che genera la tabella di ricerca."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Group_ID_8].[DimSong]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Group_ID_8].[DimSong]</property>
                 <property
                   dataType="System.String"
                   description="Specifica un'istruzione SQL che utilizza parametri per generare la tabella di ricerca."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Group_ID_8].[DimSong]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Group_ID_8].[DimSong]) [refTable]
 where [refTable].[SongKey] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -3563,7 +3563,7 @@ where [refTable].[SongKey] = ?</property>
                   dataType="System.String"
                   description="Comando SQL da eseguire."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.String"
                   description="Variabile che contiene il comando SQL da eseguire."
@@ -3853,29 +3853,29 @@ where [refTable].[SongKey] = ?</property>
               startId="Package\Attività Flusso di dati\AggArtistRoleMetrics.Outputs[Output aggregazione 1]" />
             <path
               refId="Package\Attività Flusso di dati.Paths[Output colonna derivata3]"
-              endId="Package\Attività Flusso di dati\DCRole.Inputs[Input colonna derivata]"
-              name="Output colonna derivata"
-              startId="Package\Attività Flusso di dati\DCIsTrending.Outputs[Output colonna derivata]" />
-            <path
-              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata2]"
-              endId="Package\Attività Flusso di dati\LArtist.Inputs[Input ricerca]"
-              name="Output colonna derivata"
-              startId="Package\Attività Flusso di dati\CDPercetage.Outputs[Output colonna derivata]" />
-            <path
-              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata4]"
-              endId="Package\Attività Flusso di dati\AggArtistRoleMetrics.Inputs[Input aggregazione 1]"
-              name="Output colonna derivata"
-              startId="Package\Attività Flusso di dati\DCRole.Outputs[Output colonna derivata]" />
-            <path
-              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata]"
               endId="Package\Attività Flusso di dati\AggCategoryBenchmark.Inputs[Input aggregazione 1]"
               name="Output colonna derivata"
               startId="Package\Attività Flusso di dati\DCStreamSquared.Outputs[Output colonna derivata]" />
             <path
-              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata1]"
+              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata2]"
+              endId="Package\Attività Flusso di dati\AggArtistRoleMetrics.Inputs[Input aggregazione 1]"
+              name="Output colonna derivata"
+              startId="Package\Attività Flusso di dati\DCRole.Outputs[Output colonna derivata]" />
+            <path
+              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata4]"
               endId="Package\Attività Flusso di dati\SortBenchmark_ByCategory.Inputs[Input ordinamento]"
               name="Output colonna derivata"
               startId="Package\Attività Flusso di dati\CDComputeStdDev.Outputs[Output colonna derivata]" />
+            <path
+              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata]"
+              endId="Package\Attività Flusso di dati\DCRole.Inputs[Input colonna derivata]"
+              name="Output colonna derivata"
+              startId="Package\Attività Flusso di dati\DCIsTrending.Outputs[Output colonna derivata]" />
+            <path
+              refId="Package\Attività Flusso di dati.Paths[Output colonna derivata1]"
+              endId="Package\Attività Flusso di dati\LArtist.Inputs[Input ricerca]"
+              name="Output colonna derivata"
+              startId="Package\Attività Flusso di dati\CDPercetage.Outputs[Output colonna derivata]" />
             <path
               refId="Package\Attività Flusso di dati.Paths[Output corrispondenza ricerca]"
               endId="Package\Attività Flusso di dati\CS_Last3Years.Inputs[Input suddivisione condizionale]"
@@ -3903,24 +3903,24 @@ where [refTable].[SongKey] = ?</property>
               startId="Package\Attività Flusso di dati\MulticastPartecipation.Outputs[Output multicast 1]" />
             <path
               refId="Package\Attività Flusso di dati.Paths[Output ordinamento3]"
+              endId="Package\Attività Flusso di dati\DCStreamSquared.Inputs[Input colonna derivata]"
+              name="Output ordinamento"
+              startId="Package\Attività Flusso di dati\SortSongKey.Outputs[Output ordinamento]" />
+            <path
+              refId="Package\Attività Flusso di dati.Paths[Output ordinamento]"
               endId="Package\Attività Flusso di dati\MJPartecipationsBenchmark.Inputs[Input merge join destro]"
               name="Output ordinamento"
               startId="Package\Attività Flusso di dati\SortBenchmark_ByCategory.Outputs[Output ordinamento]" />
             <path
-              refId="Package\Attività Flusso di dati.Paths[Output ordinamento]"
+              refId="Package\Attività Flusso di dati.Paths[Output ordinamento1]"
               endId="Package\Attività Flusso di dati\Destinazione file flat.Inputs[Input destinazione file flat]"
               name="Output ordinamento"
               startId="Package\Attività Flusso di dati\SortFinalRanking.Outputs[Output ordinamento]" />
             <path
-              refId="Package\Attività Flusso di dati.Paths[Output ordinamento1]"
+              refId="Package\Attività Flusso di dati.Paths[Output ordinamento2]"
               endId="Package\Attività Flusso di dati\MJPartecipationsBenchmark.Inputs[Input merge join sinistro]"
               name="Output ordinamento"
               startId="Package\Attività Flusso di dati\SortAllPartecipations.Outputs[Output ordinamento]" />
-            <path
-              refId="Package\Attività Flusso di dati.Paths[Output ordinamento2]"
-              endId="Package\Attività Flusso di dati\DCStreamSquared.Inputs[Input colonna derivata]"
-              name="Output ordinamento"
-              startId="Package\Attività Flusso di dati\SortSongKey.Outputs[Output ordinamento]" />
             <path
               refId="Package\Attività Flusso di dati.Paths[Output origine OLE DB]"
               endId="Package\Attività Flusso di dati\LDimDate.Inputs[Input ricerca]"
@@ -4123,40 +4123,6 @@ where [refTable].[SongKey] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Attività Flusso di dati.Paths[Output ordinamento3]"
-          TopLeft="1329.90476190476,270.952380952381">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-162.119047619048,-69.2857142857143"
-              Start="0,0"
-              End="-162.119047619048,-61.7857142857143">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-24.0171740827478" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-24.0171740827478"
-                    Point2="0,-28.0171740827478"
-                    Point3="-4,-28.0171740827478" />
-                  <mssgle:LineSegment
-                    End="-158.119047619048,-28.0171740827478" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-158.119047619048,-28.0171740827478"
-                    Point2="-162.119047619048,-28.0171740827478"
-                    Point3="-162.119047619048,-32.0171740827478" />
-                  <mssgle:LineSegment
-                    End="-162.119047619048,-61.7857142857143" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output ordinamento2]"
           TopLeft="1317.11904761905,36.9702380952381">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4178,7 +4144,7 @@ where [refTable].[SongKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output ordinamento1]"
+          Id="Package\Attività Flusso di dati.Paths[Output ordinamento2]"
           TopLeft="837.416666666667,125.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4212,7 +4178,7 @@ where [refTable].[SongKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output ordinamento]"
+          Id="Package\Attività Flusso di dati.Paths[Output ordinamento1]"
           TopLeft="200.380952380952,332.857142857143">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4225,6 +4191,40 @@ where [refTable].[SongKey] = ?</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="58.547619047619,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Attività Flusso di dati.Paths[Output ordinamento]"
+          TopLeft="1329.90476190476,270.952380952381">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-162.119047619048,-69.2857142857143"
+              Start="0,0"
+              End="-162.119047619048,-61.7857142857143">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-24.0171740827478" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-24.0171740827478"
+                    Point2="0,-28.0171740827478"
+                    Point3="-4,-28.0171740827478" />
+                  <mssgle:LineSegment
+                    End="-158.119047619048,-28.0171740827478" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-158.119047619048,-28.0171740827478"
+                    Point2="-162.119047619048,-28.0171740827478"
+                    Point3="-162.119047619048,-32.0171740827478" />
+                  <mssgle:LineSegment
+                    End="-162.119047619048,-61.7857142857143" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4369,72 +4369,6 @@ where [refTable].[SongKey] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Attività Flusso di dati.Paths[Output colonna derivata4]"
-          TopLeft="808.666666666667,239.857142857143">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-53.9999999999998,0"
-              Start="0,0"
-              End="-46.4999999999998,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-46.4999999999998,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata3]"
-          TopLeft="958.428571428571,238.047619047619">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-31.7619047619048,0"
-              Start="0,0"
-              End="-24.2619047619048,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-24.2619047619048,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata2]"
-          TopLeft="399.047619047619,235.309523809524">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-30.3809523809521,0"
-              Start="0,0"
-              End="-22.8809523809521,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-22.8809523809521,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata1]"
           TopLeft="1452.42857142857,212.321428571429">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4468,7 +4402,7 @@ where [refTable].[SongKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata]"
+          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata3]"
           TopLeft="1427.60714285714,55.8928571428572">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4493,6 +4427,72 @@ where [refTable].[SongKey] = ?</property>
                     Point3="17.3809523809527,22.0357142857143" />
                   <mssgle:LineSegment
                     End="17.3809523809527,28.5714285714285" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata2]"
+          TopLeft="808.666666666667,239.857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-53.9999999999998,0"
+              Start="0,0"
+              End="-46.4999999999998,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-46.4999999999998,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata1]"
+          TopLeft="399.047619047619,235.309523809524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-30.3809523809521,0"
+              Start="0,0"
+              End="-22.8809523809521,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-22.8809523809521,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Attività Flusso di dati.Paths[Output colonna derivata]"
+          TopLeft="958.428571428571,238.047619047619">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.7619047619048,0"
+              Start="0,0"
+              End="-24.2619047619048,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-24.2619047619048,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

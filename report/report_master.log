@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.27)  29 DEC 2025 19:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.27)  30 DEC 2025 10:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -483,29 +483,44 @@ Overfull \hbox (3.67815pt too wide) in paragraph at lines 54--56
 []\T1/lmr/m/n/10.95 (-20) In par-ti-co-lare, la fact ta-ble \T1/lmr/m/it/10.95 (-20) Fact-Par-tic-i-pa-tion \T1/lmr/m/n/10.95 (-20) mantiene la gran-u-lar-ità definita nell'Assignment 4,
  []
 
-) (section/assignment6.tex [4]) (section/assignment8.tex [5]) (section/assignment9.tex) (section/assignment10.tex) (section/assignment11.tex [6]) (section/assignment12.tex) (section/assignment13.tex) (section/assignment14.tex) (section/assignment15.tex [7]) (section/assignment16.tex
+) (section/assignment6.tex [4]) (section/assignment8.tex [5]) (section/assignment9.tex) (section/assignment10.tex) (section/assignment11.tex [6]) (section/assignment12.tex [7]) (section/assignment13.tex [8]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 11.
-) (section/assignment17.tex [8{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]) (section/assignment18.tex) (section/assignment19.tex [9{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}])) [10] (report_master.aux)
+(Font)              <10.95> on input line 9.
+) (section/assignment14.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--10
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
+
+ []
+
+) (section/assignment15.tex) (section/assignment16.tex [10]) (section/assignment17.tex) (section/assignment18.tex [11{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]) (section/assignment19.tex)) [12] [13] (report_master.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `report_master.out' has not changed.
-(rerunfilecheck)             Checksum: 2AD205939E45E4DA83DA1003C3BDFF37;5531.
+(rerunfilecheck)             Checksum: 436788D124D7F0A3B3189E65F91A7811;6664.
  ) 
 Here is how much of TeX's memory you used:
- 14208 strings out of 467871
- 231430 string characters out of 5418375
+ 14257 strings out of 467871
+ 232068 string characters out of 5418375
  667108 words of memory out of 5000000
- 42638 multiletter control sequences out of 15000+600000
- 685949 words of font info for 167 fonts, out of 8000000 for 9000
+ 42652 multiletter control sequences out of 15000+600000
+ 693907 words of font info for 184 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,6n,79p,1112b,553s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Win10/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (10 pages, 256894 bytes).
+Output written on report_master.pdf (13 pages, 273846 bytes).
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 34 named destinations out of 1000 (max. 500000)
- 31377 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 217 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 36521 words of extra memory for PDF output out of 42996 (max. 10000000)
 
