@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1767097976.48859 "/Users/brunobarbieri/Documents/Uni/master/second/first_sem/dss/lab/dss_lab_project/report/report_master.tex" "report_master.pdf" "report_master" 1767097977.17941 0
+["pdflatex"] 1767103792.46741 "/Users/brunobarbieri/Documents/Uni/master/second/first_sem/dss/lab/dss_lab_project/report/report_master.tex" "report_master.pdf" "report_master" 1767103793.21472 0
   "/Users/brunobarbieri/Documents/Uni/master/second/first_sem/dss/lab/dss_lab_project/report/report_master.tex" 1767096796.4171 844 1cbbff660934d6a4c15b9bc24f5bd8be ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -129,8 +129,8 @@
   "Figures/assignment8.png" 1767019277.37836 21988 ca5a20acb8157ef2ad31de1efebc17eb ""
   "Figures/assignment9.png" 1767019277.37897 39516 4ae5fba878db0be363de58a4dbca66e5 ""
   "Figures/streams_plot.png" 1767095054.30361 18477 db3ba9c665930918f01a12b22a424fd0 ""
-  "report_master.aux" 1767097977.10485 2482 73504093d273c6238eea62e61d345c97 "pdflatex"
-  "report_master.out" 1767097976.80052 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "report_master.aux" 1767103793.13771 2484 1463c04588a838ccb18115686b530e18 "pdflatex"
+  "report_master.out" 1767103792.81019 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "report_master.tex" 1767096796.4171 844 1cbbff660934d6a4c15b9bc24f5bd8be ""
   "section/assignment1.tex" 1767097976.27811 4890 6629eeea6d21f10698b78dfe21d523f1 ""
   "section/assignment10.tex" 1767094715.59638 2118 95c8a4cbff71d8fb15d47bfb644117f9 ""
@@ -143,7 +143,7 @@
   "section/assignment17.tex" 1767094662.98494 2310 d6d158f107e39f3f45d9de58c000bc8d ""
   "section/assignment18.tex" 1767094662.98543 1755 4e58da46c4481fa206dc86636d54a869 ""
   "section/assignment19.tex" 1767094662.98562 2232 05304a415f419c37707fe898a731ff09 ""
-  "section/assignment2.tex" 1766869775.37714 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "section/assignment2.tex" 1767103792.23343 3864 a8035e640dcaf47868455b61ab0dd512 ""
   "section/assignment20.tex" 1766869775.37717 0 d41d8cd98f00b204e9800998ecf8427e ""
   "section/assignment21.tex" 1766869775.3772 0 d41d8cd98f00b204e9800998ecf8427e ""
   "section/assignment22.tex" 1766869775.37724 0 d41d8cd98f00b204e9800998ecf8427e ""

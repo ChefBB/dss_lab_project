@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 13:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 15:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -520,43 +520,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--75
 
  []
 
-) (./section/assignment2.tex) (./section/assignment3.tex) (./section/assignment4.tex [2 <./Figures/streams_plot.png>] [3]) (./section/assignment5.tex [4] [5]) (./section/assignment6.tex [6]) (./section/assignment7.tex) (./section/assignment8.tex
-<Figures/assignment8.png, id=54, 544.28343pt x 306.39468pt>
+) (./section/assignment2.tex [2 <./Figures/streams_plot.png>] [3]) (./section/assignment3.tex) (./section/assignment4.tex [4] [5]) (./section/assignment5.tex [6]) (./section/assignment6.tex [7]) (./section/assignment7.tex) (./section/assignment8.tex
+<Figures/assignment8.png, id=66, 544.28343pt x 306.39468pt>
 File: Figures/assignment8.png Graphic file (type png)
 <use Figures/assignment8.png>
 Package pdftex.def Info: Figures/assignment8.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 242.23616pt.
-) (./section/assignment9.tex
-<Figures/assignment9.png, id=56, 836.3747pt x 278.54062pt>
+ [8 <./Figures/assignment8.png>]) (./section/assignment9.tex
+<Figures/assignment9.png, id=75, 836.3747pt x 278.54062pt>
 File: Figures/assignment9.png Graphic file (type png)
 <use Figures/assignment9.png>
 Package pdftex.def Info: Figures/assignment9.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 143.31187pt.
- [7 <./Figures/assignment8.png>]) (./section/assignment10.tex
-<Figures/assignment10.png, id=66, 959.83594pt x 322.20375pt>
+) (./section/assignment10.tex
+<Figures/assignment10.png, id=77, 959.83594pt x 322.20375pt>
 File: Figures/assignment10.png Graphic file (type png)
 <use Figures/assignment10.png>
 Package pdftex.def Info: Figures/assignment10.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 144.45445pt.
- [8 <./Figures/assignment9.png>]) (./section/assignment11.tex
-<Figures/assignment11.png, id=75, 1081.03876pt x 747.79375pt>
+ [9 <./Figures/assignment9.png>]) (./section/assignment11.tex
+<Figures/assignment11.png, id=86, 1081.03876pt x 747.79375pt>
 File: Figures/assignment11.png Graphic file (type png)
 <use Figures/assignment11.png>
 Package pdftex.def Info: Figures/assignment11.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 297.66307pt.
- [9 <./Figures/assignment10.png>] [10 <./Figures/assignment11.png>]) (./section/assignment12.tex
-<Figures/assignment12.png, id=90, 1003.49907pt x 371.13657pt>
+ [10 <./Figures/assignment10.png>] [11 <./Figures/assignment11.png>]) (./section/assignment12.tex
+<Figures/assignment12.png, id=101, 1003.49907pt x 371.13657pt>
 File: Figures/assignment12.png Graphic file (type png)
 <use Figures/assignment12.png>
 Package pdftex.def Info: Figures/assignment12.png  used on input line 19.
 (pdftex.def)             Requested size: 430.31812pt x 159.14955pt.
- [11]) (./section/assignment13.tex
-<Figures/assignment13.png, id=97, 944.02687pt x 216.05719pt>
+ [12]) (./section/assignment13.tex
+<Figures/assignment13.png, id=108, 944.02687pt x 216.05719pt>
 File: Figures/assignment13.png Graphic file (type png)
 <use Figures/assignment13.png>
 Package pdftex.def Info: Figures/assignment13.png  used on input line 9.
 (pdftex.def)             Requested size: 430.31812pt x 98.48749pt.
- [12 <./Figures/assignment12.png>]
+ [13 <./Figures/assignment12.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 17.
 ) (./section/assignment14.tex
@@ -564,7 +564,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--10
 
  []
 
-[13 <./Figures/assignment13.png>]
+[14 <./Figures/assignment13.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
@@ -574,7 +574,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--44
 
  []
 
-) (./section/assignment15.tex) (./section/assignment16.tex [14]) (./section/assignment17.tex) (./section/assignment18.tex [15{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]) (./section/assignment19.tex) (./section/assignment20.tex) (./section/assignment21.tex) (./section/assignment22.tex)) [16] (./report_master.aux)
+) (./section/assignment15.tex) (./section/assignment16.tex [15]) (./section/assignment17.tex) (./section/assignment18.tex [16{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]) (./section/assignment19.tex) (./section/assignment20.tex) (./section/assignment21.tex) (./section/assignment22.tex)) [17] (./report_master.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -583,18 +583,18 @@ Package rerunfilecheck Info: File `report_master.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14235 strings out of 474116
- 229519 string characters out of 5743682
+ 14247 strings out of 474116
+ 229677 string characters out of 5743682
  1938187 words of memory out of 5000000
- 36099 multiletter control sequences out of 15000+600000
- 611252 words of font info for 165 fonts, out of 8000000 for 9000
+ 36101 multiletter control sequences out of 15000+600000
+ 611346 words of font info for 166 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,79p,1100b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,7n,79p,1100b,611s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (16 pages, 588301 bytes).
+Output written on report_master.pdf (17 pages, 592374 bytes).
 PDF statistics:
- 195 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
- 48 named destinations out of 1000 (max. 500000)
+ 208 PDF objects out of 1000 (max. 8388607)
+ 154 compressed objects within 2 object streams
+ 56 named destinations out of 1000 (max. 500000)
  28196 words of extra memory for PDF output out of 29859 (max. 10000000)
 

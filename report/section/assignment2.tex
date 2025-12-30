@@ -1,0 +1,87 @@
+\subsection*{Assignment 2 -- Data Cleaning}
+L'Assignment 2 richiedeva di affrontare i problemi legati a valori
+mancanti e incongruenze presenti nel dataset menzionate nella sezione
+precedente.
+Il processo è stato suddiviso in tre fasi principali:
+\begin{itemize}
+    \item \textbf{Data retrieval}: raccolta di informazioni mancanti da
+    fonti esterne;
+    \item \textbf{Integration}: unione dei dati esterni con quelli
+    originali;
+    \item \textbf{Fill}: completamento dei valori mancanti e
+    correzione delle incongruenze.
+\end{itemize}
+
+Le funzioni relative a questi tre processi sono contenute all'interno
+dei file omonimi nella cartella \texttt{assignment\_2}.
+
+\subsubsection*{Data Retrieval}
+Questa fase si basa sull'API \texttt{musicbrainzngs}.
+Il processo divide il recupero di informazioni
+relative agli \textbf{artisti} e alle \textbf{canzoni}, impiegando
+comunque la stessa logica per le due entità.
+
+A partire dai dati disponibili nel dataset, vengono costruite liste di
+clausole formattate secondo la sintassi Lucene.
+L'ordine di queste clausole è basato sull'affidabilità dell'attributo in
+questione. Queste liste vengono poi utilizzate iterativamente, in ordine,
+per generare query da inviare a Musicbrainz, finché non finiscono
+le clausole, viene restituita una risposta vuota o una risposta con un
+solo risultato.
+
+Le query restituiscono risultati sempre più precisi; l'ordine delle clausole
+nella lista è definito precisamente per questo motivo,
+assicurando almeno un risultato per ogni artista o canzone.
+Alla fine del processo, i dati ricavati sono stati salvati nei file della
+cartella \texttt{dataset/mb}.
+
+
+\subsubsection*{Integration}
+Dopo il recupero dei dati da MusicBrainz, il passo successivo consiste
+nell'integrazione delle informazioni ottenute con il dataset
+originale.
+Questo processo prevede il confronto tra gli elementi del dataset
+originale e quelli recuperati, restituendo la lista dei risultati
+più attinenti (uno per ogni artista o canzone),
+con il proprio \texttt{matching\_score}
+assegnato. Il calcolo del matching score è basato sulla somiglianza
+degli attributi dell'oggetto originale e ricavato nel processo di
+retrieval.
+I valori di somiglianza vengono moltiplicati tra loro, in modo da
+ottenere lo score finale compreso tra 0 e 1.
+Questo approccio consente di integrare in maniera automatica e robusta
+i dati esterni.
+
+
+\subsubsection*{Fill}
+L'ultima fase del processo riguarda il completamento dei valori mancanti,
+utilizzando i dati del miglior risultato trovato precedentemente.  
+Per ogni elemento del dataset originale, se la corrispondenza con i dati
+recuperati è considerata sufficientemente affidabile
+(matching score superiore a una soglia), vengono aggiornati gli
+attributi mancanti.
+Le informazioni geografiche vengono ulteriormente validate
+tramite interrogazioni a OpenStreetMap, garantendo coerenza e
+completezza dei dati. Per correggere l'incongruenza della presenza di
+dati del luogo di nascita o della residenza, sono state scelte sempre
+i luoghi di nascita, affidandosi ai dati ricavati da MusicBrainz.
+
+\subsubsection*{Flusso Completo}
+
+Il processo è successivamente stato implementato in un unico script.
+Oltre alle operazioni precedenti, questo tratta anche:
+
+\begin{enumerate}
+    \item \textbf{Generazione di nuove identificazioni}: creazione di
+    ID univoci tramite \texttt{uuid} per artisti, canzoni, album, date
+    e località geografiche.
+    
+    \item \textbf{Costruzione delle tabelle}: dai file originali,
+    lo script separa le entità delle date di pubblicazione
+    delle canzoni, le informazioni sul luogo di nascita degli
+    artisti, e le partecipazioni degli artisti alle canzoni. 
+\end{enumerate}
+
+Questo flusso garantisce un dataset finale completo, coerente e pronto
+per le analisi successive, con tutte le informazioni chiave normalizzate
+e integrate.
