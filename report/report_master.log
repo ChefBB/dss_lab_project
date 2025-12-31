@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  30 DEC 2025 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.14)  31 DEC 2025 10:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -327,7 +327,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip54
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 31.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 49.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 52.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -337,37 +337,37 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 ) (./report_master.aux)
 \openout1 = `report_master.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Info: Redefining \microtypecontext on input line 49.
-Package microtype Info: Applying patch `item' on input line 49.
-Package microtype Info: Applying patch `toc' on input line 49.
-Package microtype Info: Applying patch `eqnum' on input line 49.
-Package microtype Info: Applying patch `footnote' on input line 49.
-Package microtype Info: Applying patch `verbatim' on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Info: Redefining \microtypecontext on input line 52.
+Package microtype Info: Applying patch `item' on input line 52.
+Package microtype Info: Applying patch `toc' on input line 52.
+Package microtype Info: Applying patch `eqnum' on input line 52.
+Package microtype Info: Applying patch `footnote' on input line 52.
+Package microtype Info: Applying patch `verbatim' on input line 52.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 49.
+LaTeX Info: Redefining \showhyphens on input line 52.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -438,40 +438,45 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-Package hyperref Info: Link coloring ON on input line 49.
+Package hyperref Info: Link coloring ON on input line 52.
  (./report_master.out) (./report_master.out)
 \@outlinefile=\write3
 \openout3 = `report_master.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 52.
+<Figures/unipi.png, id=4, 2055.68pt x 2056.68375pt>
+File: Figures/unipi.png Graphic file (type png)
+<use Figures/unipi.png>
+Package pdftex.def Info: Figures/unipi.png  used on input line 55.
+(pdftex.def)             Requested size: 113.24197pt x 113.29056pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 55.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 52.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 55.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 52.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 55.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 52.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 55.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 52.
+(Font)              <12> on input line 55.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 52.
+(Font)              <8> on input line 55.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 52.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+(Font)              <6> on input line 55.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 55.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 55.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -503,14 +508,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--31
 
  []
 
-<Figures/streams_plot.png, id=5, 501.5538pt x 284.0211pt>
+[1
+
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./Figures/unipi.png>]
+<Figures/streams_plot.png, id=23, 501.5538pt x 284.0211pt>
 File: Figures/streams_plot.png Graphic file (type png)
 <use Figures/streams_plot.png>
 Package pdftex.def Info: Figures/streams_plot.png  used on input line 50.
 (pdftex.def)             Requested size: 317.07614pt x 179.5583pt.
-[1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
 Underfull \hbox (badness 10000) in paragraph at lines 60--65
 
  []
@@ -520,8 +526,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--75
 
  []
 
-) (./section/assignment2.tex [2 <./Figures/streams_plot.png>] [3]) (./section/assignment3.tex) (./section/assignment4.tex [4]
-<Figures/Screenshot 2025-12-30 at 10.42.49.png, id=53, 724.7075pt x 703.62875pt>
+[2 <./Figures/streams_plot.png>]) (./section/assignment2.tex [3]) (./section/assignment3.tex) (./section/assignment4.tex [4]
+<Figures/Screenshot 2025-12-30 at 10.42.49.png, id=55, 724.7075pt x 703.62875pt>
 File: Figures/Screenshot 2025-12-30 at 10.42.49.png Graphic file (type png)
 <use Figures/Screenshot 2025-12-30 at 10.42.49.png>
 Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 10.42.49.png  used on input line 83.
@@ -536,43 +542,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--8
 
  []
 
-<Figures/Screenshot 2025-12-30 at 16.04.31.png, id=81, 1166.3575pt x 552.0625pt>
+<Figures/Screenshot 2025-12-30 at 16.04.31.png, id=83, 1166.3575pt x 552.0625pt>
 File: Figures/Screenshot 2025-12-30 at 16.04.31.png Graphic file (type png)
 <use Figures/Screenshot 2025-12-30 at 16.04.31.png>
 Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 16.04.31.png  used on input line 15.
 (pdftex.def)             Requested size: 452.9679pt x 214.39374pt.
 [9]) (./section/assignment8.tex
-<Figures/assignment8.png, id=88, 544.28343pt x 306.39468pt>
+<Figures/assignment8.png, id=90, 544.28343pt x 306.39468pt>
 File: Figures/assignment8.png Graphic file (type png)
 <use Figures/assignment8.png>
 Package pdftex.def Info: Figures/assignment8.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 242.23616pt.
  [10 <./Figures/Screenshot 2025-12-30 at 16.04.31.png>]) (./section/assignment9.tex
-<Figures/assignment9.png, id=96, 836.3747pt x 278.54062pt>
+<Figures/assignment9.png, id=98, 836.3747pt x 278.54062pt>
 File: Figures/assignment9.png Graphic file (type png)
 <use Figures/assignment9.png>
 Package pdftex.def Info: Figures/assignment9.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 143.31187pt.
  [11 <./Figures/assignment8.png> <./Figures/assignment9.png>]) (./section/assignment10.tex
-<Figures/assignment10.png, id=108, 959.83594pt x 322.20375pt>
+<Figures/assignment10.png, id=110, 959.83594pt x 322.20375pt>
 File: Figures/assignment10.png Graphic file (type png)
 <use Figures/assignment10.png>
 Package pdftex.def Info: Figures/assignment10.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 144.45445pt.
  [12 <./Figures/assignment10.png>]) (./section/assignment11.tex
-<Figures/assignment11.png, id=117, 1081.03876pt x 747.79375pt>
+<Figures/assignment11.png, id=119, 1081.03876pt x 747.79375pt>
 File: Figures/assignment11.png Graphic file (type png)
 <use Figures/assignment11.png>
 Package pdftex.def Info: Figures/assignment11.png  used on input line 5.
 (pdftex.def)             Requested size: 430.31812pt x 297.66307pt.
  [13 <./Figures/assignment11.png>]) (./section/assignment12.tex [14]
-<Figures/assignment12.png, id=131, 1003.49907pt x 371.13657pt>
+<Figures/assignment12.png, id=133, 1003.49907pt x 371.13657pt>
 File: Figures/assignment12.png Graphic file (type png)
 <use Figures/assignment12.png>
 Package pdftex.def Info: Figures/assignment12.png  used on input line 19.
 (pdftex.def)             Requested size: 430.31812pt x 159.14955pt.
 ) (./section/assignment13.tex [15 <./Figures/assignment12.png>]
-<Figures/assignment13.png, id=139, 944.02687pt x 216.05719pt>
+<Figures/assignment13.png, id=141, 944.02687pt x 216.05719pt>
 File: Figures/assignment13.png Graphic file (type png)
 <use Figures/assignment13.png>
 Package pdftex.def Info: Figures/assignment13.png  used on input line 9.
@@ -595,19 +601,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--44
  []
 
 ) (./section/assignment15.tex [17]) (./section/assignment16.tex) (./section/assignment17.tex [18{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]) (./section/assignment18.tex) (./section/assignment19.tex [19{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]) (./section/assignment20.tex
-<Figures/ass_20.png, id=173, 1196.47pt x 673.51625pt>
+<Figures/ass_20.png, id=175, 1196.47pt x 673.51625pt>
 File: Figures/ass_20.png Graphic file (type png)
 <use Figures/ass_20.png>
 Package pdftex.def Info: Figures/ass_20.png  used on input line 8.
 (pdftex.def)             Requested size: 452.9679pt x 254.98306pt.
  [20 <./Figures/ass_20.png>]) (./section/assignment21.tex
-<Figures/Screenshot 2025-12-30 at 11.04.37.png, id=183, 1054.94125pt x 593.21625pt>
+<Figures/Screenshot 2025-12-30 at 11.04.37.png, id=185, 1054.94125pt x 593.21625pt>
 File: Figures/Screenshot 2025-12-30 at 11.04.37.png Graphic file (type png)
 <use Figures/Screenshot 2025-12-30 at 11.04.37.png>
 Package pdftex.def Info: Figures/Screenshot 2025-12-30 at 11.04.37.png  used on input line 11.
 (pdftex.def)             Requested size: 452.9679pt x 254.7069pt.
  [21 <./Figures/Screenshot 2025-12-30 at 11.04.37.png>]) (./section/assignment22.tex
-<Figures/ass_22.png, id=192, 1197.47375pt x 673.51625pt>
+<Figures/ass_22.png, id=194, 1197.47375pt x 673.51625pt>
 File: Figures/ass_22.png Graphic file (type png)
 <use Figures/ass_22.png>
 Package pdftex.def Info: Figures/ass_22.png  used on input line 14.
@@ -621,18 +627,18 @@ Package rerunfilecheck Info: File `report_master.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14325 strings out of 474116
- 231624 string characters out of 5743682
- 1938187 words of memory out of 5000000
- 36145 multiletter control sequences out of 15000+600000
+ 14332 strings out of 474116
+ 231791 string characters out of 5743682
+ 1936187 words of memory out of 5000000
+ 36152 multiletter control sequences out of 15000+600000
  617907 words of font info for 174 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,79p,1100b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,7n,79p,1100b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on report_master.pdf (22 pages, 1485360 bytes).
+Output written on report_master.pdf (22 pages, 1824228 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
+ 269 PDF objects out of 1000 (max. 8388607)
  198 compressed objects within 2 object streams
  78 named destinations out of 1000 (max. 500000)
- 32317 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 32322 words of extra memory for PDF output out of 35830 (max. 10000000)
 
